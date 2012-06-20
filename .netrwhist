@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/god/src/love-0.8.0/src/modules'
+let g:netrw_dirhist_2='/home/god/ant/Online/script/Battle'
+let g:netrw_dirhist_3='/home/god/test/lua/bindLua'
+let g:netrw_dirhist_4='/home/god/test'
+let g:netrw_dirhist_5='/home/god/src/luabind-0.9.1+dfsg.orig/src'
+let g:netrw_dirhist_6='/home/god/uuid-1.6.2/perl'
+let g:netrw_dirhist_7='/etc/init'
+let g:netrw_dirhist_8='/home/god/ant/Online/Core/Script'
