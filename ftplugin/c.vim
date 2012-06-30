@@ -489,4 +489,15 @@ endif
 
 :iabbrev brif  @brief:
 
+"set text index and tab
+"a tab is 4 white lenght 
+"set tabstop=4 
+
+"每层缩紧使用的空格数
+set shiftwidth=4
+
+" 把输入的tab变成空格，输入tab要使用C-v<TAB>
+" expandtab
+
+
 set foldmethod=indent
