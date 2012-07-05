@@ -13,18 +13,19 @@ if exists("b:did_LUA_ftplugin")
 endif
 let b:did_LUA_ftplugin = 1
 "
-" ---------- tabulator / shiftwidth ------------------------------------------
-"  Uncomment the next two lines to force these settings for all files with
-"  filetype 'lua' .
-"  
-"setlocal  tabstop=4
-"setlocal  shiftwidth=4
+" ---------- set lua custom rc ------------------------------------------
 "
+if exists("g:Lua_Custom_Vimrc") 
+ " source g:Lua_Custom_Vimrc
+  source $HOME/.vim/lua-support/rc/customization.vimrc
+endif    
+
+  
 " ---------- Lua dictionary -------------------------------------------------
 " This will enable keyword completion for Lua
 " using Vim's dictionary feature |i_CTRL-X_CTRL-K|.
 "
-if exists("g:Lua_Dictionary_File")
+if exists("g:Lua_Dictionary_File") 
     silent! exec 'setlocal dictionary+='.g:Lua_Dictionary_File
 endif    
 "

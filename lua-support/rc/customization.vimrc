@@ -1,27 +1,7 @@
-"
-"===============================================================================
-"==========  load example vimrc from the distribution  =========================
-"===============================================================================
-"
-runtime vimrc_example.vim
-"
 "===============================================================================
 "==========  CUSTOMIZATION (vimrc)  ============================================
 "===============================================================================
-"
-" Platform specific items:
-" - central backup directory (has to be created)
-" - default dictionary
-" Uncomment your choice.  
-if  has("win16") || has("win32")     || has("win64") || 
-  \ has("win95") || has("win32unix") 
-    "
-"    runtime mswin.vim
-"    set backupdir =$VIM\vimfiles\backupdir
-else
-"    set backupdir =$HOME/.vim.backupdir
-endif
-"
+" modify by lili Thu Jul  5 10:51:23 CST 2012
 "-------------------------------------------------------------------------------
 " Enable the use of the mouse for certain terminals.
 "-------------------------------------------------------------------------------
@@ -37,39 +17,13 @@ set complete+=k           " scan the files given with the 'dictionary' option
 "-------------------------------------------------------------------------------
 " Various settings
 "-------------------------------------------------------------------------------
-set autochdir             " change the current working directory
-set autoread              " read open files again when changed outside Vim
-set autowrite             " write a modified buffer on each :next , ...
-set browsedir  =current   " which directory to use for the file browser
-set incsearch             " use incremental search
-set nowrap                " do not wrap lines
-set shiftwidth =2         " number of spaces to use for each step of indent
-set tabstop    =2         " number of spaces that a <Tab> in the file counts for
-set visualbell            " visual bell instead of beeping
-"
-"-------------------------------------------------------------------------------
-"  some additional hot keys
-"-------------------------------------------------------------------------------
-"    F2   -  write file without confirmation
-"    F3   -  call file explorer Ex
-"    F4   -  show tag under curser in the preview window (tagfile must exist!)
-"    F6   -  list all errors           
-"    F7   -  display previous error
-"    F8   -  display next error   
-"-------------------------------------------------------------------------------
-map   <silent> <F2>    :write<CR>
-map   <silent> <F3>    :Explore<CR>
-nmap  <silent> <F4>    :exe ":ptag ".expand("<cword>")<CR>
-map   <silent> <F6>    :copen<CR>
-map   <silent> <F7>    :cp<CR>
-map   <silent> <F8>    :cn<CR>
-"
-imap  <silent> <F2>    <Esc>:write<CR>
-imap  <silent> <F3>    <Esc>:Explore<CR>
-imap  <silent> <F4>    <Esc>:exe ":ptag ".expand("<cword>")<CR>
-imap  <silent> <F6>    <Esc>:copen<CR>
-imap  <silent> <F7>    <Esc>:cp<CR>
-imap  <silent> <F8>    <Esc>:cn<CR>
+setl autochdir             " change the current working directory
+setl autoread              " read open files again when changed outside Vim
+setl autowrite             " write a modified buffer on each :next , ...
+setl browsedir  =current   " which directory to use for the file browser
+setl incsearch             " use incremental search
+setl nowrap                " do not wrap lines
+setl visualbell            " visual bell instead of beeping
 "
 "-------------------------------------------------------------------------------
 " autocomplete parenthesis, brackets and braces
@@ -115,14 +69,7 @@ set printoptions=left:8pc,right:3pc
 "-------------------------------------------------------------------------------
 " lua-support.vim
 "-------------------------------------------------------------------------------
-let g:Lua_AuthorName  = 'Dr.-Ing. Fritz Mehner'
-let g:Lua_AuthorRef   = 'Mn'
-let g:Lua_Company     = 'FH Südwestfalen, Iserlohn'
-let g:Lua_Email       = 'mehner@fh-swf.de'
-"                         
-"-------------------------------------------------------------------------------
-" taglist.vim : toggle the taglist window
-"-------------------------------------------------------------------------------
- noremap <silent> <F11>  <Esc><Esc>:Tlist<CR>
-inoremap <silent> <F11>  <Esc><Esc>:Tlist<CR>
+let g:Lua_AuthorName  = 'William'
+let g:Lua_AuthorRef   = 'Wi'
+let g:Lua_Email       = 'lilijreey@gmail.com'
 

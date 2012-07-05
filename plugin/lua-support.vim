@@ -76,6 +76,11 @@ endif
 if !exists("g:Lua_Dictionary_File")
   let g:Lua_Dictionary_File = s:plugin_dir.'lua-support/wordlists/lua.list'
 endif
+
+" add file custom_vimrc path v
+"if !exists("g:Lua_Custom_Vimrc")
+"  let g:Lua_Custom_Vimrc = s:plugin_dir.'lua-support/rc/customization.vimrc'
+"endif
 "
 "  Modul global variables (with default values) which can be overridden.
 "
