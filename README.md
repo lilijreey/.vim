@@ -1,5 +1,14 @@
 Personal home vim config
 
+安装的plugin列表
+1.pathogen. 插件管理
+2.conqueterm. run interactive program in vim buffer
+3.a.vim
+4.lua-support
+5.bash-support
+6.c/c++-support
+
+
 文件树架构
 1.首先vim执行plugin 中的所有脚本，主要是定义一些全局变量，和函数。
 2.在到ftplugin中执行匹配文件类型的脚本，
@@ -25,6 +34,6 @@ set complete+=k           " scan the files given with the 'dictionary' option
 C-P: previous-match 
 C-N: next-match 
 C-X C-F match in file-name
-oo
 
 complet 定制补全策略
+
