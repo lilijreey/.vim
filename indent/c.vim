@@ -1,7 +1,7 @@
 " c++ 文件的indent
 
 "c 风格的缩紧
-set cindent
+setl cindent
 
 " only use white
 " set local

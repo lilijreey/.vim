@@ -9,6 +9,7 @@ setl expandtab
 
 " open smarttab enter tab indent shiftwidth
 setl smarttab
+
 "> < 移动的大小
 setl shiftwidth=4
 
