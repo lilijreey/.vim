@@ -1,5 +1,5 @@
 " only use white
-setl smarttab
+setl smartindent
 setl expandtab
 " open smarttab enter tab indent shiftwidth
 setl smarttab
