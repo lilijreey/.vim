@@ -12,7 +12,7 @@ setl smarttab
 "> < 移动的大小
 setl shiftwidth=4
 
-"setl tabstop=4
+setl tabstop=4
 
 " enter a <Tab> insert 4 white
 setl softtabstop=4
