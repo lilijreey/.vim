@@ -27,3 +27,4 @@
 > 10. Tlist
 > 11. Tabular 快速格式问本
 > 12. command-T 关键字查找文件，由于vim是ruby1.8的借口，所以使用1.3版本
+> 12. ack.vim use ack-grep in vim

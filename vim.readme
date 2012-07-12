@@ -26,3 +26,15 @@ C-X C-F match in file-name
 
 complet 定制补全策略
 
+EE 把Ex命令输出到文本中
+insert 模式下C-r： 可以输出最近一次的Ex命令
+
+EE C-r =
+0
+1
+2
+3
+4
+kkk
+
+EE :reg 输出寄存器内容
