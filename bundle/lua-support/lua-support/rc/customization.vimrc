@@ -20,7 +20,7 @@ set complete+=k           " scan the files given with the 'dictionary' option
 setl autochdir             " change the current working directory
 setl autoread              " read open files again when changed outside Vim
 setl autowrite             " write a modified buffer on each :next , ...
-setl browsedir  =current   " which directory to use for the file browser
+"setl browsedir  =current   " which directory to use for the file browser
 setl incsearch             " use incremental search
 setl nowrap                " do not wrap lines
 setl visualbell            " visual bell instead of beeping
@@ -49,7 +49,6 @@ imap  <silent> <s-tab>  <Esc>:if &modifiable && !&readonly &&
 "-------------------------------------------------------------------------------
 " Leave the editor with Ctrl-q (KDE): Write all changed buffers and exit Vim
 "-------------------------------------------------------------------------------
-nmap  <C-q>    :wqa<CR>
 "
 "-------------------------------------------------------------------------------
 " Filename completion

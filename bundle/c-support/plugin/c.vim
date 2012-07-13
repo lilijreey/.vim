@@ -116,14 +116,14 @@ let s:C_IndentErrorLog				= $HOME.'/.indent.errorlog'
 "
 "  Use of dictionaries  {{{1
 "  Key word completion is enabled by the filetype plugin 'c.vim'
-"  g:C_Dictionary_File  must be global
+"  g:CPP_Dictionary_File  must be global
 "
-if !exists("g:C_Dictionary_File")
-  let g:C_Dictionary_File = s:plugin_dir.'/c-support/wordlists/c-c++-keywords.list,'.
+if !exists("g:CPP_Dictionary_File")
+  let g:CPP_Dictionary_File = s:plugin_dir.'/c-support/wordlists/c-c++-keywords.list,'.
         \                   s:plugin_dir.'/c-support/wordlists/k+r.list,'.
         \                   s:plugin_dir.'/c-support/wordlists/stl_index.list'
 endif
-"
+
 "  Modul global variables (with default values) which can be overridden. {{{1
 "
 if	s:MSWIN
