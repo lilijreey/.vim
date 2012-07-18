@@ -14,6 +14,7 @@
 > 4. lua-support
 > 5. bash-support
 > 6. c/c++-support
+        个人修改的模版文件中的空格 bundle/c-support/c-support/templates/
 > 7. powerline
   配置，fancy 选项配置 在字体文件中注册powerline使用的symbol
 >>  1. 找到当前使用的字体文件，ubuntu中在/usr/share/fonts中，
