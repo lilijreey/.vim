@@ -29,6 +29,7 @@
 "                  See the GNU General Public License version 2 for more details.
 "       Revision:  $Id: c.vim,v 1.168 2012/05/16 18:36:27 mehner Exp $
 "
+"         Modify:  by lili change dictionaries set. search lili in file
 "------------------------------------------------------------------------------
 "
 if v:version < 700
@@ -122,6 +123,10 @@ if !exists("g:CPP_Dictionary_File")
   let g:CPP_Dictionary_File = s:plugin_dir.'/c-support/wordlists/c-c++-keywords.list,'.
         \                   s:plugin_dir.'/c-support/wordlists/k+r.list,'.
         \                   s:plugin_dir.'/c-support/wordlists/stl_index.list'
+endif
+
+if !exists("g:C_Dictionary_File")
+  let g:C_Dictionary_File = s:plugin_dir.'/c-support/wordlists/c-c++-keywords.list'
 endif
 
 "  Modul global variables (with default values) which can be overridden. {{{1
@@ -2528,12 +2533,13 @@ function! C_Settings ()
 	if	!s:MSWIN
 		let txt = txt.'           xterm defaults :  '.s:C_XtermDefaults."\n"
 	endif
+
 	" ----- dictionaries ------------------------
-	if !empty(g:C_Dictionary_File)
-		let ausgabe= &dictionary
-		let ausgabe= substitute( ausgabe, ",", ",\n                           + ", "g" )
-		let txt = txt."       dictionary file(s) :  ".ausgabe."\n"
-	endif
+"	if !empty(g:C_Dictionary_File)
+"		let ausgabe= &dictionary
+"		let ausgabe= substitute( ausgabe, ",", ",\n                           + ", "g" )
+"		let txt = txt."       dictionary file(s) :  ".ausgabe."\n"
+"	endif
 	let txt = txt.'     current output dest. :  '.s:C_OutputGvim."\n"
 	" ----- splint ------------------------------
 	if s:C_SplintIsExecutable==1
@@ -3727,13 +3733,9 @@ function! s:CreateAdditionalMaps ()
 	" This will enable keyword completion for C and C++
 	" using Vim's dictionary feature |i_CTRL-X_CTRL-K|.
 	" Set the new dictionaries in front of the existing ones
-	" 
-	if exists("g:C_Dictionary_File")
-		let save=&dictionary
-		silent! exe 'setlocal dictionary='.g:C_Dictionary_File
-		silent! exe 'setlocal dictionary+='.save
-	endif    
-	"
+  "
+  " modify by lili Wed Jul 18 15:32:45 CST 2012
+  " in ../ftplugin/{c, cpp}.vim set dictionarie
 	"-------------------------------------------------------------------------------
 	" USER DEFINED COMMANDS
 	"-------------------------------------------------------------------------------

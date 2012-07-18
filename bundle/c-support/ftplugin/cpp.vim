@@ -18,9 +18,9 @@ let b:did_CPP_ftplugin = 1
 
 "set competition
 
-if exists("g:CPP_Dictionary_File")
-    silent! exec 'setlocal dictionary+='.g:CPP_Dictionary_File
-endif    
+"if exists("g:CPP_Dictionary_File")
+"    silent! exec 'setlocal dictionary+='.g:CPP_Dictionary_File
+"endif    
 
 set complete+=k
 

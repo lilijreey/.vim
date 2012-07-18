@@ -14,7 +14,11 @@
 > 4. lua-support
 > 5. bash-support
 > 6. c/c++-support
-        个人修改的模版文件中的空格 bundle/c-support/c-support/templates/
+    个人修改:
+    1. 个人修改的模版文件中的空格 bundle/c-support/c-support/templates/
+    2. c/cpp 的字典文件在bundle/c-support/plugin/c.vim 中设置 `C_Dictionary_File CPP_Dictionary_File`的文件. 在ftplugin/中设置dictionary的值 
+
+         
 > 7. powerline
   配置，fancy 选项配置 在字体文件中注册powerline使用的symbol
 >>  1. 找到当前使用的字体文件，ubuntu中在/usr/share/fonts中，

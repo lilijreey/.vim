@@ -15,6 +15,16 @@ if exists("b:did_C_ftplugin")
   finish
 endif
 let b:did_C_ftplugin = 1
+
+"set competition
+
+if exists("g:C_Dictionary_File")
+  let save=&dictionary
+  silent! exe 'setlocal dictionary='.g:C_Dictionary_File
+"	silent! exe 'setlocal dictionary+='.save ??
+endif    
+
+set complete+=k
 "
 "-------------------------------------------------------------------------------
 " ADDITIONAL MAPPING : complete a classical C comment: '/*' => '/* | */'
