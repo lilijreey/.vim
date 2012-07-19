@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/god/.fontconfig'
 let g:netrw_dirhist_2='/home/god/.vim/bundle/markdown'
 let g:netrw_dirhist_3='/home/god/.vim/indent'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/home/god/.gconf/apps/gnome-settings'
 let g:netrw_dirhist_5='/home/god/.vim/bundle/powerline/autoload/Powerline/Segments'
 let g:netrw_dirhist_6='/home/god/kernel/test'
 let g:netrw_dirhist_7='/home/god/.vim/bundle/c-support/plugin'
+let g:netrw_dirhist_8='/home/god/kernel/test'
