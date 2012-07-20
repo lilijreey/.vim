@@ -34,3 +34,18 @@
 > 12. command-T 关键字查找文件，由于vim是ruby1.8的借口，所以使用1.3版本
 > 13. ack.vim use ack-grep in vim
 > 14. vim-colors-solarized 一个颜色配置，
+> 15. easymotion quick f
+
+
+### 一些常用命令
+sp [buffer] [file-name] 可以跟buffer or filename
+vs [buffer] [file-name]
+
+#### 
+开启命令行编辑
+cedit
+####切换window
+C-w p swith in two buffers
+C-w t
+C-w b
+ball
