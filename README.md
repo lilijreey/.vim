@@ -1,5 +1,7 @@
 # Personal home vim config
 
+### 生成帮助文件 call pathogen#helptags()
+
 # 目录结构
 > 1. bundle/ _插件的安装目录_
 > 2. colors/ _使用的颜色配置_

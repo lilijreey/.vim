@@ -10,6 +10,7 @@ hi clear
 if exists("syntax_on")
   syntax reset
 endif
+
 let g:colors_name = "ron"
 hi Normal     guifg = cyan	guibg     = black
 hi NonText    guifg = brown
@@ -42,3 +43,4 @@ hi DiffAdd		guibg     = slateblue
 hi DiffDelete   	guibg = coral
 hi Folded		guibg     = gray30
 hi FoldColumn		guibg = gray30 guifg      = white
+hi Number     ctermfg=cyan
