@@ -46,8 +46,22 @@ vs [buffer] [file-name]
 #### 
 开启命令行编辑
 cedit
+
+### 开始文件的插件和缩紧
+filetype plugin indent on
+
 ####切换window
 C-w p swith in two buffers
 C-w t
 C-w b
 ball
+
+### 一下常用函数
+has
+
+exists
+
+### 得到OS
+使用feature-list
+
+

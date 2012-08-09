@@ -11,4 +11,4 @@ setl shiftwidth=4
 " enter a <Tab> insert 4 white
 setl softtabstop=4
 
-"setl tabstop=4
+setl tabstop=4
