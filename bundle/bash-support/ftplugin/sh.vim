@@ -327,8 +327,8 @@ endif
 "                      before the latest jump)
 " additional mapping : double quotes around a Word (non-whitespaces)
 "-------------------------------------------------------------------------------
-nnoremap    <buffer>   ''   ciW''<Esc>P
-nnoremap    <buffer>   ""   ciW""<Esc>P
+"nnoremap    <buffer>   ''   ciW''<Esc>P
+"nnoremap    <buffer>   ""   ciW""<Esc>P
 "
 if !exists("g:BASH_Ctrl_j") || ( exists("g:BASH_Ctrl_j") && g:BASH_Ctrl_j != 'off' )
   nmap    <buffer>  <silent>  <C-j>   i<C-R>=BASH_JumpCtrlJ()<CR>

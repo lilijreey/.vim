@@ -38,3 +38,5 @@ EE C-r =
 kkk
 
 EE :reg 输出寄存器内容
+
+EE :marks 输出标记内容
