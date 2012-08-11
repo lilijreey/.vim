@@ -64,4 +64,5 @@ exists
 ### 得到OS
 使用feature-list
 
-
+## highlight set
++   察看当前配色 :hi

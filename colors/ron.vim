@@ -12,6 +12,9 @@ if exists("syntax_on")
 endif
 
 let g:colors_name = "ron"
+
+" color terminal define
+hi LineNr	  ctermfg=8	
 hi Normal     guifg = cyan	guibg     = black
 hi NonText    guifg = brown
 hi comment    guifg = green

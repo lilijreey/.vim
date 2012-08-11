@@ -1,5 +1,3 @@
-" c++ 文件的indent
-
 set smartindent
 " only use white
 " set local
