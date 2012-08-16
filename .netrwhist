@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/usr/share/vim/vim73/indent'
 let g:netrw_dirhist_2='/home/god/Downloads/dccmx-EventLoop-1cd446e'
 let g:netrw_dirhist_3='/home/god/winF/codes/python'
+let g:netrw_dirhist_4='/home/god/winF/codes/CSAPP/chapter_3'
+let g:netrw_dirhist_5='/media/000703E10008AE01/VC/GL/MyGL'
+let g:netrw_dirhist_6='/home/god/winF/codes/UUSP'
+let g:netrw_dirhist_7='/home/god/winF/codes/linux/time/virTime'

@@ -14,7 +14,7 @@ endif
 let g:colors_name = "ron"
 
 " color terminal define
-hi LineNr	  ctermfg=8	
+hi LineNr	  ctermfg=101	
 hi Normal     guifg = cyan	guibg     = black
 hi NonText    guifg = brown
 hi comment    guifg = green
@@ -47,3 +47,5 @@ hi DiffDelete   	guibg = coral
 hi Folded		guibg     = gray30
 hi FoldColumn		guibg = gray30 guifg      = white
 hi Number     ctermfg=cyan
+hi Macro      ctermfg=6
+"hi String     ctermfg=148
