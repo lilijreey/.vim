@@ -33,10 +33,10 @@ hi LineNr		guifg     = darkgrey
 hi title		guifg     = darkgrey
 hi StatusLineNC		gui   = NONE 	guifg     = lightblue guibg = darkblue
 hi StatusLine		gui   = bold	guifg     = cyan	guibg   = blue
-hi label		guifg     = gold2     term    = bold
+hi label		guifg     = gold2     cterm    = bold
 hi operator		guifg     = orange 	ctermfg   = yellow
 hi clear Visual
-hi Visual		term      = reverse cterm     = reverse gui     = reverse
+hi Visual		cterm      = reverse cterm     = reverse gui     = reverse
 hi Error		guibg     = Red
 hi Cursor		guibg     = #60a060 	guifg = #00ff00
 hi Search		guibg     = lightslateblue
@@ -48,4 +48,6 @@ hi Folded		guibg     = gray30
 hi FoldColumn		guibg = gray30 guifg      = white
 hi Number     ctermfg=cyan
 hi Macro      ctermfg=6
+hi Comment     ctermfg=74 "cterm=italic terimanl not support italic :(
+hi Function   cterm=bold "ctermfg=
 "hi String     ctermfg=148
