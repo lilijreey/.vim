@@ -14,7 +14,7 @@ endif
 let g:colors_name = "ron"
 
 " color terminal define
-hi LineNr	  ctermfg=101	
+hi LineNr	  ctermfg=101	"	guifg     = darkgrey
 hi Normal     guifg = cyan	guibg     = black
 hi NonText    guifg = brown
 hi comment    guifg = green
@@ -29,14 +29,13 @@ hi WarningMsg guifg = Black	guibg     = Green
 hi cIf0       guifg = gray
 hi Todo       guifg = Black	guibg     = orange
 hi IncSearch		gui   = NONE 	guibg     = steelblue
-hi LineNr		guifg     = darkgrey
 hi title		guifg     = darkgrey
 hi StatusLineNC		gui   = NONE 	guifg     = lightblue guibg = darkblue
 hi StatusLine		gui   = bold	guifg     = cyan	guibg   = blue
 hi label		guifg     = gold2     cterm    = bold
 hi operator		guifg     = orange 	ctermfg   = yellow
 hi clear Visual
-hi Visual		cterm      = reverse cterm     = reverse gui     = reverse
+hi Visual		term      = reverse cterm     = reverse gui     = reverse
 hi Error		guibg     = Red
 hi Cursor		guibg     = #60a060 	guifg = #00ff00
 hi Search		guibg     = lightslateblue
@@ -49,5 +48,5 @@ hi FoldColumn		guibg = gray30 guifg      = white
 hi Number     ctermfg=cyan
 hi Macro      ctermfg=6
 hi Comment     ctermfg=74 "cterm=italic terimanl not support italic :(
-hi Function   cterm=bold "ctermfg=
+hi Function   cterm=bold ctermfg=225
 "hi String     ctermfg=148
