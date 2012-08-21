@@ -31,7 +31,7 @@
 >
 > 8. surround + repeat 添加符号给你个对象的周围
 > 9. NERDtree
-> 10. Tlist
+> 10. Tagbar
 > 11. Tabular 快速格式问本
 > 12. command-T 关键字查找文件，由于vim是ruby1.8的借口，所以使用1.3版本
 > 13. ack.vim use ack-grep in vim

@@ -1,1 +1,2 @@
 markdown-1.2.2.vba: call delete('/home/god/.vim/ftdetect/markdown.vim')|call delete('/home/god/.vim/snippets/markdown.snippets')|call delete('/home/god/.vim/syntax/markdown.vim')
+tagbar.vmb: call delete('/home/god/.vim/autoload/tagbar.vim')|call delete('/home/god/.vim/doc/tagbar.txt')|call delete('/home/god/.vim/plugin/tagbar.vim')|call delete('/home/god/.vim/syntax/tagbar.vim')
