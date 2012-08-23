@@ -8,6 +8,7 @@
 > 3. ftplugin/ _对特定文件类型的一些设定_ 比如tags
 > 4. indent/ _定义特定文件类型的缩进_
 > 5. syntax/ _定义特定文件类型的语法加亮_
+> 6. tags/   _库头文件tags_
 
 # 安装的plugin列表
 > 1. pathogen. 插件管理

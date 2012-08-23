@@ -25,6 +25,7 @@ if exists("g:C_Dictionary_File")
 endif    
 
 set complete+=k
+setl tags+=$HOME/.vim/tags/stdlibtags
 "
 "-------------------------------------------------------------------------------
 " ADDITIONAL MAPPING : complete a classical C comment: '/*' => '/* | */'

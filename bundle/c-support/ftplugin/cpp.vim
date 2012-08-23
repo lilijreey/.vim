@@ -24,6 +24,9 @@ let b:did_CPP_ftplugin = 1
 
 set complete+=k
 
+"add STL tags
+setl tags+=$HOME/.vim/tags/stdstltags
+
 "-------------------------------------------------------------------------------
 " additional mapping : C++ I/O
 "-------------------------------------------------------------------------------
