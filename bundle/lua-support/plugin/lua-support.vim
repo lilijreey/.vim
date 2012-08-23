@@ -84,9 +84,9 @@ endif
 "
 "  Modul global variables (with default values) which can be overridden.
 "
-let s:Lua_AuthorName     = ""
-let s:Lua_AuthorRef      = ""
-let s:Lua_Email          = ""
+let s:Lua_AuthorName     = "lili"
+let s:Lua_AuthorRef      = "Evan"
+let s:Lua_Email          = "lilijreey@gmail.com"
 let s:Lua_Company        = ""
 let s:Lua_Project        = ""
 let s:Lua_CopyrightHolder= ""

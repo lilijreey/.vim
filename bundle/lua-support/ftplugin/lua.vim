@@ -125,8 +125,7 @@ nmap    <buffer>  <silent>  <Leader>sw    <Esc><Esc>:call Lua_StatBlock( "a", "w
 imap    <buffer>  <silent>  <Leader>sw    <Esc><Esc>:call Lua_StatBlock( "a", "while  do\nend", "" )<CR>fela
 vmap    <buffer>  <silent>  <Leader>sw    <Esc><Esc>:call Lua_StatBlock( "v", "while  do", "end" )<CR>fela
 "
-" ----------  Idioms  -------------------------------------------------------
-"
+" ----------  Idioms  ------------------------------------------------------- "
 nmap    <buffer>  <silent>  <Leader>if    <Esc><Esc>:call Lua_Function("a")<CR>f(la
 imap    <buffer>  <silent>  <Leader>if    <Esc><Esc>:call Lua_Function("a")<CR>f(la
 vmap    <buffer>  <silent>  <Leader>if    <Esc><Esc>:call Lua_Function("v")<CR>f(la
