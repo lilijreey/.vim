@@ -45,8 +45,8 @@ sp [buffer] [file-name] 可以跟buffer or filename
 vs [buffer] [file-name]
 
 #### 
-开启命令行编辑
-cedit
++   开启命令行编辑 cedit
++   insert 模式下使用nomal命令 <C-o>
 
 ### 开始文件的插件和缩紧
 filetype plugin indent on
@@ -65,5 +65,10 @@ exists
 ### 得到OS
 使用feature-list
 
-## highlight set
+### highlight set
 +   察看当前配色 :hi
+
+### register
++   察看当前寄存器 :register
++   把寄存器中的内容插入文件 INSERT模式下输入 <C-r>regName
++   查询指定寄存器中的内容 EX行中/<C-r>regName <RC>

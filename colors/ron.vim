@@ -23,7 +23,7 @@ hi identifier guifg = cyan	gui       = NONE
 hi statement  guifg = lightblue	gui   = NONE
 hi preproc    guifg = Pink2
 hi type       guifg = seagreen	gui   = bold
-hi special    guifg = yellow
+hi special    ctermfg = 35 guifg = yellow
 hi ErrorMsg   guifg = Black	guibg     = Red
 hi WarningMsg guifg = Black	guibg     = Green
 hi cIf0       guifg = gray
@@ -48,5 +48,6 @@ hi FoldColumn		guibg = gray30 guifg      = white
 hi Number     ctermfg=cyan
 hi Macro      ctermfg=6
 hi Comment     ctermfg=74 "cterm=italic terimanl not support italic :(
-hi Function   cterm=bold ctermfg=225
+"hi Function   cterm=bold ctermfg=225
+hi Keyword    cterm=bold ctermfg=148
 "hi String     ctermfg=148
