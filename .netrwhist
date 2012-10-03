@@ -1,4 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/god/.vim/bundle/c-support/ftplugin'
-let g:netrw_dirhist_2='/home/god/winF/codes/Lisp/PAIP'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/god/winF/codes/linux/signals'
+let g:netrw_dirhist_2='/home/god/.vim/syntax'
+let g:netrw_dirhist_3='/home/god/bash-and-tools'
+let g:netrw_dirhist_4='/home/god/books'
+let g:netrw_dirhist_5='/home/god/.vim/syntax'

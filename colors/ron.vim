@@ -1,4 +1,4 @@
-" local syntax file - set colors on a per-machine basis:
+"local syntax file - set colors o;n a per-machine basis:
 " vim: tw=0 ts=4 sw=4
 " Vim color file
 " Maintainer:	Ron Aaron <ron@ronware.org>
@@ -13,41 +13,41 @@ endif
 
 let g:colors_name = "ron"
 
-" color terminal define
-hi LineNr	  ctermfg=101	"	guifg     = darkgrey
-hi Normal     guifg = cyan	guibg     = black
-hi NonText    guifg = brown
-hi comment    guifg = green
-hi constant   guifg = cyan	gui       = bold
-hi identifier guifg = cyan	gui       = NONE
-hi statement  guifg = lightblue	gui   = NONE
-hi preproc    guifg = Pink2
-hi type       guifg = seagreen	gui   = bold
-hi special    ctermfg = 35 guifg = yellow
-hi ErrorMsg   guifg = Black	guibg     = Red
-hi WarningMsg guifg = Black	guibg     = Green
-hi cIf0       guifg = gray
-hi Todo       guifg = Black	guibg     = orange
-hi IncSearch		gui   = NONE 	guibg     = steelblue
-hi title		guifg     = darkgrey
-hi StatusLineNC		gui   = NONE 	guifg     = lightblue guibg = darkblue
-hi StatusLine		gui   = bold	guifg     = cyan	guibg   = blue
-hi label		guifg     = gold2     cterm    = bold
-hi operator		guifg     = orange 	ctermfg   = yellow
-hi clear Visual
-hi Visual		term      = reverse cterm     = reverse gui     = reverse
-hi Error		guibg     = Red
-hi Cursor		guibg     = #60a060 	guifg = #00ff00
-hi Search		guibg     = lightslateblue
-hi DiffChange   	guibg = darkgreen
-hi DiffText		guibg     = olivedrab
-hi DiffAdd		guibg     = slateblue
-hi DiffDelete   	guibg = coral
-hi Folded		guibg     = gray30
-hi FoldColumn		guibg = gray30 guifg      = white
-hi Number     ctermfg=cyan
-hi Macro      ctermfg=6
-hi Comment     ctermfg=74 "cterm=italic terimanl not support italic :(
+" color terminal define 使用的是gnome中定义的颜色
+hi Comment        cterm=NONE ctermfg=2
+hi Conditional    cterm=BOLD ctermfg=221
+hi Cursor	      cterm=NONE 
+hi DiffAdd        cterm=NONE
+hi DiffChange     cterm=NONE
+hi DiffDelete     cterm=NONE
+hi DiffText	      cterm=NONE
+hi Error	      cterm=NONE ctermfg=3  ctermbg=9 
+hi ErrorMsg       cterm=NONE ctermfg=3  ctermbg=9
+hi FoldColumn     cterm=NONE   	
+hi Folded	      cterm=NONE
+hi IncSearch      cterm=NONE ctermfg=8  ctermbg=7
+hi Keyword        cterm=bold 
+hi LineNr	      cterm=NONE ctermfg=101	
+hi Macro          cterm=NONE ctermfg=13
+hi NonText        cterm=NONE 
+hi Normal         cterm=NONE 
+hi Number         cterm=NONE 
+hi Search         cterm=BOLD ctermfg=3  ctermbg=0
+hi Todo           cterm=BOLD ctermfg=7  ctermbg=NONE
+hi Visual	      cterm=NONE ctermbg=7
+hi WarningMsg     cterm=NONE ctermfg=9
+hi Constant       cterm=NONE ctermfg=12 
+hi Identifier     cterm=NONE ctermfg=12
+hi Label	      cterm=bold ctermfg=5
+hi Operator	      cterm=BOLD 
+hi Preproc        cterm=NONE
+hi Special        cterm=NONE ctermfg=5
+hi Statement      cterm=BOLD ctermfg=4
+hi Title	      cterm=BOLD ctermfg=5   
+hi Type           cterm=BOLD ctermfg=76 
+hi String         cterm=NONE ctermfg=3
+hi cIf0           cterm=NONE ctermfg=8           
+"hi StatusLine     cterm=NONE powerline is setting
+"hi StatusLineN    cterm=NONE 	
+"226 148
 "hi Function   cterm=bold ctermfg=225
-hi Keyword    cterm=bold ctermfg=148
-"hi String     ctermfg=148
