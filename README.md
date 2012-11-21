@@ -34,6 +34,7 @@
 > 10. Tagbar
 > 11. Tabular 快速格式问本
 > 12. command-T 关键字查找文件，由于vim是ruby1.8的借口，所以使用1.3版本
+       安装C-lib 在 ./bundle/command-t/ruby/ 下 执行ruby extconf.rb make
 > 13. ack.vim use ack-grep in vim
 > 14. vim-colors-solarized 一个颜色配置，
 > 15. easymotion quick f

@@ -17,6 +17,7 @@
 " shift right  : change window focus to one on right
 "-------------------------------------------------------------------------------
 "
+set complete+=k           " scan the files given with the 'dictionary' option
 nmap <s-down>   <c-w>w
 nmap <s-up>     <c-w>W
 nmap <s-left>   <c-w>h
