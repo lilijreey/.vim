@@ -1,4 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/zhaoli/.vim'
 let g:netrw_dirhist_2='/home/zhaoli/tt/Online/script'
+let g:netrw_dirhist_3='/home/zhaoli/bash-and-tools'
+let g:netrw_dirhist_4='/home/zhaoli/xpoker/Login/src'
+let g:netrw_dirhist_5='/home/zhaoli/.mysql'
+let g:netrw_dirhist_6='/home/zhaoli/xpoker/Login/src'
+let g:netrw_dirhist_7='/home/zhaoli/.vim/bundle/powerline/autoload'
