@@ -1,7 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/god/winF/codes/linux/signals'
 let g:netrw_dirhist_2='/home/god/.vim/syntax'
 let g:netrw_dirhist_3='/home/god/bash-and-tools'
 let g:netrw_dirhist_4='/home/god/books'
 let g:netrw_dirhist_5='/home/god/.vim/syntax'
+let g:netrw_dirhist_6='/etc/NetworkManager/system-connections'
+let g:netrw_dirhist_7='/home/god/winF/codes/lua/bindLua'
+let g:netrw_dirhist_8='/home/god/Desktop/mytt/LibAnt'
