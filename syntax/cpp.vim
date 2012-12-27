@@ -42,6 +42,8 @@ syn keyword cppOperator	alignof
 " The minimum and maximum operators in GNU C++
 syn match cppMinMax "[<>]?"
 
+syn match cQues display /::/
+
 " Default highlighting
 if version >= 508 || !exists("did_cpp_syntax_inits")
   if version < 508
