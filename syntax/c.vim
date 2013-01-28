@@ -104,12 +104,6 @@ endif
 "syn match cFunction display "[a-zA-Z_]\{-1,}\s\{-0,}(\{1}"ms=s,me=e-1
 "hi link cFunction Function
 
-"highlight () []
-syn match cQues display /\[\|\]/
-syn match cQues display /(\|)/
-syn match cQues display /->/
-syn match cQues display /\./
-hi link cQues Operator 
 
 "catch errors caused by wrong parenthesis and brackets
 " also accept <% for {, %> for }, <: for [ and :> for ] (C99)
@@ -362,6 +356,13 @@ syn match	cUserLabel	display "\I\i*" contained
 " Avoid recognizing most bitfields as labels
 syn match	cBitField	display "^\s*\I\i*\s*:\s*[1-9]"me=e-1 contains=cType
 syn match	cBitField	display ";\s*\I\i*\s*:\s*[1-9]"me=e-1 contains=cType
+
+"highlight () []
+syn match cQues display /\[\|\]/
+syn match cQues display /(\|)/
+syn match cQues display /->/
+syn match cQues display /\./
+hi link cQues Operator 
 
 if exists("c_minlines")
   let b:c_minlines = c_minlines

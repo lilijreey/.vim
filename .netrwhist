@@ -1,5 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/zhaoli/.cc/mynet/src'
-let g:netrw_dirhist_2='/home/zhaoli/mm/lin/pthread'
-let g:netrw_dirhist_3='/proc/23105/task/23105'
+let g:netrw_dirhist_cnt =0
