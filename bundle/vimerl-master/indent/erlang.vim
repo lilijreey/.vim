@@ -11,6 +11,10 @@ else
 endif
 
 setlocal expandtab
+setl shiftwidth=4
+setl tabstop=4
+" enter a <Tab> insert 4 white
+setl softtabstop=4
 setlocal indentexpr=ErlangIndent()
 setlocal indentkeys=!^F,o,O,=),=},=],=>>,=of,=catch,=after,=end
 
