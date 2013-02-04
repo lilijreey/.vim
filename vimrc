@@ -34,6 +34,8 @@ set autoread
 "Have the mouse enabled all the time:
 set mouse=nv
 
+"Wrap lines "不要折行
+set nowrap
 
 """"""""""""""""""""""""""""""
 " vim plugens set begin
@@ -57,7 +59,7 @@ else
   "let g:solarized_termcolors=&t_Co
   "let g:solarized_termtrans=1
   "colorscheme distinguished 
-  colorscheme ron 
+  colorscheme torte 
 endif
 
 
@@ -113,8 +115,6 @@ set nowrapscan
 "set backupdir "where save the backup files
 "set noswapfile
 
-"Wrap lines
-"set wrap
 
 
 "Basically you press * or # to search for the current selection !! Really useful
@@ -176,26 +176,6 @@ let g:Powerline_symbols='fancy'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vimim sets 中文输入法
-"http://vimim.googlecode.com/svn/vimim/vimim.html#id15
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vimIM imap使用方法
-"C_ 开启输入发
-"C^ 切换输入法
-"CL 切换中英文标点 
-"CU 一键改错
-
-"关闭gi选项
-"let g:vimim_map='no-gi'
-"静态输入模式
-"let g:vimim_mode='static'
-"
-"不用中文标点
-let g:vimim_punctuation=0
-
-"云输入
-:let g:vimim_cloud='sogou'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mark as loaded
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -234,14 +214,19 @@ cmap kk <C-p>
 nmap f  \\f
 nmap F  \\F
 
+nmap \s :Ack <C-R><C-F><CR>
+
 "Emacs mont key in insert mode" 
 imap <C-a> <Esc>I
 imap <C-e> <Esc>A
 
 
-nmap  tg :!ctags -R
+nmap  tg :!ctags -R<CR>
 
 set tags+=~/xpoker/tags/luaTags,../tags
+
+
+let g:acp_enableAtStartup = 0
 
 """"""""""""""""""""
 " vim completion set
