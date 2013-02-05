@@ -1,46 +1,45 @@
 == Statements.do-while == map:sd, sc:d ==
 do {
-<SPLIT>} while ( <CURSOR> );				# -----  end do-while  -----
+<SPLIT>} while (<CURSOR>);				# -----  end do-while  -----
 == Statements.for == map:sf, sc:f ==
-for ( my $<CURSOR>; ;  ) {
+for (my $<CURSOR>; ; ) {
 <SPLIT>}
 == Statements.foreach == map:sfe, sc:f ==
-foreach my $<CURSOR> (  ) {
+foreach my $<CURSOR> ( ) {
 <SPLIT>}
 == Statements.if == map:si, sc:i ==
-if ( <CURSOR> ) {
+if (<CURSOR>) {
 <SPLIT><-IF_PART->
 }
 == Statements.else == map:se, sc:e ==
 else {<CURSOR>
 <SPLIT>}
 == Statements.elsif == map:sei, sc:e ==
-elsif ( <CURSOR> ) {
+elsif (<CURSOR>) {
 <SPLIT>}
 == Statements.if-else == map:sie, sc:i ==
-if ( <CURSOR> ) {
+if (<CURSOR>) {
 <SPLIT><-IF_PART->
-}
-else {
+} else {
 	<-ELSE_PART->
 }
 == Statements.unless == map:su, sc:u ==
-unless ( <CURSOR> ) {
+unless (<CURSOR>) {
 <SPLIT>}
 == Statements.unless-else == map:sue, sc:u ==
-unless ( <CURSOR> ) {
+unless (<CURSOR>) {
 <SPLIT>}
 else {
 	<-ELSE_PART->
 }
 == Statements.until == map:st, sc:t ==
-until ( <CURSOR> ) {
+until (<CURSOR>) {
 <SPLIT>}
 == Statements.while == map:sw, sc:w ==
-while ( <CURSOR> ) {
+while (<CURSOR>) {
 <SPLIT>}
 == Statements.given == map:sg, sc:g ==
-given ( <CURSOR> ) {
+given (<CURSOR>) {
 	when () {}
 	when () {}
 	default {}
