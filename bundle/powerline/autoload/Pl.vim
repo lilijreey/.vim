@@ -1,5 +1,6 @@
 " Powerline - The ultimate statusline utility
 "
+"
 " Author: Kim Silkebækken <kim.silkebaekken+vim@gmail.com>
 " Source repository: https://github.com/Lokaltog/vim-powerline
 

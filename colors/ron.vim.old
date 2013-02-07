@@ -47,7 +47,7 @@ hi Title	      cterm=BOLD ctermfg=5
 hi Type           cterm=BOLD ctermfg=76 
 hi String         cterm=NONE ctermfg=3
 hi cIf0           cterm=NONE ctermfg=8           
-"hi StatusLine     cterm=NONE powerline is setting
-"hi StatusLineN    cterm=NONE 	
+hi StatusLine     cterm=NONE powerline is setting
+hi StatusLineN    cterm=NONE 	
 "226 148
 "hi Function   cterm=bold ctermfg=225
