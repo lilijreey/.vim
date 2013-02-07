@@ -21,7 +21,7 @@ endif
 
 " C++ extentions
 syn keyword cppStatement	new delete this friend using
-syn keyword cppAccess		public protected private
+syn keyword cppAccess		protected public private
 syn keyword cppType		inline virtual explicit export bool wchar_t
 syn keyword cppExceptions	throw try catch
 syn keyword cppOperator		operator typeid 
@@ -41,6 +41,8 @@ syn keyword cppOperator	alignof
 
 " The minimum and maximum operators in GNU C++
 syn match cppMinMax "[<>]?"
+
+syn match cQues display /::/
 
 " Default highlighting
 if version >= 508 || !exists("did_cpp_syntax_inits")

@@ -1,8 +1,2 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/var/log/lightdm'
-let g:netrw_dirhist_2='/home/god/Desktop/mytt/Asyn_old'
-let g:netrw_dirhist_3='/home/god/Desktop/mytt'
-let g:netrw_dirhist_4='/home/god/winF/codes/baseNet/mynet/build'
-let g:netrw_dirhist_5='/home/god/winF/codes/baseNet/mynet/src'
-let g:netrw_dirhist_6='/home/god/Downloads/lili'
