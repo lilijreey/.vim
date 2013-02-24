@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/zhaoli/.vim/bundle/vimerl-master/indent'
-let g:netrw_dirhist_2='/home/zhaoli/xpoker/Logic/src'
-let g:netrw_dirhist_3='/home/zhaoli/xpoker/Gate/src'
-let g:netrw_dirhist_4='/home/zhaoli/.vim/bundle/perl-support/perl-support/templates'
-let g:netrw_dirhist_5='/home/zhaoli/xpoker/Gate/src'
-let g:netrw_dirhist_6='/home/zhaoli/xpoker/Protocol'
