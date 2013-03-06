@@ -13,6 +13,8 @@
 set
 setlocal setl
 
+## 在一个文件中设定vim 设置 set vim: opt=xx
+
 "specal words 
 <BS> 删除光标前的字符
 <Del> 删除光标后的字符
