@@ -37,13 +37,22 @@ start_link() ->
 %% restart strategy, maximum restart frequency and child
 %% specifications.
 %%
-%% @spec init(Args) -> {ok, {SupFlags, [ChildSpec]}} |
+%% @spec init(Args) -> {ok, {RestartStrategy, [ChildSpec]}} |
 %%                     ignore |
 %%                     {error, Reason}
 %% @end
 %%--------------------------------------------------------------------
 init([]) ->
-    {ok, {{one_for_one, 5, 10}, [?CHILD('SomeChild', 'SomeModule', worker, [])]}}.
+    ChildSpec = {sc_element, 
+                 {sc_element, start_link, []},
+                 temporary,
+                 brutal_kill,
+                 worker,
+                 [sc_element]
+                },
+    RestartStrategy = {one_for_one, 0, 1},
+
+    {ok, {RestartStrategy, [ChildSpec]}}.
 
 %%%===================================================================
 %%% Internal functions
