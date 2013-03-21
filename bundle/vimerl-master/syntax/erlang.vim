@@ -42,6 +42,7 @@ syn keyword erlangBoolean                    true false
 
 syn keyword erlangGuard                      is_list is_alive is_atom is_binary is_bitstring is_boolean is_tuple is_number is_integer is_float is_function is_constant is_pid is_port is_reference is_record is_process_alive
 
+syn match   erlangOperator                   /:/
 syn match   erlangOperator                   /\/\|*\|+\|-\|++\|--/
 syn match   erlangOperator                   /->\|<-\|||\||\|!\|=/
 syn match   erlangOperator                   /=:=\|==\|\/=\|=\/=\|<\|>\|=<\|>=/
