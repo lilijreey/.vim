@@ -88,6 +88,7 @@ endfunction
 let s:save_cpo = &cpo
 set cpo&vim
 
+let g:syntastic_c_compiler_options = '-std=gnu99'
 if !exists('g:syntastic_c_compiler_options')
     let g:syntastic_c_compiler_options = '-std=gnu99'
 endif
