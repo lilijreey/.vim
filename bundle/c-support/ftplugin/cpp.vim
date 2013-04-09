@@ -31,8 +31,8 @@ setl tags+=/usr/include/c++/4.6/
 " additional mapping : C++ I/O
 "-------------------------------------------------------------------------------
 "
-inoremap	<buffer>	>> <Space>>><Space>
-inoremap	<buffer>	<< <Space><<<Space>
-inoremap	<buffer>	<<" <Space><< ""<Space><Left><Left>
-inoremap	<buffer>	<<; <Space><< "\n";<Left><Left><Left><Left>
+"inoremap	<buffer>	>> <Space>>><Space>
+"inoremap	<buffer>	<< <Space><<<Space>
+"inoremap	<buffer>	<<" <Space><< ""<Space><Left><Left>
+"inoremap	<buffer>	<<; <Space><< "\n";<Left><Left><Left><Left>
 "

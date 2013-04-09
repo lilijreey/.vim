@@ -80,6 +80,10 @@ syn match erlangBIF                          /\%([^:0-9A-Za-z_]\|\<erlang:\|^\)\
 syn match erlangBIF                          /\%(\<erlang:\)\@<=\%(append_element\|bump_reductions\|cancel_timer\|decode_packet\|display\|function_exported\|fun_info\|fun_to_list\|get_cookie\|get_stacktrace\|hash\|is_builtin\|loaded\|load_nif\|localtime\|localtime_to_universaltime\|make_tuple\|memory\|monitor_node\|phash\|port_call\|port_info\|ports\|port_to_list\|process_display\|read_timer\|ref_to_list\|resume_process\|send\|send_after\|send_nosuspend\|set_cookie\|start_timer\|suspend_process\|system_flag\|system_info\|system_monitor\|system_profile\|trace\|trace_delivered\|trace_info\|trace_pattern\|universaltime\|universaltime_to_localtime\|yield\)(\@=/
 syn match erlangGBIF                         /\<erlang\%(:\w\)\@=/
 
+" add by Evan
+" built-in type
+syn match erlangBIT                          /term()\|any()\|none()\|pid()\|port()\|reference()\|atom()\|binary()\|bitstring()\|boolean()\|byte()\|char()\|string()\|nonempty_string()\|nunber()\|integer()\|non_neg_integer()\|pos_integer()\|neg_integer()\|float()\|list()\|maybe_improper_list()\|iolist()\|module()\|mfa()\|node()\|timeout()\|no_return()/
+"
 " Link Erlang stuff to Vim groups
 hi link erlangTodo           Todo
 hi link erlangString         String
@@ -119,6 +123,7 @@ hi link erlangBitVariable    Identifier
 hi link erlangBitType        Type
 hi link erlangType           Type
 hi link erlangBitSize        Number
+hi link erlangBIT            Type
 
 " Optional highlighting
 if g:erlang_highlight_bif
