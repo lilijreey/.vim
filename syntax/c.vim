@@ -18,14 +18,15 @@ syn keyword	cConditional	if else switch
 syn keyword	cRepeat		while for do
 
 syn keyword	cTodo		contained TODO FIXME XXX HACK TRAP Qus.
-
+" 
 " It's easy to accidentally add a space after a backslash that was intended
 " for line continuation.  Some compilers allow it, which makes it
 " unpredicatable and should be avoided.
 syn match	cBadContinuation contained "\\\s\+$"
 
+syn match   cAnnotation                 /`[^']\+'/ contained
 " cCommentGroup allows adding matches for special things in comments
-syn cluster	cCommentGroup	contains=cTodo,cBadContinuation
+syn cluster	cCommentGroup	contains=cTodo,cBadContinuation,cAnnotation
 
 " String and Character constants
 " Highlight special characters (those which have a backslash) differently
@@ -432,6 +433,7 @@ hi def link cCppInElse2		cCppOutIf2
 hi def link cCppOutIf2		cCppOut2  " Old syntax group for #if 0 body
 hi def link cCppOut2		cCppOut  " Old syntax group for #if of #if 0
 hi def link cCppOut		Comment
+hi def link cAnnotation       cSpecial
 
 let b:current_syntax = "c"
 

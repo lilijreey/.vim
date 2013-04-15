@@ -66,6 +66,7 @@ if version >= 508 || !exists("did_cpp_syntax_inits")
   delcommand HiLink
 endif
 
+
 let b:current_syntax = "cpp"
 
 " vim: ts=8

@@ -12,15 +12,6 @@ else
 	let b:did_ftplugin = 1
 endif
 
-"inoremap  <buffer>  {    {}<Esc>i
-"inoremap  <buffer>  (    ()<Esc>i
-"inoremap  <buffer>  [    []<Esc>i
-"inoremap  <buffer>  {<CR>    {<CR>}<Esc>O
-"vnoremap  <buffer>  {<CR>   S{<CR>}<Esc>Pk=iB
-"inoremap  <buffer>  (<CR>    (<CR>)<Esc>O
-"vnoremap  <buffer>  (<CR>   S(<CR>)<Esc>Pk=iB
-"inoremap  <buffer>  [<CR>    [<CR>)<Esc>O
-"vnoremap  <buffer>  [<CR>   S(<CR>)<Esc>Pk=iB
 
 if exists('s:did_function_definitions')
 	call s:SetErlangOptions()
