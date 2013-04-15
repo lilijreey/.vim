@@ -8,60 +8,46 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  *-----------------------------------------------------------------------------*/
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.function ==
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  |?FUNCTION_NAME|
- *  Description:  <CURSOR>
- * =====================================================================================
+/**
+ * @brief <CURSOR>
+ * @return 
  */
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.method ==
-/*
- *--------------------------------------------------------------------------------------
- *       Class:  |?CLASSNAME|
- *      Method:  |?CLASSNAME| :: |?METHODNAME|
- * Description:  <CURSOR>
- *--------------------------------------------------------------------------------------
+/**
+ * @brief   <CURSOR>
+ * Method   |?CLASSNAME| :: |?METHODNAME|
  */
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.class ==
-/*
- * =====================================================================================
- *        Class:  |?CLASSNAME|
- *  Description:  <CURSOR>
- * =====================================================================================
+/**
+ * @brief  <CURSOR>
+ * Class:  |?CLASSNAME|
  */
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.file-description == start ==
-/*
+/**
  * =====================================================================================
+ * @file     |FILENAME|
  *
- *       Filename:  |FILENAME|
+ * @brief    <CURSOR>
  *
- *    Description:  <CURSOR>
- *
- *        Created:  |DATE| |TIME|
- *         Author:  |AUTHOR| (|AUTHORREF|), |EMAIL|
+ * @author   |AUTHOR| (|AUTHORREF|), |EMAIL|
+ * @date     |DATE| |TIME|
  *
  * =====================================================================================
  */
 #include <stdlib.h>
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.file-description-header == start ==
-/*
+/**
  * =====================================================================================
+ * @file     |FILENAME|
  *
- *       Filename:  |FILENAME|
+ * @brief    <CURSOR>
  *
- *    Description:  <CURSOR>
- *
- *        Version:  1.0
- *        Created:  |DATE| |TIME|
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  |AUTHOR| (|AUTHORREF|), |EMAIL|
- *   Organization:  |ORGANIZATION|
+ * @author   |AUTHOR| (|AUTHORREF|), |EMAIL|
+ * @date     |DATE| |TIME|
  *
  * =====================================================================================
  */
@@ -139,11 +125,11 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.keyword-bug == append ==
- /* :BUG:|DATE| |TIME|:|AUTHORREF|: <CURSOR> */
+ /** @bug:|DATE| |TIME|:|AUTHORREF|: <CURSOR> */
 == comment.keyword-compiler == append ==
  /* :COMPILER:|DATE| |TIME|:|AUTHORREF|: <CURSOR> */
 == comment.keyword-todo == append ==
- /* :TODO:|DATE| |TIME|:|AUTHORREF|: <CURSOR> */
+ /** @todo:|DATE| |TIME|:|AUTHORREF|: <CURSOR> */
 == comment.keyword-tricky == append ==
  /* :TRICKY:|DATE| |TIME|:|AUTHORREF|: <CURSOR> */
 == comment.keyword-warning == append ==

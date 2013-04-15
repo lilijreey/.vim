@@ -1,25 +1,23 @@
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.function ==
 void<CURSOR>
-|?FUNCTION_NAME| ( <+argument list+> )
+|?FUNCTION_NAME|(<+argument list+>)
 {
 <SPLIT>	return <+return value+>;
 }		// -----  end of function |FUNCTION_NAME|  -----
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.function-static ==
 static void<CURSOR>
-|?FUNCTION_NAME| ( <+argument list+> )
+|?FUNCTION_NAME|(<+argument list+>)
 {
 <SPLIT>	return <+return value+>;
 }		// -----  end of static function |FUNCTION_NAME|  -----
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.main ==
-#include	<cstdlib>
-
 int
 main ( int argc, char *argv[] )
 {<CURSOR>
-<SPLIT>	return EXIT_SUCCESS;
+<SPLIT>	return 0;
 }				// ----------  end of function main  ----------
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.enum ==
@@ -35,9 +33,9 @@ union |?UNION_NAME| {<CURSOR>
 <SPLIT>};				// ----------  end of union |UNION_NAME|  ----------
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.printf == insert ==
-printf ( "<CURSOR>\n" );
+printf ("<CURSOR>\n");
 == idioms.scanf == insert ==
-scanf ( "<CURSOR>", & );
+scanf ("<CURSOR>", & );
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.calloc ==
 |?POINTER|	= calloc ( (size_t)(<CURSOR><+COUNT+>), sizeof(<+TYPE+>) );

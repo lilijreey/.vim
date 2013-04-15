@@ -1,23 +1,17 @@
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.function ==
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  |?FUNCTION_NAME|
- *  Description:  
- * =====================================================================================
+/**
+ * @brief   <CURSOR>
  */
-void<CURSOR>
-|FUNCTION_NAME| (<+argument list+> )
+void
+|FUNCTION_NAME|(<+argument list+>)
 {
 <SPLIT>	return <+return value+>;
 }		/* -----  end of function |FUNCTION_NAME|  ----- */
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.function-static ==
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  |?FUNCTION_NAME|
- *  Description:  
- * =====================================================================================
+/**
+ * @brief   <CURSOR>
  */
 static void<CURSOR>
 |FUNCTION_NAME| (<+argument list+> )
@@ -26,18 +20,10 @@ static void<CURSOR>
 }		/* -----  end of static function |FUNCTION_NAME|  ----- */
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.main ==
-#include	<stdlib.h>
-
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  main
- *  Description:  
- * =====================================================================================
- */
 int
 main(int argc, char *argv[])
 {<CURSOR>
-<SPLIT>	return EXIT_SUCCESS;
+<SPLIT>	return 0;
 }				/* ----------  end of function main  ---------- */
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.enum ==
