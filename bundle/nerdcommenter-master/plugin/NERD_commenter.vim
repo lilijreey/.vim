@@ -403,7 +403,8 @@ let s:delimiterMap = {
     \ 'xmath': { 'left': '#' },
     \ 'xpm2': { 'left': '!' },
     \ 'xquery': { 'left': '(:', 'right': ':)' },
-    \ 'z8a': { 'left': ';' }
+    \ 'z8a': { 'left': ';' },
+    \ 'upstart': { 'left': '#' },
     \ }
 
 if exists("g:NERDCustomDelimiters")
