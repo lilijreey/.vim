@@ -31,6 +31,7 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
+set omnifunc=htmlcomplete#CompleteTags
 setlocal commentstring=<!--%s-->
 
 " XML:  thanks to Johannes Zellner and Akbar Ibrahim
