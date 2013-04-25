@@ -1,3 +1,4 @@
+set vim:ft=help foldmethod=marker
 文件树架构
 1.首先vim执行plugin 中的所有脚本，主要是定义一些全局变量，和函数。
 2.在到ftplugin中执行匹配文件类型的脚本，
@@ -9,9 +10,6 @@
 3 source 读取一个文件中的Ex命令
 4 autocmd-events 
 
-" set cmd
-set
-setlocal setl
 
 ## 在一个文件中设定vim 设置 set vim:opt1=val1:opt2=val2[:....]
 
@@ -40,5 +38,67 @@ EE C-r =
 kkk
 
 EE :reg 输出寄存器内容
-
 EE :marks 输出标记内容
+
+VIMScript Programming 
+=============================================
+变量 {{{
+------------------------------------
+  + 变量赋值 
+       使用 *let* 关键字来进行变量赋值 
+         let name = value
+     想要察看当前定义的所有变量 使用 :let 命令
+
+  + 删除变量 
+       使用 *unlet* 关键字来删除变量
+            unlet var
+       使用 unlet! var 删除变量时如果变量不存在不会报错
+    
+        e.g. 删除所有的s:变量 >
+	for k in keys(s:)
+	    unlet s:[k]
+	endfor
+> 
+
+
+  + 变量作用域
+     vimscript 的变量作用域（可见范围）和一般的编程语言不同，它是根据
+     编辑器对象来设定的。 
+        通过在变量名的开头添加前缀 定义不同作用域的变量
+     + 全局可见             |g|:var
+     + 变量所在的脚本可见   |s|:var 
+            s: 变量不会随着script的执行完成而free， 下次在执行script
+            是s:变量还是上回的值
+     + vim预定义变量        |v|:var
+     + 变量在当前函数中可见 |l|:var
+     + 变量是当前函数的一个参数 |a|:var 常用来在函数中取得函数的参数
+
+  + 取得变量
+      直接通过变量名取得
+
+  + 取得vim选项
+     
+  + string 变量
+    string 拼接 使用 .
+      e.g. let s:var = "hello " . "worlds " . s:str
+    
+}}}
+
+
+函数
+-------------------------------------
+
+自定义命令
+--------------------------------------
+使用 command 来定义一个命令
+ e.g. > >
+	command LinuxKernelMode call KernelMode()
+	function KernelMode()
+	  let l:kernel_release = system('uname -r')
+	  echo l:kernel_release
+	endfunction
+<
+
+" set cmd
+set
+setlocal setl
