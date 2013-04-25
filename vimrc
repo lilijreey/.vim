@@ -38,7 +38,7 @@ set mouse=nv
 set nowrap
 
 " delete ^M
-" :%s\r//g
+" :%s/\r//g
 """"""""""""""""""""""""""""""
 " vim plugens set begin
 """""""""""""""""""""""""""""" {{{
@@ -131,15 +131,12 @@ set viminfo='10,\"100,:20,n~/.viminfo
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 
-"Auto complete some things 
-"autocmd FileType tex inoremap $i \indent
-"autocmd FileType tex inoremap $* \cdot
-"autocmd FileType tex inoremap $i \item
-"autocmd FileType tex inoremap $m \[<cr>\]<esc>O
+"set dictionary C-X C-K compliac
+"set dictionary+=/usr/lib/firefox/dictionaries/en_US.dic
+set complete+=k
 
 
 "Fast Ex command
-"nnoremap ; :
 noremap ; :
 
 "For mark move
@@ -184,6 +181,19 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimrc_loaded = 1
 
+""""""""""""""""""""
+
+""""""""""""""""""""
+" vim completion set
+""""""""""""""""""""
+"set omnifunc
+"关掉智能补全时的预览窗口
+"set completeopt=longest, menu
+"
+
+"let g:acp_enableAtStartup 
+imap <Tab> <C-n>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MXL plugin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -225,23 +235,47 @@ nmap F  \\F
 nmap \s :Ack <C-R><C-F><CR>
 
 "Emacs mont key in insert mode" 
-imap <C-a> <Esc>I
-imap <C-e> <Esc>A
+"imap <C-a> <Esc>I
+"imap <C-e> <Esc>A
 
+"" Linux kernel 模式 ---------------------------
+function s:KernelMode()
+  " set path "
+  let l:kernel_releaseLF = system('uname -r')
+  " delete LF char
+  let l:kernel_release = strpart(l:kernel_releaseLF, 0, strlen(l:kernel_releaseLF) -1)
+  let l:headers = ",/usr/src/linux-headers-" . l:kernel_release . "/include"
+  echo l:headers
+  let &path = &path . l:headers
+
+  " set indent"
+  setl cindent
+	setlocal tabstop=8
+  setlocal shiftwidth=8
+  setlocal textwidth=80
+  setlocal noexpandtab
+  setlocal formatoptions=tcqlron
+  setlocal cinoptions=:0,l1,t0,g0
+
+  " highlight"
+  syn keyword cOperator likely unlikely
+  syn keyword cType u8 u16 u32 u64 s8 s16 s32 s64
+  highlight default link LinuxError ErrorMsg
+
+  match	LinuxError " \+\t"	" spaces before tab
+  match	LinuxError "\s\+$"	" trailing whitespaces
+  match	LinuxError /\%81v.\+/	" virtual column 81 and more
+endfunction
+
+command LinuxKernelMode call s:KernelMode()
+"""""""""""""""""""""""""""
 
 nmap  tg :!ctags -R<CR>
 
 set tags+=~/xpoker/tags/luaTags,../tags
-
-
-let g:acp_enableAtStartup = 0
+set path+=~/xpoker
 
 """"""""""""""""""""
-" vim completion set
-""""""""""""""""""""
-"set omnifunc
-"关掉智能补全时的预览窗口
-"set completeopt=longest, menu
 
 """"""""""""""""""""""""""""""""""""""""
 "System depend
@@ -259,7 +293,7 @@ if has("unix")
   cmap RC :e ~/.vimrc<CR>
 
   " set guifont
-  set guifont=Ubuntu\ Mono\ 12
+  set guifont=Ubuntu\ Mono\ 14
   """"""""""""""""""""""""""""""
   " termianl set
   """"""""""""""""""""""""""""""
@@ -273,9 +307,6 @@ if has("unix")
   "set 同义词补全
   "set thesaurus=/path/to/your/file
 
-  "set dictionary C-X C-K compliac
-  "set dictionary+=/usr/lib/firefox/dictionaries/en_US.dic
-  set complete+=k
   
   "Remove the Windows ^M
   "noremap <Leader>dm mmHmn:%s/<C-V><cr>//ge<cr>'nzt'm
@@ -288,11 +319,9 @@ if has("unix")
 
 endif
 
-set path+=~/xpoker
 """""""""""""""""""""""""""""""
 "MS-windows set
 """""""""""""""""""""""""""""""
-imap <Tab> <C-p>
 if has("win32")
   " Chinese
   set fileencodings=utf-8,gb2312,gbk,gb18030

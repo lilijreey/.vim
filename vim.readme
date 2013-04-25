@@ -74,13 +74,18 @@ VIMScript Programming
      + 变量是当前函数的一个参数 |a|:var 常用来在函数中取得函数的参数
 
   + 取得变量
-      直接通过变量名取得
+      1. 自定义变量 直接通过变量名取得
+      2. vim选项 通过 &:opt 获得vim选项值 e.g. let xx=&path
+      3. vim寄存器 通过 @:name 获得vim寄存器中的值
+      
 
   + 取得vim选项
      
   + string 变量
     string 拼接 使用 .
       e.g. let s:var = "hello " . "worlds " . s:str
+    *strtrans(str)* 把string中的不可打印字符转行成可打印字符
+    *strlen* (str, beign, [end]) begin index 从0 开始 
     
 }}}
 

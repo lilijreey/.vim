@@ -1,2 +1,4 @@
 windows 下的vim配置
 把gvim的配置独立出来，在vimrc 中source
+如何在编辑一个指定目录的时候自动触发设置
+如何去掉一个string中的所有不可打印字符
