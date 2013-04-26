@@ -8,19 +8,20 @@ if !exists("g:syntastic_enable_signs")
 endif
 
 if !exists("g:syntastic_error_symbol")
-    let g:syntastic_error_symbol = '>>'
+    let g:syntastic_error_symbol='✗'
 endif
 
 if !exists("g:syntastic_warning_symbol")
-    let g:syntastic_warning_symbol = '>>'
+    let g:syntastic_warning_symbol='⚠'
 endif
 
 if !exists("g:syntastic_style_error_symbol")
-    let g:syntastic_style_error_symbol = 'S>'
+    let g:syntastic_style_error_symbol = 'Ꭶ'
+
 endif
 
 if !exists("g:syntastic_style_warning_symbol")
-    let g:syntastic_style_warning_symbol = 'S>'
+    let g:syntastic_style_warning_symbol = 'ᗆ'
 endif
 
 if !has('signs')
