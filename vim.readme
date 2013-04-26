@@ -92,6 +92,14 @@ VIMScript Programming
 
 函数
 -------------------------------------
+|expand|(x,y) 得到指定的string
+     e.g. 到的当前文件的名字 expand('%')
+     e.g. 到的当前文件的目录 expand('%:h)
+     e.g. 到的当前文件的扩展名 expand('%:e)
+
+
+
+|executable|('name') 坚持name是否是可执行文件
 
 自定义命令
 --------------------------------------

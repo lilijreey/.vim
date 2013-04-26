@@ -15,7 +15,6 @@ if exists("g:loaded_syntastic_erlang_erlang_checker")
 endif
 let g:loaded_syntastic_erlang_erlang_checker=1
 
-let s:check_file = expand('<sfile>:p:h') . '/erlang_check_file.erl'
 if !exists("g:syntastic_erlc_include_path")
     let g:syntastic_erlc_include_path=""
 endif
@@ -23,6 +22,8 @@ endif
 function! SyntaxCheckers_erlang_escript_IsAvailable()
     return executable('escript')
 endfunction
+
+let s:check_file = expand('<sfile>:p:h') . '/erlang_check_file.erl'
 
 function! SyntaxCheckers_erlang_escript_GetLocList()
     let extension = expand('%:e')
