@@ -1,7 +1,7 @@
 if exists("g:loaded_syntastic_loclist")
     finish
 endif
-let g:loaded_syntastic_list=1
+let g:loaded_syntastic_loclist = 1
 
 let g:SyntasticLoclist = {}
 
@@ -21,8 +21,16 @@ function! g:SyntasticLoclist.New(rawLoclist)
     endfor
 
     let newObj._rawLoclist = llist
+    let newObj._hasErrorsOrWarningsToDisplay = -1
 
     return newObj
+endfunction
+
+function! g:SyntasticLoclist.Current()
+    if !exists("b:syntastic_loclist")
+        let b:syntastic_loclist = g:SyntasticLoclist.New([])
+    endif
+    return b:syntastic_loclist
 endfunction
 
 function! g:SyntasticLoclist.extend(other)
@@ -35,6 +43,14 @@ function! g:SyntasticLoclist.toRaw()
     return copy(self._rawLoclist)
 endfunction
 
+function! g:SyntasticLoclist.filteredRaw()
+    return copy(self._quietWarnings ? self.errors() : self._rawLoclist)
+endfunction
+
+function! g:SyntasticLoclist.quietWarnings()
+    return self._quietWarnings
+endfunction
+
 function! g:SyntasticLoclist.isEmpty()
     return empty(self._rawLoclist)
 endfunction
@@ -44,10 +60,11 @@ function! g:SyntasticLoclist.length()
 endfunction
 
 function! g:SyntasticLoclist.hasErrorsOrWarningsToDisplay()
-    if empty(self._rawLoclist)
-        return 0
+    if self._hasErrorsOrWarningsToDisplay >= 0
+        return self._hasErrorsOrWarningsToDisplay
     endif
-    return len(self.errors()) || !self._quietWarnings
+    let self._hasErrorsOrWarningsToDisplay = empty(self._rawLoclist) ? 0 : (!self._quietWarnings || len(self.errors()))
+    return self._hasErrorsOrWarningsToDisplay
 endfunction
 
 function! g:SyntasticLoclist.errors()
@@ -57,11 +74,34 @@ function! g:SyntasticLoclist.errors()
     return self._cachedErrors
 endfunction
 
-function! SyntasticLoclist.warnings()
+function! g:SyntasticLoclist.warnings()
     if !exists("self._cachedWarnings")
         let self._cachedWarnings = self.filter({'type': "W"})
     endif
     return self._cachedWarnings
+endfunction
+
+" cache used by EchoCurrentError()
+function! g:SyntasticLoclist.messages()
+    if !exists("self._cachedMessages")
+        let self._cachedMessages = {}
+
+        for e in self.errors()
+            if !has_key(self._cachedMessages, e['lnum'])
+                let self._cachedMessages[e['lnum']] = e['text']
+            endif
+        endfor
+
+        if !self._quietWarnings
+            for e in self.warnings()
+                if !has_key(self._cachedMessages, e['lnum'])
+                    let self._cachedMessages[e['lnum']] = e['text']
+                endif
+            endfor
+        endif
+    endif
+
+    return self._cachedMessages
 endfunction
 
 "Filter the list and return new native loclist
@@ -89,6 +129,28 @@ function! g:SyntasticLoclist.filter(filters)
         endif
     endfor
     return rv
+endfunction
+
+"display the cached errors for this buf in the location list
+function! g:SyntasticLoclist.show()
+    if self.hasErrorsOrWarningsToDisplay()
+        call setloclist(0, self.filteredRaw())
+        let num = winnr()
+        exec "lopen " . g:syntastic_loc_list_height
+        if num != winnr()
+            wincmd p
+        endif
+    endif
+endfunction
+
+" Non-method functions {{{1
+
+function! g:SyntasticLoclistHide()
+    if len(filter( range(1, bufnr('$')), 'syntastic#util#bufIsActive(v:val)' )) == 1
+        quit
+    else
+        lclose
+    endif
 endfunction
 
 " vim: set sw=4 sts=4 et fdm=marker:
