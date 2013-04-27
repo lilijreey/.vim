@@ -42,6 +42,10 @@ EE :marks 输出标记内容
 
 VIMScript Programming 
 =============================================
+vimscript 是一种动态强类型脚本语言
+vimscript 中所有的语句都一\n 结尾
+如果要使用多行用使用反斜杠
+通过使用| 可以把多个exp放到一行中
 变量 {{{
 ------------------------------------
   + 变量赋值 
@@ -59,12 +63,22 @@ VIMScript Programming
 	    unlet s:[k]
 	endfor
 > 
+  + 变量类型 
+     * scalar:
+     * list: 使用方括号包围的有序集合  index 从0开始
+     *    e.g. let li = [1,2,3,4]
+     * dictionary : 使用花括号包围的无须集合 k:v 
+     *    e.g. let di = {'name':'li', 'home':321}
+     一个变量的类型是第一个赋值时值的类型，变量类型一旦分配后
+     不会改变
 
 
   + 变量作用域
      vimscript 的变量作用域（可见范围）和一般的编程语言不同，它是根据
      编辑器对象来设定的。 
-        通过在变量名的开头添加前缀 定义不同作用域的变量
+      默认情况下，变量如果在函数内部定义则在函数内部可见，
+        如果在函数外部定义则是全局变量
+        通过在变量名的开头添加前缀 显式定义不同作用域的变量
      + 全局可见             |g|:var
      + 变量所在的脚本可见   |s|:var 
             s: 变量不会随着script的执行完成而free， 下次在执行script
@@ -73,24 +87,29 @@ VIMScript Programming
      + 变量在当前函数中可见 |l|:var
      + 变量是当前函数的一个参数 |a|:var 常用来在函数中取得函数的参数
 
-  + 取得变量
-      1. 自定义变量 直接通过变量名取得
-      2. vim选项 通过 &:opt 获得vim选项值 e.g. let xx=&path
-      3. vim寄存器 通过 @:name 获得vim寄存器中的值
-      
+  + 伪变量（特殊变量）
+      * &name 获得vim选项值 e.g. let xx=&path
+      * @name 获得vim寄存器中的值
+      * $name 环境变量 e.g. let spath=$PATH
 
-  + 取得vim选项
      
   + string 变量
     string 拼接 使用 .
       e.g. let s:var = "hello " . "worlds " . s:str
+    *empty(str)* string 判空  !str
     *strtrans(str)* 把string中的不可打印字符转行成可打印字符
     *strlen* (str, beign, [end]) begin index 从0 开始 
     
 }}}
 
 
-函数
+condition {{{
+  + == 
+     VIMScript 中比较始终执行数字比较， 除非两个对象都是 string 
+       如果 一个是string 一个是num 那么string将会被转化为数字在比较
+}}}
+
+函数 {{{
 -------------------------------------
 |expand|(x,y) 得到指定的string
      e.g. 到的当前文件的名字 expand('%')
@@ -100,6 +119,10 @@ VIMScript Programming
 
 
 |executable|('name') 坚持name是否是可执行文件
+}}}
+
+执行 vim脚步 
+:source filename
 
 自定义命令
 --------------------------------------
