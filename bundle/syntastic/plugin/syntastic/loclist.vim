@@ -134,7 +134,7 @@ endfunction
 "display the cached errors for this buf in the location list
 function! g:SyntasticLoclist.show()
     if self.hasErrorsOrWarningsToDisplay()
-        call setloclist(0, self.filteredRaw())
+        call setloclist(0, self.filteredRaw(), 'r')
         let num = winnr()
         exec "lopen " . g:syntastic_loc_list_height
         if num != winnr()
@@ -146,11 +146,7 @@ endfunction
 " Non-method functions {{{1
 
 function! g:SyntasticLoclistHide()
-    if len(filter( range(1, bufnr('$')), 'syntastic#util#bufIsActive(v:val)' )) == 1
-        quit
-    else
-        lclose
-    endif
+    silent! lclose
 endfunction
 
 " vim: set sw=4 sts=4 et fdm=marker:
