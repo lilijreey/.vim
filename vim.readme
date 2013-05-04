@@ -29,6 +29,11 @@ complet 定制补全策略
 EE 把Ex命令输出到文本中
 insert 模式下C-r： 可以输出最近一次的Ex命令
 
+EE 
+  vtx 从光标位置开始选中直到字母x
+  dtx 
+  
+
 EE C-r =
 0
 1
