@@ -28,8 +28,7 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.file-description == start ==
 /**
  * @file     |FILENAME|
- *
- * @brief    <CURSOR>
+ *           <CURSOR>
  *
  * @author   |AUTHOR|  |EMAIL|
  * @date     |DATE| |TIME|
@@ -40,8 +39,7 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.file-description-header == start ==
 /**
  * @file     |FILENAME|
- *
- * @brief    <CURSOR>
+ *           <CURSOR>
  *
  * @author   |AUTHOR| |EMAIL|
  * @date     |DATE| |TIME|
