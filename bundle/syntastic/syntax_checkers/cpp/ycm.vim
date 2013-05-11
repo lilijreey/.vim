@@ -10,10 +10,11 @@
 "
 "============================================================================
 
+let loaded_ycm_cpp_syntax_checker = 1 " not load ycm 
+
 if exists("loaded_ycm_cpp_syntax_checker")
     finish
 endif
-let loaded_ycm_cpp_syntax_checker = 1
 
 runtime syntax_checkers/c/ycm.vim
 
