@@ -17,7 +17,7 @@
 " To disable the search of included header files after special
 " libraries like gtk and glib add this line to your .vimrc:
 "
-"   let g:syntastic_cpp_no_include_search = 1
+   let g:syntastic_cpp_no_include_search = 1
 "
 " To disable the include of the default include dirs (such as /usr/include)
 " add this line to your .vimrc:
