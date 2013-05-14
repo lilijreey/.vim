@@ -126,6 +126,18 @@ condition {{{
 |executable|('name') 坚持name是否是可执行文件
 }}}
 
+|getline|/1-2 得到指定的行内容
+   得到当前行 getlien(".")
+   得到1-3行 getlien(1,3) -> list() 
+     返回一个list，每个元素是一行内容
+
+|setline|/2(len, text) 设置指定行的内容
+   当text为list的适合会把每个elemt 当作一行
+   设置当前行内容为 hellC
+      setlien(".", 'hello'
+call setline('.', getline('.')[:-2])
+        
+
 执行 vim脚步 
 :source filename
 
