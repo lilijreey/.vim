@@ -181,7 +181,20 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimrc_loaded = 1
 
-""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_mode_map = { 'mode': 'passive',
+                           \ 'active_filetypes': ['ruby', 'php', 'bash'],
+                           \ 'passive_filetypes': ['puppet'] }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_complete_in_comments = 1
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 """"""""""""""""""""
 " vim completion set
@@ -228,52 +241,22 @@ cmap ff <Up>
 cmap jj <C-n>
 cmap kk <C-p>
 
+nmap <silent> tg :!ctags -R<CR>
 "for esaymont
 nmap f  \\f
 nmap F  \\F
 
 nmap \s :Ack <C-R><C-F><CR>
 
-"Emacs mont key in insert mode" 
+
+" 删除当前行的末尾字符
+" 
+nmap \d  :call setline('.', getline('.')[:-2])<CR>
+imap \d  <Esc>:call setline('.', getline('.')[:-2])<CR>i
+"Emacs mont key in insert mode"
 "imap <C-a> <Esc>I
 "imap <C-e> <Esc>A
 
-"" Linux kernel 模式 ---------------------------
-function s:KernelMode()
-  " set path "
-  let l:kernel_releaseLF = system('uname -r')
-  " delete LF char
-  let l:kernel_release = strpart(l:kernel_releaseLF, 0, strlen(l:kernel_releaseLF) -1)
-  let l:headers = ",/usr/src/linux-headers-" . l:kernel_release . "/include"
-  echo l:headers
-  let &path = &path . l:headers
-
-  " set indent"
-  setl cindent
-	setlocal tabstop=8
-  setlocal shiftwidth=8
-  setlocal textwidth=80
-  setlocal noexpandtab
-  setlocal formatoptions=tcqlron
-  setlocal cinoptions=:0,l1,t0,g0
-
-  " highlight"
-  syn keyword cOperator likely unlikely
-  syn keyword cType u8 u16 u32 u64 s8 s16 s32 s64
-  highlight default link LinuxError ErrorMsg
-
-  match	LinuxError " \+\t"	" spaces before tab
-  match	LinuxError "\s\+$"	" trailing whitespaces
-  match	LinuxError /\%81v.\+/	" virtual column 81 and more
-endfunction
-
-command LinuxKernelMode call s:KernelMode()
-"""""""""""""""""""""""""""
-
-nmap  tg :!ctags -R<CR>
-
-set tags+=~/xpoker/tags/luaTags,../tags
-set path+=~/xpoker
 
 """"""""""""""""""""
 
@@ -311,11 +294,56 @@ if has("unix")
   "Remove the Windows ^M
   "noremap <Leader>dm mmHmn:%s/<C-V><cr>//ge<cr>'nzt'm
 
-  "Remove indenting on empty lines
-  "map <F2> :%s/\s*$//g<cr>:noh<cr>''
+  "" Linux kernel 模式 ---------------------------
+  function s:KernelMode()  " {{{
+    " set path "
+    "let l:kernel_releaseLF = system('uname -r')
+    "" delete LF char
+    "let l:kernel_release = strpart(l:kernel_releaseLF, 0, strlen(l:kernel_releaseLF) -1)
+    "let l:headers = "/usr/src/linux-headers-" . l:kernel_release . "/include/"
+    "echo l:headers
+    " 参数必须是list 或字典类型"
+    let g:syntastic_c_include_dirs=["~/mm/lin/ll/include/"]
+    "let &path = &path . "," . l:headers
+    "let l:kernel_path="~/mm/lin/ll/"
+    setl path=~/mm/lin/ll/include/
+    setl tags=~/mm/lin/ll/tags
+    " set indent"
+    setl cindent
+    setl tabstop=8
+    setl shiftwidth=8
+    setl textwidth=80
+    setl noexpandtab
+    setl formatoptions=tcqlron
+    setl cinoptions=:0,l1,t0,g0
 
-  "Super paste
-  "inoremap <C-v> <esc>:set paste<cr>mui<C-R>+<esc>mv'uV'v=:set nopaste<cr>
+    " highlight"
+    syn keyword cOperator likely unlikely
+    syn keyword cType u8 u16 u32 u64 s8 s16 s32 s64
+    highlight default link LinuxError ErrorMsg
+
+    match	LinuxError " \+\t"	" spaces before tab
+    match	LinuxError "\s\+$"	" trailing whitespaces
+    match	LinuxError /\%81v.\+/	" virtual column 81 and more
+  endfunction
+
+  command LinuxKernelMode call s:KernelMode() " }}}
+
+  " Xpoker 模式 
+  function s:XpokerMode()
+    if !exists("s:xpokermode")
+      let s:xpokermode= 1
+    else
+      return
+    endif
+
+    set path+=~/xpoker,/~xpoker/Erl/ECommon
+
+  endfunction
+   
+  au BufRead ~/mm/lin/ll/*  call s:KernelMode()
+  au BufRead ~/xpoker/*     call s:XpokerMode()
+  "command ErlPokerMode call s:ErlPoker()
 
 endif
 
@@ -329,4 +357,4 @@ if has("win32")
   set encoding=utf-8     "encoding defalut is cp932, but Powerline need utf-8
 endif
 
-
+"vim: set foldmethod=marker
