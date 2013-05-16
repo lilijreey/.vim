@@ -136,7 +136,15 @@ condition {{{
    设置当前行内容为 hellC
       setlien(".", 'hello'
 call setline('.', getline('.')[:-2])
+ [:-2] 的意思是 得到getlien返回的string 的子串 
+     返回从开始到倒数第二个（包含）的子串 see <h [:]>
+     负数表示从end开始计数 [begin:end]
         
+  e.g. 返回234 '12345'[1:-2]
+
+  
+|col|('.') 得到当前光标的为位置
+   
 
 执行 vim脚步 
 :source filename
