@@ -1,17 +1,26 @@
-set vim:ft=help foldmethod=marker
+vim: set ft=help foldmethod=marker
 文件树架构
 1.首先vim执行plugin 中的所有脚本，主要是定义一些全局变量，和函数。
 2.在到ftplugin中执行匹配文件类型的脚本，
 3.在indent/中设置相关的缩进
 4.执行.vimrc
 
+最佳实践
+---------------------------------
+* 把每天都要重复的按键映射为key
+* 把CapsLock 和esc交换
+    ubuntu 自带的改建软件就可以改， vim无法表示CapsLock
+    
+* 
+
+
+察看按键的表示 h keycode
 1 read 
 2 autocmd 自动命令
 3 source 读取一个文件中的Ex命令
 4 autocmd-events 
-
-
-## 在一个文件中设定vim 设置 set vim:opt1=val1:opt2=val2[:....]
+## 在一个文件中设定vim 设置
+   vim: set opt1=val1:opt2=val2[:....]
 
 "specal words 
 <BS> 删除光标前的字符

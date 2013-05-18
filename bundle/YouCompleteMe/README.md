@@ -64,8 +64,8 @@ features plus extra:
 - neocomplcache
 
 YCM also provides semantic go-to-definition/declaration commands for C-family
-languages. Expect more IDE features powered by the various YCM semantic engines
-in the future.
+languages & Python. Expect more IDE features powered by the various YCM semantic
+engines in the future.
 
 You'll also find that YCM has filepath completers (try typing `./` in a file)
 and a completer that integrates with [UltiSnips][].
@@ -370,11 +370,15 @@ file's filetype. Vim comes with okayish omnifuncs for various languages like
 Ruby, PHP etc. It depends on the language.
 
 You can get stellar omnifuncs for Java and Ruby with [Eclim][]. Just make sure
-you have the _latest_ Eclim installed and configured and don't forget to have
-`let g:EclimCompletionMethod = 'omnifunc'` in your vimrc. This will make YCM and
-Eclim play nice; YCM will use Eclim's omnifuncs as the data source for semantic
-completions and provide the auto-triggering and subsequence-based matching (and
-other YCM features) on top of it.
+you have the _latest_ Eclim installed and configured (this means Eclim `>= 2.2.*`
+and Eclipse `>= 4.2.*`).
+
+After installing Eclim remember to create a new Eclipse project within your
+application by typing `:ProjectCreate <path-to-your-project> -n ruby` (or `-n java`)
+inside vim and don't forget to have `let g:EclimCompletionMethod = 'omnifunc'`
+in your vimrc. This will make YCM and Eclim play nice; YCM will use Eclim's omnifuncs
+as the data source for semantic completions and provide the auto-triggering
+and subsequence-based matching (and other YCM features) on top of it.
 
 ### Writing New Semantic Completers
 
@@ -513,7 +517,7 @@ The various `GoTo*` subcommands add entries to Vim's `jumplist` so you can use
 
 Looks up the symbol under the cursor and jumps to its declaration.
 
-Supported in filetypes: `c, cpp, objc, objcpp`
+Supported in filetypes: `c, cpp, objc, objcpp, python`
 
 ### The `GoToDefinition` subcommand
 
@@ -524,7 +528,7 @@ the definition of the symbol is in the current translation unit. A translation
 unit consists of the file you are editing and all the files you are including
 with `#include` directives (directly or indirectly) in that file.
 
-Supported in filetypes: `c, cpp, objc, objcpp`
+Supported in filetypes: `c, cpp, objc, objcpp, python`
 
 ### The `GoToDefinitionElseDeclaration` subcommand
 
@@ -532,7 +536,7 @@ Looks up the symbol under the cursor and jumps to its definition if possible; if
 the definition is not accessible from the current translation unit, jumps to the
 symbol's declaration.
 
-Supported in filetypes: `c, cpp, objc, objcpp`
+Supported in filetypes: `c, cpp, objc, objcpp, python`
 
 
 Options
@@ -991,7 +995,7 @@ This means that YCM tried to set up a key mapping but failed because you already
 had something mapped to that key combination. The `<blah>` part of the message
 will tell you what was the key combination that failed.
 
-Look in the _Options_ section and see if which of the default mappings conflict
+Look in the _Options_ section and see if any of the default mappings conflict
 with your own. Then change that option value to something else so that the
 conflict goes away.
 

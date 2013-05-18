@@ -63,7 +63,7 @@ function! youcompleteme#Enable()
     " that happens *after" BufRead/BufEnter has already triggered for the
     " initial file.
     autocmd BufRead,BufEnter * call s:OnBufferVisit()
-    autocmd BufDelete * call s:OnBufferDelete( expand( '<afile>:p' ) )
+    autocmd BufUnload * call s:OnBufferUnload( expand( '<afile>:p' ) )
     autocmd CursorHold,CursorHoldI * call s:OnCursorHold()
     autocmd InsertLeave * call s:OnInsertLeave()
     autocmd InsertEnter * call s:OnInsertEnter()
@@ -222,12 +222,12 @@ function! s:OnBufferVisit()
 endfunction
 
 
-function! s:OnBufferDelete( deleted_buffer_file )
+function! s:OnBufferUnload( deleted_buffer_file )
   if !s:AllowedToCompleteInCurrentFile() || empty( a:deleted_buffer_file )
     return
   endif
 
-  py ycm_state.OnBufferDelete( vim.eval( 'a:deleted_buffer_file' ) )
+  py ycm_state.OnBufferUnload( vim.eval( 'a:deleted_buffer_file' ) )
 endfunction
 
 
@@ -600,7 +600,26 @@ function! s:CompleterCommand(...)
   py completer.OnUserCommand( vim.eval( 'l:arguments' ) )
 endfunction
 
-command! -nargs=* YcmCompleter call s:CompleterCommand(<f-args>)
+
+function! youcompleteme#OpenGoToList()
+  set lazyredraw
+  cclose
+  execute 'belowright copen 3'
+  set nolazyredraw
+  au WinLeave <buffer> q  " automatically leave, if an option is chosen
+  redraw!
+endfunction
+
+
+command! -nargs=* -complete=custom,youcompleteme#SubCommandsComplete
+  \ YcmCompleter call s:CompleterCommand(<f-args>)
+
+
+function! youcompleteme#SubCommandsComplete( arglead, cmdline, cursorpos )
+  return join( pyeval( 'ycm_state.GetFiletypeCompleter().DefinedSubcommands()' ),
+    \ "\n")
+endfunction
+
 
 function! s:ForceCompile()
   if !pyeval( 'ycm_state.NativeFiletypeCompletionUsable()' )

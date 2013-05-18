@@ -176,6 +176,20 @@ class Completer( object ):
       self.CandidatesForQueryAsyncInner( query, start_column )
 
 
+  def DefinedSubcommands( self ):
+    return []
+
+
+  def EchoUserCommandsHelpMessage( self ):
+    subcommands = self.DefinedSubcommands()
+    if subcommands:
+      vimsupport.EchoText( 'Supported commands are:\n' +
+                           '\n'.join( subcommands ) +
+                           '\nSee the docs for information on what they do.' )
+    else:
+      vimsupport.EchoText( 'No supported subcommands' )
+
+
   def FilterAndSortCandidates( self, candidates, query ):
     if not candidates:
       return []
@@ -248,7 +262,7 @@ class Completer( object ):
     pass
 
 
-  def OnBufferDelete( self, deleted_buffer_file ):
+  def OnBufferUnload( self, deleted_buffer_file ):
     pass
 
 

@@ -28,12 +28,6 @@ from flags import Flags
 CLANG_FILETYPES = set( [ 'c', 'cpp', 'objc', 'objcpp' ] )
 MAX_DIAGNOSTICS_TO_DISPLAY = int( vimsupport.GetVariableValue(
   "g:ycm_max_diagnostics_to_display" ) )
-USER_COMMANDS_HELP_MESSAGE = """
-Supported commands are:
-  GoToDefinition
-  GoToDeclaration
-  GoToDefinitionElseDeclaration
-See the docs for information on what they do."""
 
 
 class ClangCompleter( Completer ):
@@ -130,9 +124,15 @@ class ClangCompleter( Completer ):
     return results
 
 
+  def DefinedSubcommands( self ):
+    return [ "GoToDefinition",
+             "GoToDeclaration",
+             "GoToDefinitionElseDeclaration" ]
+
+
   def OnUserCommand( self, arguments ):
     if not arguments:
-      vimsupport.EchoText( USER_COMMANDS_HELP_MESSAGE )
+      self.EchoUserCommandsHelpMessage()
       return
 
     command = arguments[ 0 ]
@@ -225,7 +225,7 @@ class ClangCompleter( Completer ):
       flags )
 
 
-  def OnBufferDelete( self, deleted_buffer_file ):
+  def OnBufferUnload( self, deleted_buffer_file ):
     self.completer.DeleteCachesForFileAsync( deleted_buffer_file )
 
 
