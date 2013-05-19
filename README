@@ -19,7 +19,9 @@ vim: set ft=help foldmethod=marker
 2 autocmd 自动命令
 3 source 读取一个文件中的Ex命令
 4 autocmd-events 
-## 在一个文件中设定vim 设置
+在一个文件中设定vim 设置
+
+-------------------------------
    vim: set opt1=val1:opt2=val2[:....]
 
 "specal words 

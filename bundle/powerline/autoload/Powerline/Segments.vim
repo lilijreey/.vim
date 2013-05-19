@@ -8,6 +8,7 @@ let g:Powerline#Segments#segments = Pl#Segment#Init(
 		\ Pl#Segment#Create('name'        , '%t'),
 		\ Pl#Segment#Create('flags.mod'   , '%M'),
 		\ Pl#Segment#Create('flags.type'  , '%H%W'),
+		\ Pl#Segment#Create('flags.buf'   , '%n'),
 	\ ),
 	\ Pl#Segment#Create('filename'        , '%t'),
 	\ Pl#Segment#Create('filesize'        , '%{Powerline#Functions#GetFilesize()}', Pl#Segment#Modes('!N')),
