@@ -37,7 +37,7 @@ let b:did_indent = 1
 
 
 
-setlocal cinoptions=h1,l1,g1,t0,i4,+4,(0,w1,W4
+setlocal cinoptions=h1,l1,g1,t0,i4,+4,(0,w1,W4,:0
 
 function! GoogleCppIndent()
     let l:cline_num = line('.')
