@@ -11,7 +11,9 @@ vim: set ft=help foldmethod=marker
 * 把CapsLock 和esc交换
     ubuntu 自带的改建软件就可以改， vim无法表示CapsLock
     
-* 
+* 在指定位置插入字符
+  e.g. sdsadb sdsooo 变为 sds_adb sds_ooo
+
 
 
 察看按键的表示 h keycode
