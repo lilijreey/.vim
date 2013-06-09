@@ -117,15 +117,16 @@ set nowrapscan
 "set backup 
 "set backupdir "where save the backup files
 "set noswapfile
-
-
+"
+"首先尝试最长的
+set wildmode=longest:full,full
 
 "Basically you press * or # to search for the current selection !! Really useful
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editing mappings etc.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Restore cursor to file position in previous editing session
-set viminfo='10,\"100,:20,n~/.viminfo
+set viminfo='20,\"100,:20,n~/.viminfo
 "au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
 " Don't close window, when deleting a buffer
@@ -162,6 +163,7 @@ let NERDTreeIgnore=['\~$','\.out','\.o','\.d']
 let g:CommandTMaxFiles=30000
 let g:CommandTMaxDepth=6
 let g:CommandTMaxCachedDirectories=3
+let g:CommandTCancelMap=['<Esc>', '<C-c>']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -184,9 +186,9 @@ let g:vimrc_loaded = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': ['ruby', 'php', 'bash'],
-                           \ 'passive_filetypes': ['puppet'] }
+"let g:syntastic_mode_map = { 'mode': 'passive',
+                           "\ 'active_filetypes': ['ruby', 'php', 'sh', 'bash'],
+                           "\ 'passive_filetypes': ['puppet'] }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
@@ -227,38 +229,55 @@ map <F6> :TagbarToggle<CR>
 "Change buffer - without saving
 set hid
 
-cmap bb :b#<CR>
+set splitbelow
+set splitright
 "set hidden
 
+nnoremap wh <C-w>h
+nnoremap wj <C-w>j
+nnoremap wk <C-w>k
+nnoremap wl <C-w>l
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
+
+" uppercase WORD TODO use func
+inoremap <c-u> <esc>vawUea
+
+cnoremap RC :e $MYVIMRC<cr>
 "mvoe to windows
-nmap wh <C-w>h
-nmap wj <C-w>j
-nmap wk <C-w>k
-nmap wl <C-w>l
-
+cnoremap bb :b#<CR>
 "Ex history cmd
-cmap ff <Up>
-cmap jj <C-n>
-cmap kk <C-p>
+cnoremap ff <Up>
+cnoremap jj <C-n>
+cnoremap kk <C-p>
 
-nmap <silent> tg :!ctags -R<CR>
+nnoremap <silent> tg :!ctags -R<CR>
 "for esaymont
 nmap f  \\f
 nmap F  \\F
 
-nmap \s :Ack <C-R><C-F><CR>
+nnoremap \s :Ack <C-R><C-F><CR>
 
 
 " 删除当前行的末尾字符
-" 
-nmap \d  :call setline('.', getline('.')[:-2])<CR>
-imap \d  <Esc>:call setline('.', getline('.')[:-2])<CR>i
-"Emacs mont key in insert mode"
+nnoremap \ed  :call setline('.', getline('.')[:-2])<CR>
+inoremap \ed  <Esc>:call setline('.', getline('.')[:-2])<CR>a
+
+" add char 当前行的末尾字符
+nnoremap \ea :call setline('.', getline('.') . ';')<CR>
+inoremap \ea  <Esc>:call setline('.', getline('.') . ';')<CR>a
+"Emacs mont key in insert mode"oo
 "imap <C-a> <Esc>I
 "imap <C-e> <Esc>A
 
-
+"%s/\(sds\)\([a-z]\)/\1_\2\gc
 """"""""""""""""""""
+" backup HOME/.vimrc to HOME/.vim/vimrc
+function g:Bkvimrc()
+  !cp $HOME/.vimrc $HOME/.vim/vimrc
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""
 "System depend
@@ -273,7 +292,6 @@ if has("unix")
   set path=./,../,/usr/include/,/usr/include/i386-linux-gnu/,/usr/local/include/,/
 
   " edit vimrc
-  cmap RC :e ~/.vimrc<CR>
 
   " set guifont
   set guifont=Ubuntu\ Mono\ 14
@@ -303,7 +321,7 @@ if has("unix")
     "let l:headers = "/usr/src/linux-headers-" . l:kernel_release . "/include/"
     "echo l:headers
     " 参数必须是list 或字典类型"
-    let g:syntastic_c_include_dirs=["~/mm/lin/ll/include/"]
+    "let g:syntastic_c_include_dirs=["~/mm/lin/ll/include/"]
     "let &path = &path . "," . l:headers
     "let l:kernel_path="~/mm/lin/ll/"
     setl path=~/mm/lin/ll/include/
@@ -341,7 +359,8 @@ if has("unix")
 
   endfunction
    
-  au BufRead ~/mm/lin/ll/*  call s:KernelMode()
+  au BufRead ~/mm/lin/ll/*      call s:KernelMode()
+  au BufRead ~/mm/lin/kernel/*  call s:KernelMode()
   au BufRead ~/xpoker/*     call s:XpokerMode()
   "command ErlPokerMode call s:ErlPoker()
 

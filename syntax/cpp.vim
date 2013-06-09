@@ -39,9 +39,10 @@ syn keyword cppType char16_t char32_t decltype
 syn keyword cppConstant nullptr
 syn keyword cppOperator	alignof	
 
+syn region cppRawString  matchgroup=cppRawDelim start=+R"\z([[:alnum:]_{}[\]#<>%:;.?*+\-/\^&|~!=,"']*\)(+ end=+)\z1"+ contains=@Spell
+
 " The minimum and maximum operators in GNU C++
 syn match cppMinMax "[<>]?"
-
 syn match cQues display /::/
 
 " Default highlighting
@@ -63,6 +64,9 @@ if version >= 508 || !exists("did_cpp_syntax_inits")
   HiLink cppNumber		Number
   HiLink cppBoolean		Boolean
   HiLink cppConstant            Constant
+  HiLink cppRawDelim            cFormat
+  HiLink cppRawString           String
+
   delcommand HiLink
 endif
 
