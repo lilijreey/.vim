@@ -80,9 +80,34 @@ vimscript 中所有的语句都一\n 结尾
 	endfor
 > 
   + 变量类型 
-     * scalar:
-     * list: 使用方括号包围的有序集合  index 从0开始
-     *    e.g. let li = [1,2,3,4]
+     * string
+        对可以转化成int的转换为int “123” 其他的为0
+        slicing
+         str[begin: last]
+     * list: 使用方括号包围的有序列表  index 从0开始
+         e.g. let li = [1,2,3,4]
+           li[index] index 可以是负数 -1 = last-element
+         slicing 
+               li[begin : last] 
+         concatenation
+            list1 + list2 
+         list-functions
+            add(list, value )
+            like push_back in C++
+            len(list) -> element-counts
+            get(list, index, default-value)
+                返回指定index的值如果index无效返回 default-value
+            index(list, value) -> index
+                如果没有value返回-1
+            join(list, str::string())  -> string()
+                把list中每个元素使用str链接起来
+            split(string, signl)  -> list()
+              join 的逆操作
+            reverse(list)
+            ... more see *list-function*
+                
+
+
      * dictionary : 使用花括号包围的无须集合 k:v 
      *    e.g. let di = {'name':'li', 'home':321}
      一个变量的类型是第一个赋值时值的类型，变量类型一旦分配后
@@ -105,6 +130,7 @@ vimscript 中所有的语句都一\n 结尾
 
   + 伪变量（特殊变量）
       * &name 获得vim选项值 e.g. let xx=&path
+            &l:op localoption
       * @name 获得vim寄存器中的值
       * $name 环境变量 e.g. let spath=$PATH
 
@@ -116,17 +142,42 @@ vimscript 中所有的语句都一\n 结尾
     *strtrans(str)* 把string中的不可打印字符转行成可打印字符
     *strlen* (str, beign, [end]) begin index 从0 开始 
     
+* let & set
+  使用set时 name为 vim op
+  let 可以对任何变量赋值包括 vim op 但是要使用 &op 来指名op 是vim op
+  set textwidth=v
+  let &textwidth = &textwidth + 10
 }}}
 
 
 condition {{{
-  + == 
+* if int
+  elseif
+  endif
+   condition 会求int类型值， 0 = false， other=true
+
+* == 
      VIMScript 中比较始终执行数字比较， 除非两个对象都是 string 
        如果 一个是string 一个是num 那么string将会被转化为数字在比较
+   == string的比较依赖于用户的设定 大小写敏感
+
+* ==? case-insensitive
+* ==# case-sensitive
+
 }}}
 
 函数 {{{
 -------------------------------------
+* calling Functions
+  call func
+
+* return
+  如果vim不返回一个值则，隐士的返回0
+
+* param
+  使用a:name
+  vim 不允许在function中改变arugment 的值
+
 |expand|(x,y) 得到指定的string
      e.g. 到的当前文件的名字 expand('%')
      e.g. 到的当前文件的目录 expand('%:h)
