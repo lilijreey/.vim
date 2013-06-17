@@ -1,4 +1,4 @@
-vim: set ft=help foldmethod=marker
+vim: set ft=help foldmethod=markdown
 文件树架构
 1.首先vim执行plugin 中的所有脚本，主要是定义一些全局变量，和函数。
 2.在到ftplugin中执行匹配文件类型的脚本，
@@ -11,7 +11,9 @@ vim: set ft=help foldmethod=marker
 * 把CapsLock 和esc交换
     ubuntu 自带的改建软件就可以改， vim无法表示CapsLock
     
-* 
+* 在指定位置插入字符
+  e.g. sdsadb sdsooo 变为 sds_adb sds_ooo
+
 
 
 察看按键的表示 h keycode
@@ -36,6 +38,9 @@ C-N: next-match
 C-X C-F match in file-name
 
 complet 定制补全策略
+
+* message
+ echom 
 
 EE 把Ex命令输出到文本中
 insert 模式下C-r： 可以输出最近一次的Ex命令
@@ -149,6 +154,14 @@ vimscript 中所有的语句都一\n 结尾
   let &textwidth = &textwidth + 10
 }}}
 
+set
+------------------------
+*  boolean option
+  open set <name>
+  close set no<name>
+
+* checking boptions
+  set <name>?
 
 condition {{{
 * if int
