@@ -3964,8 +3964,19 @@ function! s:CreateAdditionalMaps ()
 	vnoremap   <buffer>  <silent>  <LocalLeader>iu    <Esc>:call C_InsertTemplate("idioms.union" , "v")<CR>
 	inoremap   <buffer>  <silent>  <LocalLeader>iu    <Esc>:call C_InsertTemplate("idioms.union")<CR>
 	"
-	noremap    <buffer>  <silent>  <LocalLeader>ip         :call C_InsertTemplate("idioms.printf")<CR>
-	inoremap   <buffer>  <silent>  <LocalLeader>ip    <Esc>:call C_InsertTemplate("idioms.printf")<CR>
+
+  " add Kernel Moudle support by lili"
+  if (exists("g:c_kernel_mode"))
+    noremap    <buffer>  <silent>  <LocalLeader>ip         :call C_InsertTemplate("idioms.printk")<CR>
+    inoremap   <buffer>  <silent>  <LocalLeader>ip    <Esc>:call C_InsertTemplate("idioms.printk")<CR>
+    "echomsg 'exist c_kerenl_mode'
+    "echomsg g:c_kernel_mode
+  else
+    noremap    <buffer>  <silent>  <LocalLeader>ip         :call C_InsertTemplate("idioms.printf")<CR>
+    inoremap   <buffer>  <silent>  <LocalLeader>ip    <Esc>:call C_InsertTemplate("idioms.printf")<CR>
+    "echomsg 'not exist c_kernel_mode'
+  endif
+
 	noremap    <buffer>  <silent>  <LocalLeader>isc        :call C_InsertTemplate("idioms.scanf")<CR>
 	inoremap   <buffer>  <silent>  <LocalLeader>isc   <Esc>:call C_InsertTemplate("idioms.scanf")<CR>
 	"

@@ -34,6 +34,8 @@ union |?UNION_NAME| {<CURSOR>
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.printf == insert ==
 printf ("<CURSOR>\n");
+== idioms.printk == insert ==
+printk ("<CURSOR>\n");
 == idioms.scanf == insert ==
 scanf ("<CURSOR>", & );
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
