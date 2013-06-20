@@ -153,7 +153,7 @@ imap    <buffer>  <silent>  <Leader>io    <Esc><Esc>:call Lua_OpenOutputFile()<C
 nmap    <buffer>  <silent>  <Leader>nr    <Esc><Esc>:call Lua_CodeSnippet("r")<CR>
 nmap    <buffer>  <silent>  <Leader>nw    <Esc><Esc>:call Lua_CodeSnippet("w")<CR>
 vmap    <buffer>  <silent>  <Leader>nw    <Esc><Esc>:call Lua_CodeSnippet("wv")<CR>
-nmap    <buffer>  <silent>  <Leader>ne    <Esc><Esc>:call Lua_CodeSnippet("e")<CR>
+nmap    <buffer>  <silent>  <Leaner>ne    <Esc><Esc>:call Lua_CodeSnippet("e")<CR>
 "
 " ----------  Run  ----------------------------------------------------------
 "
