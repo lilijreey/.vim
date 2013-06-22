@@ -7,8 +7,7 @@ set vim: ft=help foldmethod=markdown
 
 最佳实践
 ---------------------------------
-* 把每天都要重复的按键映射为key
-* 把CapsLock 和esc交换
+* 把每天都要重复的按键映射为key * 把CapsLock 和esc交换
     ubuntu 自带的改建软件就可以改， vim无法表示CapsLock
     
 * 在指定位置插入字符
@@ -227,13 +226,14 @@ call setline('.', getline('.')[:-2])
 自定义命令
 --------------------------------------
 使用 command 来定义一个命令
- e.g. > >
+ e.g. >
+     ```vimL
 	command LinuxKernelMode call KernelMode()
 	function KernelMode()
 	  let l:kernel_release = system('uname -r')
 	  echo l:kernel_release
 	endfunction
-<
+       ```
 
 |execute|
   执行一个string
