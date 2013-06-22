@@ -104,7 +104,6 @@ let	s:Lua_LineEndCommColDefault	= 49
 "  
 "   ----- Lua template files ----------------------------------------------
 let s:Lua_Template_Directory    = s:plugin_dir."lua-support/templates/"
-"
 let s:Lua_Template_Lua_File     = "lua-file-header"
 let s:Lua_Template_Frame        = "lua-frame"
 let s:Lua_Template_Function     = "lua-function-description"

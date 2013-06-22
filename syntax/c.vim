@@ -287,7 +287,7 @@ if !exists("c_no_ansi") || exists("c_ansi_constants") || exists("c_gnu")
   " Add POSIX signals as well...
   syn keyword cConstant SIGABRT SIGALRM SIGCHLD SIGCONT SIGFPE SIGHUP
   syn keyword cConstant SIGILL SIGINT SIGKILL SIGPIPE SIGQUIT SIGBUS
-  syn keyword cConstant SIGSTOP SIGTERM SIGTRAP SIGTSTP SIGTTIN SIGTTOU
+  syn keyword cConstant SIGSTOP SIGTERM SIGTRAP SIGTSTP SIGTTIN SIGTTOU SIGIO
   syn keyword cConstant SIGUSR1 SIGUSR2
   syn keyword cConstant _IOFBF _IOLBF _IONBF BUFSIZ EOF WEOF
   syn keyword cConstant FOPEN_MAX FILENAME_MAX L_tmpnam

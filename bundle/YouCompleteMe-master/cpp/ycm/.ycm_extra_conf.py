@@ -38,7 +38,6 @@ flags = [
 '-Wall',
 '-Wextra',
 '-Werror',
-'-Wc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
@@ -69,16 +68,6 @@ flags = [
 '../llvm/tools/clang/include',
 '-I',
 '.',
-'-I',
-'./ClangCompleter',
-'-isystem',
-'./tests/gmock/gtest',
-'-isystem',
-'./tests/gmock/gtest/include',
-'-isystem',
-'./tests/gmock',
-'-isystem',
-'./tests/gmock/include'
 ]
 
 # Set this to the absolute path to the folder (NOT the file!) containing the

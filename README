@@ -243,3 +243,21 @@ call setline('.', getline('.')[:-2])
 " set cmd
 set
 setlocal setl
+
+vim Plugin Layout
+---------------------------------------
+* color/
+* plugin/
+   each be run once every time Vim starts
+   These files are meant to contain code that you always
+    want loaded whenever you star Vim
+* ftdetect/
+    be run once every time Vim start	
+    use to set up autocommands that detect file type
+* ftplugin/
+   每次 Vim set buffer filetype run filetype.vim
+   in file will be set buffer-local options
+* after/
+   will be load every vim starts, but after plugin/
+* autoload/
+   会延迟加载 plugin 的时间 
