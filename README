@@ -1,4 +1,4 @@
-set vim: ft=help foldmethod=markdown
+set vim: ft=help 
 文件树架构
 1.首先vim执行plugin 中的所有脚本，主要是定义一些全局变量，和函数。
 2.在到ftplugin中执行匹配文件类型的脚本，
@@ -11,8 +11,11 @@ set vim: ft=help foldmethod=markdown
     ubuntu 自带的改建软件就可以改， vim无法表示CapsLock
     
 * 在指定位置插入字符
-  e.g. sdsadb sdsooo 变为 sds_adb sds_ooo
+ k e.g. sdsadb sdsooo 变为 sds_adb sds_ooo
 
+Qus.
+-----------------------------
+1. 如何比较转义字符
 
 
 察看按键的表示 h keycode
@@ -101,6 +104,7 @@ vimscript 中所有的语句都一\n 结尾
             len(list) -> element-counts
             get(list, index, default-value)
                 返回指定index的值如果index无效返回 default-value
+            count(List, item) -> item count
             index(list, value) -> index
                 如果没有value返回-1
             join(list, str::string())  -> string()
@@ -167,6 +171,7 @@ condition {{{
   elseif
   endif
    condition 会求int类型值， 0 = false， other=true
+   if 的condition 必须在同一行，否则会报错
 
 * == 
      VIMScript 中比较始终执行数字比较， 除非两个对象都是 string 

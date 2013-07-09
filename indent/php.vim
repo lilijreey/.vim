@@ -694,6 +694,12 @@ function! ResetPhpOptions()
 
 	    " Set the comment setting to something correct for PHP
 	    setlocal comments=s1:/*,mb:*,ex:*/,://,:#
+            setlocal shiftwidth=2
+            setlocal tabstop=2
+            setlocal softtabstop=2
+            setlocal expandtab
+            setlocal textwidth=80
+            setlocal wrap
 
 	    " disable Auto-wrap of text
 	    setlocal formatoptions-=t
