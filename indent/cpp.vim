@@ -5,18 +5,6 @@ if exists("b:did_indent")
 endif
 
 let b:did_indent = 1
-""c 风格的缩紧
-"setl cindent
-"" only use white
-"" set local
-"setl expandtab
-"" open smarttab enter tab indent shiftwidth
-"setl smarttab
-""> < 移动的大小
-"setl shiftwidth=4
-"" enter a <Tab> insert 4 white
-"setl softtabstop=4
-"setl tabstop=4
 
 " Google style
 " Language:	C++
