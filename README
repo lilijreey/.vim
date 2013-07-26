@@ -266,3 +266,13 @@ vim Plugin Layout
    will be load every vim starts, but after plugin/
 * autoload/
    会延迟加载 plugin 的时间 
+
+
+
+Custorm Plguin
+----------------------------------
+* vim-javascrpt [[for JS]]
+   provides syntax and indent
+* vim-nodejs-complete
+
+
