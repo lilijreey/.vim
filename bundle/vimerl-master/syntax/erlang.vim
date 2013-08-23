@@ -82,7 +82,7 @@ syn match erlangGBIF                         /\<erlang\%(:\w\)\@=/
 
 " add by Evan
 " built-in type
-syn match erlangBIT                          /term()\|any()\|none()\|pid()\|port()\|reference()\|atom()\|binary()\|bitstring()\|boolean()\|byte()\|char()\|string()\|nonempty_string()\|nunber()\|integer()\|non_neg_integer()\|pos_integer()\|neg_integer()\|float()\|list()\|maybe_improper_list()\|iolist()\|module()\|mfa()\|node()\|timeout()\|no_return()/
+syn match erlangType                         /\<term()\|\<any()\|\<none()\|\<pid()\|\<port()\|\<reference()\|\<atom()\|\<binary()\|\<bitstring()\|\<boolean()\|\<byte()\|\<char()\|\<string()\|\<nonempty_string()\|\<nunber()\|\<integer()\|\<non_neg_integer()\|\<pos_integer()\|\<neg_integer()\|\<float()\|\<list()\|\<maybe_improper_list()\|\<iolist()\|\<module()\|\<mfa()\|\<node()\|\<timeout()\|\<no_return()/
 "
 " Link Erlang stuff to Vim groups
 hi link erlangTodo           Todo

@@ -276,3 +276,20 @@ Custorm Plguin
 * vim-nodejs-complete
 
 
+Diff 
+--------------------------
+★ 跳转到下一个diff点：
+请使用 ]c 命令
+
+★ 跳转到前一个diff点：
+请使用 [c 命令
+
+dp (diff put)
+ 吧当前window的内容复制到另一个window
+
+do (diff obtain)
+ 吧另一个window的内容复制到当前window 和 dp 方向放
+
+diffupdate
+ 重新比较
+
