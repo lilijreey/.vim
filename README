@@ -1,4 +1,5 @@
 set vim: ft=help 
+
 文件树架构
 1.首先vim执行plugin 中的所有脚本，主要是定义一些全局变量，和函数。
 2.在到ftplugin中执行匹配文件类型的脚本，
@@ -239,6 +240,9 @@ call setline('.', getline('.')[:-2])
 	  echo l:kernel_release
 	endfunction
        ```
+如果不想显示后面的调用命令 可以添加 silent
+	command LinuxKernelMode silent call KernelMode()
+   
 
 |execute|
   执行一个string
@@ -293,3 +297,14 @@ do (diff obtain)
 diffupdate
  重新比较
 
+Map
+------------------------------------
+map Key Cmd
+如果不想显示Cmd可以在 map 的后面添加 <silent>, 这样就不会显示 Cmd
+ e.g. map <silent> <F4> :/Hee<CR>
+
+编辑函数
+-----------------------------
+read，
+delete
+append

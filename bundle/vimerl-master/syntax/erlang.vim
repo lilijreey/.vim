@@ -4,6 +4,7 @@
 " Contributors: Ricardo Catalinas Jiménez <jimenezrick@gmail.com>
 " License:      Vim license
 " Version:      2012/05/07
+" Modify:       Evan add -spec build-in type
 
 if exists("b:current_syntax")
 	finish

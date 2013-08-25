@@ -26,15 +26,15 @@ XPTinclude
 
 
 XPT inc " -include ..
--include( "`cursor^.hrl").
+-include("`cursor^.hrl").
 
 
 XPT def " -define ..
--define( `what^, `def^ ).
+-define(`what^, `def^ ).
 
 
 XPT ifdef " -ifdef ..\-endif..
--ifdef( `what^ ).
+-ifdef(`what^ ).
     `thenmacro^
 ``else...`
 {{^-else.
@@ -43,7 +43,7 @@ XPT ifdef " -ifdef ..\-endif..
 
 
 XPT ifndef " -ifndef ..\-endif
--ifndef( `what^ ).
+-ifndef(`what^ ).
     `thenmacro^
 ``else...`
 {{^-else.
@@ -52,7 +52,7 @@ XPT ifndef " -ifndef ..\-endif
 
 
 XPT record " -record ..,{..}
--record( `recordName^
+-record(`recordName^
         ,{ `field1^`...^
         ,  `fieldn^`...^
         }).
@@ -98,6 +98,9 @@ fun (`params^) `_^ -> `body^`
     `...^`}}^`}}^
 end `cursor^
 
+XPT export
+-export([`name^
+        ]).
 
 XPT try wrap=what " try .. catch .. end
 try `what^

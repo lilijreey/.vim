@@ -1,5 +1,3 @@
-" Vim plugin file
-" Language: Erlang
 " Author:   Ricardo Catalinas Jiménez <jimenezrick@gmail.com>
 " License:  Vim license
 " Version:  2012/11/25
@@ -31,9 +29,7 @@ function s:LoadSkeleton(skel_name)
 		for [name, value] in items(g:erlang_skel_header)
 			call s:SubstituteField(name, value)
 		endfor
-		if !has_key(g:erlang_skel_header, 'year')
-			call s:SubstituteField('year', strftime('%Y'))
-		endif
+
 		call append(line('$'), '')
 		normal G
 	endif
@@ -47,11 +43,14 @@ function s:LoadSkeleton(skel_name)
 	endif
 endfunction
 
+" 替换模板中的$变量
 function s:SubstituteField(name, value)
 	execute '%substitute/\$' . toupper(a:name) . '/' . a:value . '/'
 endfunction
 
-command ErlangApplication silent call s:LoadSkeleton('application')
+au BufNewFile *.erl exec "call s:LoadSkeleton('header')"
+
+command ErlangApplication  call s:LoadSkeleton('application')
 command ErlangSupervisor  silent call s:LoadSkeleton('supervisor')
 command ErlangGenServer   silent call s:LoadSkeleton('gen_server')
 command ErlangGenFsm      silent call s:LoadSkeleton('gen_fsm')

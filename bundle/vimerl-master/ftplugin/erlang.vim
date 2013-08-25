@@ -85,3 +85,4 @@ function ErlangFoldText()
 endfunction
 
 call s:SetErlangOptions()
+

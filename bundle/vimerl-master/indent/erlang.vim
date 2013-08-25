@@ -6,6 +6,7 @@
 "               Ricardo Catalinas Jiménez <jimenezrick@gmail.com>
 " Last Update:  2013-Jun-01
 " License:      Vim license
+" 不属于vimerl 项目，是另一个专门的erlang代码缩进项目
 " URL:          https://github.com/hcs42/vim-erlang
 
 " Note About Usage:
