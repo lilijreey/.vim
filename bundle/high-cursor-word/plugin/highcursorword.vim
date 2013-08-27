@@ -12,7 +12,7 @@ let g:loaded_high_cursorword = 1
 " default is enable plugin if you not want enable
 " you can let g:hcw_high_cursorword_open = 0 disable this plugin
 if !exists("g:hcw_high_cursorword_open")
-   let g:hcw_high_cursorword_open = 1
+   let g:hcw_high_cursorword_open = 0
 endif
 
 " set default include chars, you can custom it. 

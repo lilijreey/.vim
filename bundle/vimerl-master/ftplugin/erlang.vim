@@ -47,6 +47,8 @@ function s:SetErlangOptions()
 	setlocal commentstring=%%s
 	setlocal formatoptions+=ro
 	setlocal suffixesadd=.erl
+  " add by evan
+  setlocal tags=~/.vim/bundle/vimerl-master/ftplugin/stdlibtags
   "setlocal iskeyword+=?
 	let libs = substitute(system('which erl'), '/bin/erl', '/lib/erlang/lib/**/src/', '')
 	execute 'setlocal path+=' . libs
