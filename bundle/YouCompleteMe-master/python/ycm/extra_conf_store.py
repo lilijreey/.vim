@@ -50,7 +50,7 @@ def ModuleFileForSourceFile( filename ):
   order and return the filename of the first module that was allowed to load.
   If no module was found or allowed to load, None is returned."""
 
-  if not _module_file_for_source_file.has_key( filename ):
+  if not filename in _module_file_for_source_file:
     for module_file in _ExtraConfModuleSourceFilesForFile( filename ):
       if _Load( module_file ):
         _module_file_for_source_file[ filename ] = module_file
@@ -109,7 +109,7 @@ def _Load( module_file, force = False ):
     return None
 
   if not force:
-    if _module_for_module_file.has_key( module_file ):
+    if module_file in _module_for_module_file:
       return _module_for_module_file[ module_file ]
 
     if not _ShouldLoad( module_file ):
@@ -152,14 +152,24 @@ def _ExtraConfModuleSourceFilesForFile( filename ):
 
 def _PathsToAllParentFolders( filename ):
   """Build a list of all parent folders of a file.
-  The neares files will be returned first.
+  The nearest folders will be returned first.
   Example: _PathsToAllParentFolders( '/home/user/projects/test.c' )
     [ '/home/user/projects', '/home/user', '/home', '/' ]"""
 
-  parent_folders = os.path.abspath(
-    os.path.dirname( filename ) ).split( os.path.sep )
-  if not parent_folders[0]:
-    parent_folders[0] = os.path.sep
+  def PathFolderComponents( filename ):
+    folders = []
+    path = os.path.dirname( filename )
+    while True:
+      path, folder = os.path.split( path )
+      if folder:
+        folders.append( folder )
+      else:
+        if path:
+          folders.append( path )
+        break
+    return list( reversed( folders ) )
+
+  parent_folders = PathFolderComponents( filename )
   parent_folders = [ os.path.join( *parent_folders[:i + 1] )
                      for i in xrange( len( parent_folders ) ) ]
   return reversed( parent_folders )

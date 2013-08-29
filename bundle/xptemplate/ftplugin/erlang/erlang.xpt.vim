@@ -28,10 +28,14 @@ XPTinclude
 XPT inc " -include ..
 -include("`cursor^.hrl").
 
+XPT expall " -compile ..
+-compile([export_all]).
 
 XPT def " -define ..
 -define(`what^, `def^ ).
 
+XPT beha
+-behaviour(`cursor^).
 
 XPT ifdef " -ifdef ..\-endif..
 -ifdef(`what^ ).
