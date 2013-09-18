@@ -89,3 +89,9 @@ endfunction
 
 call s:SetErlangOptions()
 
+"function Parse_trans_beam(module)
+  "!escript ~/.vim/bundle/vimerl-master/bin/parse_trans_pp.beam a:module
+"endfunction
+
+"command ErlangCommonTest  silent call s:LoadSkeleton('common_test')
+

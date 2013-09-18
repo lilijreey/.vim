@@ -31,6 +31,9 @@ XPT inc " -include ..
 XPT expall " -compile ..
 -compile([export_all]).
 
+XPT inline " 
+-compile({inline, `cursor^`}).
+
 XPT def " -define ..
 -define(`what^, `def^ ).
 

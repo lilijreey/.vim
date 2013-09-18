@@ -297,6 +297,9 @@ do (diff obtain)
 diffupdate
  重新比较
 
+		
+listchars
+
 Map
 ------------------------------------
 map Key Cmd
