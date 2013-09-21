@@ -32,7 +32,7 @@ XPT expall " -compile ..
 -compile([export_all]).
 
 XPT inline " 
--compile({inline, `cursor^`}).
+-compile({inline, `cursor^}).
 
 XPT def " -define ..
 -define(`what^, `def^ ).
