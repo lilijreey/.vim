@@ -1,7 +1,6 @@
 -module($MODULENAME).
 -behaviour(gen_server).
 
-%% set vim:foldmethod=marker
 %% gen_server callbacks
 -export([init/1,
          handle_call/3,
@@ -13,30 +12,12 @@
 
 -record(state, {}).
 
-%% gen_server Interface
-%% ----------------------------
-%% `gen_server:start/3-4'
-%% `gen_server:start_link/3-4'
-%%
-%% `gen_server:call/2(ServerRef, Request)'
-%% `gen_server:call/3(ServerRef, Request, Timeout)'
-%% `gen_server:multi_call/2-4'
-%%
-%% `gen_server:cast/2'
-%% `gen_server:abcast/2(Name, Req)' -> 
-%% `gen_server:abcast/2(Node, Name, Req)' -> 
-%%
-%% `gen_server:enter_loop/3-5'
-%%
 
-%% Module Interface   {{{--------------------------------------
+%% Module Interface 
 %-export([start_link/0
 %%         start/0]).
 
-%%--------------------------------------------------------------------
 %% @doc Starts the server
-%% @spec start_link() -> {ok, Pid} | ignore | {error, Error}
-%% @end
 start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
@@ -47,92 +28,43 @@ start_link() ->
 %%    gen_server:call(?MODULE, stop).
 %%
 
-%% Module Interface end }}} -----------------------------------------
 
 
-%%=======================================================================
-%% gen_server callbacks  {{{------------------------------------------
 
-%%--------------------------------------------------------------------
-%% @private
-%% @doc  Initializes the server
-%%
-%%
-%% @spec init(Args) -> {ok, State}          |
-%%                     {ok, State, Timeout} |
-%%                     {ok, State, hibernate} |
-%%                     ignore               |
-%%                     {stop, Reason}
-%% @end
+%% @spec handle_cast(Msg, State) -> {noreply, State} |
 init([]) ->
     {ok, #state{}}.
 
-%%--------------------------------------------------------------------
-%% @private
-%% @doc  Handling call messages
-%%
-%% @spec handle_call(Request, From, State) ->
-%%                                   {reply, Reply, State} |
-%%                                   {reply, Reply, State, Timeout} |
-%%                                   {reply, Reply, State, hibernate} |
-%%                                   {noreply, State} |
-%%                                   {noreply, State, Timeout} |
-%%                                   {noreply, State, hibernate} |
-%%                                   {stop, Reason, Reply, State} |
-%%                                   {stop, Reason, State}
-%% @end
+%% @spec handle_cast(Msg, State) -> {noreply, State} |
 handle_call(_Request, _From, State) ->
     Reply = ok,
     {reply, Reply, State}.
 
-%%--------------------------------------------------------------------
-%% @private
-%% @doc Handling cast messages
-%%
 %% @spec handle_cast(Msg, State) -> {noreply, State} |
 %%                                  {noreply, State, Timeout} |
 %%                                  {noreply, State, hibernate} |
 %%                                  {stop, Reason, State}
-%% @end
 handle_cast(_Msg, State) ->
     {noreply, State}.
 
-%%--------------------------------------------------------------------
-%% @private
-%% @doc  Handling all non call/cast messages
-%%
 %% @spec handle_info(Info, State) -> {noreply, State} |
 %%                                   {noreply, State, Timeout} |
 %%                                   {noreply, State, hibernate} |
 %%                                   {stop, Reason, State}
 %%                   Info = timeout | term()
-%% @end
 handle_info(_Info, State) ->
     {noreply, State}.
 
-%%--------------------------------------------------------------------
-%% @private
-%% @doc terminate callback
-%%
 %% @spec terminate(Reason, State) -> no_return()
 %%       Reason = normal | shutdown | {shutdown, term()} | term()
-%% @end
 terminate(_Reason, _State) ->
     ok.
 
-%%--------------------------------------------------------------------
-%% @private
-%% @doc Convert process state when code is changed
-%%
-%% @spec code_change(OldVsn, State, Extra) -> {ok, NewState}
-%% @end
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
 
-%% gen_server callbacks end }}}-----------------------------------------
 
 
 %%=======================================================================
-%%--------------------------------------------------------------------
 %% Internal functions
-%%--------------------------------------------------------------------
+%%=======================================================================

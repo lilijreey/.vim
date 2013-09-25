@@ -17,13 +17,13 @@ if !exists('g:erlang_skel_dir')
 endif
 
 function s:LoadSkeleton(skel_name)
-	if g:erlang_skel_replace
-		%delete
-	else
-		let current_line = line('.')
-		call append(line('$'), '')
-		normal G
-	endif
+	"if g:erlang_skel_replace
+		"%delete
+	"else
+		"let current_line = line('.')
+		"call append(line('$'), '')
+		"normal G
+	"endif
 	if exists('g:erlang_skel_header')
 		execute 'read' g:erlang_skel_dir . '/' . 'header'
 		for [name, value] in items(g:erlang_skel_header)
@@ -56,3 +56,6 @@ command ErlangGenServer   silent call s:LoadSkeleton('gen_server')
 command ErlangGenFsm      silent call s:LoadSkeleton('gen_fsm')
 command ErlangGenEvent    silent call s:LoadSkeleton('gen_event')
 command ErlangCommonTest  silent call s:LoadSkeleton('common_test')
+"
+"
+"

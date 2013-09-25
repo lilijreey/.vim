@@ -1,53 +1,23 @@
 -module($MODULENAME).
 -behaviour(gen_event).
 
-%% set vim:foldmethod=marker
 
 %% gen_event callbacks
--export([init/1, handle_event/2, handle_call/2, handle_info/2, terminate/2, code_change/3
-        ]).
+-export([init/1, handle_event/2, handle_call/2, handle_info/2, terminate/2, code_change/3 ]).
 
 
-%% `gen_event:start({local, Name})'
-%%
-%% `gen_event:stop(Name)' ->
-%%                ----> Module:terminate/2
-%%
-%% `gen_event:add_handler(EvetMgrRef, HandlerModule, Atgs)`
-%% `gen_event:add_sup_handler(EvetMgrRef, HandlerModule, Atgs)`
-%%                ----> Module:init/1
-%%
-%% `gen_event:delete_handler(Name, Module, Args)'
-%%                ----> Module:terminate/2
-%%
-%% `gen_event:swap_handler` 
-%% `gen_event:swap_sup_handle`
-%%                ----> OldModule:terminate/2
-%%                ----> NewdModule:init/1
-%%
-%% `gen_event:notify(Name, Event)' -> ok
-%% `gen_event:sync_notify/2' -> ok
-%%                ----> Module:handle_event/2
-%%
-%% `gen_event:call(EvetMgrRef, handler, Request)'
-%% `gen_event:call(EvetMgrRef, handler, Request, Timeout)'
-%%                ----> Module:handle_call/2
-%%
-%% `gen_event:which_handlers/1` 
-%%
 
 %% Module Interface
 %% ----------------------------
 -record(state, {}).
 
-%% Module Interface   {{{--------------------------------------
 %-export([start_link/0,
 %         add_handler/2
 %         ]).
 
 %%----------------------------------------------------------------
 %% @doc Creates an event manager
-%% @spec start_link() -> {ok, Pid} | {error, Error}
+-spec start_link() -> {ok, Pid} | {error, Error}.
 %% @end
 %start_link() ->
     %gen_event:start_link({local, ?MODULE}).
@@ -59,10 +29,6 @@
 %add_handler(Handler, Args) ->
     %gen_event:add_handler(?MODULE, Handler, Args).
 
-%% Module Interface end }}} -----------------------------------------
-
-%%%===================================================================
-%%% gen_event callbacks {{{-------------------------------------------
 
 %%--------------------------------------------------------------------
 %% @private
@@ -130,7 +96,6 @@ handle_info(_Info, State) ->
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
 
-%%% gen_event callbacks }}}-------------------------------------------
 
 
 %%%===================================================================
