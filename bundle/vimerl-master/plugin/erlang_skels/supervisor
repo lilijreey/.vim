@@ -12,6 +12,17 @@
 -define(CHILD(Id, Mod, Type, Args), {Id, {Mod, start_link, Args},
                                      permanent, 5000, Type, [Mod]}).
 
+-define(simple_one_for_one, simple_one_for_one).
+-define(one_for_one, one_for_one).
+-define(one_for_all, one_for_all).
+-define(rest_for_on, rest_for_one).
+-define(permanent, permanent).
+-define(transient, transient).
+-define(temporary, temporary).
+-define(brutal_kill, brutal_kill).
+
+
+
 %%%===================================================================
 %%% API functions
 %%%===================================================================
