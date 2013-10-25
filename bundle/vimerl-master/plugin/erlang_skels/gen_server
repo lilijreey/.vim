@@ -47,12 +47,7 @@ handle_call(_Request, _From, State) ->
 handle_cast(_Msg, State) ->
     {noreply, State}.
 
-%% @spec handle_info(Info, State) -> {noreply, State} |
-%%                                   {noreply, State, Timeout} |
-%%                                   {noreply, State, hibernate} |
-%%                                   {stop, Reason, State}
-%%                   Info = timeout | term()
-handle_info(_Info, State) ->
+handle_info(_Msg, State) ->
     {noreply, State}.
 
 %% @spec terminate(Reason, State) -> no_return()
