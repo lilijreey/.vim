@@ -25,8 +25,6 @@ syntax on "sync fromstart
 set history=40
 
 
-" for Powerline
-set laststatus=2   " Always show the statusline
 
 "Set to auto read when a file is changed from the outside
 set autoread
@@ -155,7 +153,7 @@ set wildignore+=*.o,*.obj,*.d
 "NERDTree sets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "不显示的文件类型
-let NERDTreeIgnore=['\~$','\.out','\.o','\.d']
+let NERDTreeIgnore=['\~$','\.out','\.o','\.d','\.beam']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " T-command 
@@ -170,6 +168,8 @@ let g:CommandTCancelMap=['<Esc>', '<C-c>']
 " Powerline sets
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "在termianl下显示颜色
+" for Powerline
+set laststatus=2   " Always show the statusline
 let g:Powerline_symbols='fancy'
 
 
@@ -193,8 +193,8 @@ let g:vimrc_loaded = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_confirm_extra_conf = 0
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_confirm_extra_conf = 1
 let g:ycm_complete_in_comments = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
@@ -207,7 +207,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extr
 "
 
 "let g:acp_enableAtStartup 
-imap <Tab> <C-n>
+"imap <Tab> <C-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MXL plugin
@@ -219,9 +219,9 @@ imap <Tab> <C-n>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some keyboard bind
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <F4> :nohlsearch<CR>
-map <F5> :NERDTreeToggle<CR>
-map <F6> :TagbarToggle<CR>
+map <silent> <F4> :nohlsearch<CR>
+map <silent> <F5>  :NERDTreeToggle<CR>
+map <silent> <F6> :TagbarToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "buffer set
@@ -324,8 +324,8 @@ if has("unix")
     "let g:syntastic_c_include_dirs=["~/mm/lin/ll/include/"]
     "let &path = &path . "," . l:headers
     "let l:kernel_path="~/mm/lin/ll/"
-    setl path=~/mm/lin/ll/include/
-    setl tags=~/mm/lin/ll/tags
+    "setl path=~/mm/lin/ll/include/
+    "setl tags=~/mm/lin/ll/tags
     " set indent"
     setl cindent
     setl tabstop=8
@@ -348,20 +348,26 @@ if has("unix")
   command LinuxKernelMode call s:KernelMode() " }}}
 
   " Xpoker 模式 
-  function s:XpokerMode()
-    if !exists("s:xpokermode")
-      let s:xpokermode= 1
-    else
-      return
-    endif
+  "function s:XpokerMode()
+    "if !exists("s:xpokermode")
+      "let s:xpokermode= 1
+    "else
+      "return
+    "endif
 
-    set path+=~/xpoker,/~xpoker/Erl/ECommon
+    "set path+=~/xpoker,/~xpoker/Erl/ECommon
 
-  endfunction
+  "endfunction
+  "au BufRead ~/mm/lin/ll/*      call s:KernelMode()
    
-  au BufRead ~/mm/lin/ll/*      call s:KernelMode()
+  " ZTS mode
+  function s:ZTSMOde()
+    setlocal path+=~/ggg/apps/*/include
+    setl tags+=~/ggg/tags
+  endfunction
+
   au BufRead ~/mm/lin/kernel/*  call s:KernelMode()
-  au BufRead ~/xpoker/*     call s:XpokerMode()
+  au BufRead ~/ggg/*           call s:ZTSMOde()
   "command ErlPokerMode call s:ErlPoker()
 
 endif
