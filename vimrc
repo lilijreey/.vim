@@ -89,6 +89,8 @@ set backspace=eol,start,indent
 "set whichwrap+=<,>,h,l
 set whichwrap+=<,>
 
+set wildignore+=*.beam
+
 "Ignore case when searching
 set ignorecase smartcase
 
@@ -125,7 +127,7 @@ set wildmode=longest:full,full
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Restore cursor to file position in previous editing session
 set viminfo='20,\"100,:20,n~/.viminfo
-"au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
@@ -138,11 +140,14 @@ set complete+=k
 "Fast Ex command
 noremap ; :
 
+
 "For mark move
 "nnoremap <leader>' '
 
 "Fast copy
 "nnoremap ' "
+
+nnoremap mm :make <CR>
 
 "屏蔽一些文件
 set wildignore+=*.o,*.obj,*.d
@@ -362,7 +367,7 @@ if has("unix")
    
   " ZTS mode
   function s:ZTSMOde()
-    setlocal path+=~/ggg/apps/*/include
+    setlocal path+=~/ggg/*/include
     setl tags+=~/ggg/tags
   endfunction
 
