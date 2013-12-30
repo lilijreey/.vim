@@ -12,7 +12,7 @@ let g:loaded_high_cursorword = 1
 " default is enable plugin if you not want enable
 " you can let g:hcw_high_cursorword_open = 0 disable this plugin
 if !exists("g:hcw_high_cursorword_open")
-   let g:hcw_high_cursorword_open = 1
+   let g:hcw_high_cursorword_open = 0
 endif
 
 " set default include chars, you can custom it. 
@@ -23,8 +23,8 @@ endif
 "Highlight you can custom it
 highlight AhcwGroup ctermbg=6 ctermfg=Green
 
-if !exists("s:matchaddId") 
-  let s:matchaddId = 0
+if !exists("b:matchaddId") 
+  let b:matchaddId = 0
 endif
 
 if !exists("s:lastCursorWord") 
@@ -67,17 +67,25 @@ fun! Hcw_HighCurowWord()
        return "just enable in normal mode
    endif 
 
-   if s:CursorUnderWord() && (expand('<cword>') != s:lastCursorWord)
+   let l:cword = expand('<cword>')
+
+   if l:cword ==# @/
+     " delete cursor word == serach word"
+     call Hcw_NohighCursorWord()
+     return
+   endif
+
+   if s:CursorUnderWord() && (l:cword != s:lastCursorWord)
        call Hcw_NohighCursorWord()
-       let s:matchaddId = matchadd("AhcwGroup", '\<' . expand('<cword>') . '\>')
+       let b:matchaddId = matchadd("AhcwGroup", '\<' . expand('<cword>') . '\>')
    endif
 
 endfunction
 
 fun! Hcw_NohighCursorWord()
-    if s:matchaddId 
-        call matchdelete(s:matchaddId)
-        let s:matchaddId = 0
+    if exists("b:matchaddId") && b:matchaddId && hlID("AhcwGroup")
+        call matchdelete(b:matchaddId)
+        let b:matchaddId = 0
     endif
 endfunction
 

@@ -1,5 +1,3 @@
-" Vim plugin file
-" Language: Erlang
 " Author:   Ricardo Catalinas Jiménez <jimenezrick@gmail.com>
 " License:  Vim license
 " Version:  2012/11/25
@@ -19,21 +17,19 @@ if !exists('g:erlang_skel_dir')
 endif
 
 function s:LoadSkeleton(skel_name)
-	if g:erlang_skel_replace
-		%delete
-	else
-		let current_line = line('.')
-		call append(line('$'), '')
-		normal G
-	endif
+	"if g:erlang_skel_replace
+		"%delete
+	"else
+		"let current_line = line('.')
+		"call append(line('$'), '')
+		"normal G
+	"endif
 	if exists('g:erlang_skel_header')
 		execute 'read' g:erlang_skel_dir . '/' . 'header'
 		for [name, value] in items(g:erlang_skel_header)
 			call s:SubstituteField(name, value)
 		endfor
-		if !has_key(g:erlang_skel_header, 'year')
-			call s:SubstituteField('year', strftime('%Y'))
-		endif
+
 		call append(line('$'), '')
 		normal G
 	endif
@@ -47,9 +43,12 @@ function s:LoadSkeleton(skel_name)
 	endif
 endfunction
 
+" 替换模板中的$变量
 function s:SubstituteField(name, value)
 	execute '%substitute/\$' . toupper(a:name) . '/' . a:value . '/'
 endfunction
+
+au BufNewFile *.erl exec "silent call s:LoadSkeleton('header')"
 
 command ErlangApplication silent call s:LoadSkeleton('application')
 command ErlangSupervisor  silent call s:LoadSkeleton('supervisor')
@@ -57,4 +56,6 @@ command ErlangGenServer   silent call s:LoadSkeleton('gen_server')
 command ErlangGenFsm      silent call s:LoadSkeleton('gen_fsm')
 command ErlangGenEvent    silent call s:LoadSkeleton('gen_event')
 command ErlangCommonTest  silent call s:LoadSkeleton('common_test')
-command ErlangModule      silent call s:LoadSkeleton('module')
+"
+"
+"
