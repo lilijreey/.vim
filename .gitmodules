@@ -1,0 +1,3 @@
+[submodule "TagHighlight"]
+	path = TagHighlight
+	url = git@github.com:magic-dot-files/TagHighlight.git

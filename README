@@ -1,5 +1,9 @@
 set vim: ft=help 
 
+golang vim 补全
+需要设置 gocode 
+  gocode set 
+
 文件树架构
 1.首先vim执行plugin 中的所有脚本，主要是定义一些全局变量，和函数。
 2.在到ftplugin中执行匹配文件类型的脚本，
@@ -279,6 +283,8 @@ Custorm Plguin
 * vim-javascrpt [[for JS]]
    provides syntax and indent
 * vim-nodejs-complete
+
+* 使用 doctorgjs 来生产js的tags
 
 
 Diff 
