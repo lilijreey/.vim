@@ -318,3 +318,45 @@ map Key Cmd
 read，
 delete
 append
+
+
+
+Auto Complete
+--------------------------------------
+vim 提供多种补全形式
+x n/p 补全的相关设置
+complete
+
+       fesf esf ^
+vim help
+:h[elp] 用双引号扩起来的是 vim 的设置选项
+
+move
+CRTL-E scroll down one line
+CRTL_Y scroll  up one line
+0 go to the starting of current line
+$ go to the end of current line
+^ go to the first non black char of current line
+g_
+
+redraw screen with current line
+to top z<ENTER>
+to middle z.
+to bottom z-
+
+in insert mode move a world
+SHIFT-<Right Arrow> right word-by-word
+SHIFT-<Left Arrow> right word-by-word
+
+jumps
+marks
+ 跳转到一个mark  `a  是准确跳转到 mark a的地方
+                 'a  是跳转到a所在的行的开头   `
+几个特殊的marks vim自己维护
+" 在退出之前最后编辑的
+[  
+]
+< Visual 模式下的第一行
+> Visual 模式下的最后一行
+. 最后改动的地方
+^ 最后离开插入模式的地方
