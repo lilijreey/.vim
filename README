@@ -16,7 +16,7 @@ golang vim 补全
     ubuntu 自带的改建软件就可以改， vim无法表示CapsLock
     
 * 在指定位置插入字符
- k e.g. sdsadb sdsooo 变为 sds_adb sds_ooo
+ k e.G. sdsadb sdsooo 变为 sds_adb sds_ooo
 
 Qus.
 -----------------------------
@@ -66,7 +66,7 @@ EE C-r =
 kkk
 
 EE :reg 输出寄存器内容
-EE :marks 输出标记内容
+"2p 粘贴2这个reg中的内容
 
 VIMScript Programming 
 =============================================
@@ -161,6 +161,7 @@ vimscript 中所有的语句都一\n 结尾
   set textwidth=v
   let &textwidth = &textwidth + 10
 }}}
+
 
 set
 ------------------------
@@ -360,3 +361,27 @@ marks
 > Visual 模式下的最后一行
 . 最后改动的地方
 ^ 最后离开插入模式的地方
+
+man K
+man(3) 3K
+
+自定义man page lookup
+set keywordprg=perldoc\ -f
+ for perldoc \ 是用来转义空格
+
+fesfeisofjes feosfj 
+
+insert mode special key
+CTRL-O insert mode execute a single vim command
+CTRL-H == del
+CTRL-W == del word <-
+CTRL-J == CTRL-M begin new linhe
+CTRL-R insert reg 
+CTRL-T add a shift >
+CTRL-D del a shif
+CTRL-G j down line
+CTRL-G k up line
+
+
+
+

@@ -13,6 +13,13 @@ let b:did_indent = 1
 
 setlocal nosmartindent
 
+setl smarttab
+"> < 移动的大小
+setl shiftwidth=2
+" enter a <Tab> insert 4 white
+setl softtabstop=2
+setl tabstop=2
+
 " Now, set up our indentation expression and keys that trigger it.
 setlocal indentexpr=GetJavascriptIndent()
 setlocal indentkeys=0{,0},0),0],0\,,!^F,o,O,e
