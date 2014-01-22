@@ -1,4 +1,4 @@
-# Copyright (C) 2011, 2012  Strahinja Val Markovic  <val@markovic.io>
+# Copyright (C) 2011, 2012  Google Inc.
 #
 # This file is part of YouCompleteMe.
 #
@@ -26,8 +26,8 @@ cmake_minimum_required( VERSION 2.8 )
 
 project( BoostParts )
 
-set( Python_ADDITIONAL_VERSIONS 2.7 2.6 2.5 )
-find_package( PythonLibs 2.5 REQUIRED )
+set( Python_ADDITIONAL_VERSIONS 2.7 2.6 )
+find_package( PythonLibs 2.6 REQUIRED )
 
 if ( NOT PYTHONLIBS_VERSION_STRING VERSION_LESS "3.0.0" )
   message( FATAL_ERROR

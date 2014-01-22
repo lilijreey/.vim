@@ -1,4 +1,4 @@
-# Copyright (C) 2011, 2012  Strahinja Val Markovic  <val@markovic.io>
+# Copyright (C) 2011, 2012  Google Inc.
 #
 # This file is part of YouCompleteMe.
 #
@@ -17,10 +17,12 @@
 
 cmake_minimum_required( VERSION 2.8 )
 
-project( ycm_core )
+project( ycm_support_libs )
+set( CLIENT_LIB "ycm_client_support" )
+set( SERVER_LIB "ycm_core" )
 
-set( Python_ADDITIONAL_VERSIONS 2.7 2.6 2.5 )
-find_package( PythonLibs 2.5 REQUIRED )
+set( Python_ADDITIONAL_VERSIONS 2.7 2.6 )
+find_package( PythonLibs 2.6 REQUIRED )
 
 if ( NOT PYTHONLIBS_VERSION_STRING VERSION_LESS "3.0.0" )
   message( FATAL_ERROR
@@ -35,23 +37,26 @@ set( PATH_TO_LLVM_ROOT "" CACHE PATH "Path to the root of a LLVM+Clang binary di
 set( EXTERNAL_LIBCLANG_PATH "" CACHE PATH  "Path libclang library to use" )
 
 if ( USE_CLANG_COMPLETER AND NOT USE_SYSTEM_LIBCLANG AND NOT PATH_TO_LLVM_ROOT )
-  message( "Downloading Clang 3.3" )
+  message( "Downloading Clang 3.4" )
 
-  set( CLANG_URL "http://llvm.org/releases/3.3" )
+  set( CLANG_URL "http://llvm.org/releases/3.4" )
 
   if ( APPLE )
-    set( CLANG_DIRNAME "clang+llvm-3.3-x86_64-apple-darwin12" )
-    set( CLANG_MD5 "3c9984ca05f68ca5dc7e06dad92a96ab" )
+    set( CLANG_DIRNAME "clang+llvm-3.4-x86_64-apple-darwin10.9" )
+    set( CLANG_MD5 "4f43ea0e87090ae5e7bec12373ca4927" )
     set( CLANG_FILENAME "${CLANG_DIRNAME}.tar.gz" )
   else()
     if ( 64_BIT_PLATFORM )
-      set( CLANG_DIRNAME "clang+llvm-3.3-Ubuntu-13.04-x86_64-linux-gnu" )
-      set( CLANG_MD5 "c0cbbe86c5836e03fe6eb96e95d059fa" )
+      set( CLANG_DIRNAME "clang+llvm-3.4-x86_64-unknown-ubuntu12.04" )
+      set( CLANG_MD5 "6077459d20a7ff412eefc6ce3b9f5c85" )
+      set( CLANG_FILENAME "${CLANG_DIRNAME}.tar.xz" )
     else()
+      message( "No pre-built Clang 3.4 binaries for 32 bit linux, "
+               "downloading Clang 3.3" )
       set( CLANG_DIRNAME "clang+llvm-3.3-i386-debian6" )
       set( CLANG_MD5 "415d033b60659433d4631df894673802" )
+      set( CLANG_FILENAME "${CLANG_DIRNAME}.tar.bz2" )
     endif()
-    set( CLANG_FILENAME "${CLANG_DIRNAME}.tar.bz2" )
   endif()
 
   file(
@@ -61,6 +66,8 @@ if ( USE_CLANG_COMPLETER AND NOT USE_SYSTEM_LIBCLANG AND NOT PATH_TO_LLVM_ROOT )
 
   if ( CLANG_FILENAME MATCHES ".+bz2" )
     execute_process( COMMAND tar -xjf ${CLANG_FILENAME} )
+  elseif( CLANG_FILENAME MATCHES ".+xz" )
+    execute_process( COMMAND tar -xJf ${CLANG_FILENAME} )
   else()
     execute_process( COMMAND tar -xzf ${CLANG_FILENAME} )
   endif()
@@ -123,7 +130,9 @@ endif()
 
 # This is a workaround for a CMake bug with include_directories(SYSTEM ...)
 # on Mac OS X. Bug report: http://public.kitware.com/Bug/view.php?id=10837
-set( CMAKE_INCLUDE_SYSTEM_FLAG_CXX "-isystem " )
+if ( APPLE )
+  set( CMAKE_INCLUDE_SYSTEM_FLAG_CXX "-isystem " )
+endif()
 
 # The SYSTEM flag makes sure that -isystem[header path] is passed to the
 # compiler instead of the standard -I[header path]. Headers included with
@@ -136,15 +145,15 @@ include_directories(
   ${CLANG_INCLUDES_DIR}
   )
 
-file( GLOB_RECURSE SOURCES *.h *.cpp )
+file( GLOB_RECURSE SERVER_SOURCES *.h *.cpp )
 
 # The test sources are a part of a different target, so we remove them
 # The CMakeFiles cpp file is picked up when the user creates an in-source build,
-# and we don't want that.
-file( GLOB_RECURSE to_remove tests/*.h tests/*.cpp CMakeFiles/*.cpp )
+# and we don't want that. We also remove client-specific code
+file( GLOB_RECURSE to_remove tests/*.h tests/*.cpp CMakeFiles/*.cpp *client* )
 
 if( to_remove )
-  list( REMOVE_ITEM SOURCES ${to_remove} )
+  list( REMOVE_ITEM SERVER_SOURCES ${to_remove} )
 endif()
 
 if ( USE_CLANG_COMPLETER )
@@ -156,7 +165,7 @@ else()
   file( GLOB_RECURSE to_remove_clang ClangCompleter/*.h ClangCompleter/*.cpp )
 
   if( to_remove_clang )
-    list( REMOVE_ITEM SOURCES ${to_remove_clang} )
+    list( REMOVE_ITEM SERVER_SOURCES ${to_remove_clang} )
   endif()
 endif()
 
@@ -180,12 +189,16 @@ if ( EXTERNAL_LIBCLANG_PATH OR USE_SYSTEM_LIBCLANG )
     else ()
       set( ENV_LIB_PATHS "" )
     endif()
+    # On Debian-based systems, llvm installs into /usr/lib/llvm-x.y.
+    file( GLOB SYS_LLVM_PATHS "/usr/lib/llvm*/lib" )
     # Need TEMP because find_library does not work with an option variable
     find_library( TEMP clang
                   PATHS
                   ${ENV_LIB_PATHS}
                   /usr/lib
-                  /usr/lib/llvm )
+                  /usr/lib/llvm
+                  ${SYS_LLVM_PATHS}
+                  /Library/Developer/CommandLineTools/usr/lib )
     set( EXTERNAL_LIBCLANG_PATH ${TEMP} )
   else()
     # For Macs, we do things differently; look further in this file.
@@ -215,11 +228,33 @@ endif()
 
 #############################################################################
 
-add_library( ${PROJECT_NAME} SHARED
-             ${SOURCES}
+# We don't actually need all of the files this picks up, just the ones needed by
+# PythonSupport.cpp. But this is easier to maintain and dead code elemination
+# will remove unused code.
+file( GLOB CLIENT_SOURCES *.h *.cpp )
+file( GLOB SERVER_SPECIFIC *ycm_core* )
+
+if( SERVER_SPECIFIC )
+  list( REMOVE_ITEM CLIENT_SOURCES ${SERVER_SPECIFIC} )
+endif()
+
+add_library( ${CLIENT_LIB} SHARED
+             ${CLIENT_SOURCES}
            )
 
-target_link_libraries( ${PROJECT_NAME}
+target_link_libraries( ${CLIENT_LIB}
+                       BoostParts
+                       ${PYTHON_LIBRARIES}
+                       ${EXTRA_LIBS}
+                     )
+
+#############################################################################
+
+add_library( ${SERVER_LIB} SHARED
+             ${SERVER_SOURCES}
+           )
+
+target_link_libraries( ${SERVER_LIB}
                        BoostParts
                        ${PYTHON_LIBRARIES}
                        ${LIBCLANG_TARGET}
@@ -229,35 +264,43 @@ target_link_libraries( ${PROJECT_NAME}
 if( LIBCLANG_TARGET )
   if( NOT WIN32 )
     add_custom_command(
-      TARGET ${PROJECT_NAME}
+      TARGET ${SERVER_LIB}
       POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy "${LIBCLANG_TARGET}" "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+      COMMAND ${CMAKE_COMMAND} -E copy "${LIBCLANG_TARGET}" "$<TARGET_FILE_DIR:${SERVER_LIB}>"
     )
   else()
     add_custom_command(
-      TARGET ${PROJECT_NAME}
+      TARGET ${SERVER_LIB}
       POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy "${PATH_TO_LLVM_ROOT}/bin/libclang.dll" "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
+      COMMAND ${CMAKE_COMMAND} -E copy "${PATH_TO_LLVM_ROOT}/bin/libclang.dll" "$<TARGET_FILE_DIR:${SERVER_LIB}>")
   endif()
 endif()
 
 #############################################################################
 
+# Convenience target that builds both support libs.
+add_custom_target( ${PROJECT_NAME}
+                   DEPENDS ${CLIENT_LIB} ${SERVER_LIB} )
+
+
+#############################################################################
+
 # Things are a bit different on Macs when using an external libclang.dylib; here
 # we want to make sure we use @loader_path/libclang.dylib instead of
-# @rpath/libclang.dylib in the final ycm_core.so. If we use the @rpath version,
-# then it may load the system libclang which the user explicitely does not want
-# (otherwise the user would specify USE_SYSTEM_LIBCLANG). With @loader_path, we
-# make sure that only the libclang.dylib present in the same directory as our
-# ycm_core.so is used.
+# @rpath/libclang.dylib in the final ycm_core.so. If we use the
+# @rpath version, then it may load the system libclang which the user
+# explicitely does not want (otherwise the user would specify
+# USE_SYSTEM_LIBCLANG). With @loader_path, we make sure that only the
+# libclang.dylib present in the same directory as our ycm_core.so
+# is used.
 if ( EXTERNAL_LIBCLANG_PATH AND APPLE )
-  add_custom_command( TARGET ${PROJECT_NAME}
+  add_custom_command( TARGET ${SERVER_LIB}
                       POST_BUILD
                       COMMAND install_name_tool
                       "-change"
                       "@rpath/libclang.dylib"
                       "@loader_path/libclang.dylib"
-                      "$<TARGET_FILE:${PROJECT_NAME}>"
+                      "$<TARGET_FILE:${SERVER_LIB}>"
                     )
 endif()
 
@@ -266,19 +309,24 @@ endif()
 
 # We don't want the "lib" prefix, it can screw up python when it tries to search
 # for our module
-set_target_properties( ${PROJECT_NAME} PROPERTIES PREFIX "")
+set_target_properties( ${CLIENT_LIB} PROPERTIES PREFIX "")
+set_target_properties( ${SERVER_LIB} PROPERTIES PREFIX "")
 
 if ( WIN32 OR CYGWIN )
   # This is the extension for compiled Python modules on Windows
-  set_target_properties( ${PROJECT_NAME} PROPERTIES SUFFIX ".pyd")
+  set_target_properties( ${CLIENT_LIB} PROPERTIES SUFFIX ".pyd")
+  set_target_properties( ${SERVER_LIB} PROPERTIES SUFFIX ".pyd")
 else()
   # Even on macs, we want a .so extension instead of a .dylib which is what
   # cmake would give us by default. Python won't recognize a .dylib as a module,
   # but it will recognize a .so
-  set_target_properties( ${PROJECT_NAME} PROPERTIES SUFFIX ".so")
+  set_target_properties( ${CLIENT_LIB} PROPERTIES SUFFIX ".so")
+  set_target_properties( ${SERVER_LIB} PROPERTIES SUFFIX ".so")
 endif()
 
-set_target_properties( ${PROJECT_NAME} PROPERTIES
+set_target_properties( ${CLIENT_LIB} PROPERTIES
+  LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/../../python )
+set_target_properties( ${SERVER_LIB} PROPERTIES
   LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/../../python )
 
 #############################################################################
