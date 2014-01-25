@@ -7,6 +7,7 @@
 " Version: 0.1
 " Last Change: 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"call pathogen#helptags()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
@@ -127,7 +128,7 @@ set wildmode=longest:full,full
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Restore cursor to file position in previous editing session
 set viminfo='20,\"100,:20,n~/.viminfo
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+"au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
@@ -152,7 +153,6 @@ nnoremap mm :make <CR>
 "屏蔽一些文件
 set wildignore+=*.o,*.obj,*.d
 "
-"call pathogen#helptags()
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDTree sets
@@ -201,7 +201,7 @@ let g:vimrc_loaded = 1
 "let g:ycm_autoclose_preview_window_after_insertion = 1
 "let g:ycm_confirm_extra_conf = 1
 let g:ycm_complete_in_comments = 1
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe-master/cpp/ycm/.ycm_extra_conf.py'
 
 """"""""""""""""""""
 " vim completion set
@@ -242,13 +242,16 @@ nnoremap wh <C-w>h
 nnoremap wj <C-w>j
 nnoremap wk <C-w>k
 nnoremap wl <C-w>l
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
-
 " uppercase WORD TODO use func
 inoremap <c-u> <esc>vawUea
+
+"like Emacs Ctrl-A Ctrl-E in insert mode
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-l> <S-Right>
+inoremap <C-h> <S-Left>
+inoremap <C-j> <C-g>j
+inoremap <C-k> <C-g>k
 
 cnoremap RC :e $MYVIMRC<cr>
 "mvoe to windows
@@ -276,6 +279,8 @@ inoremap \ea  <Esc>:call setline('.', getline('.') . ';')<CR>a
 "Emacs mont key in insert mode"oo
 "imap <C-a> <Esc>I
 "imap <C-e> <Esc>A
+
+nnoremap mm :make<CR>
 
 "%s/\(sds\)\([a-z]\)/\1_\2\gc
 """"""""""""""""""""
