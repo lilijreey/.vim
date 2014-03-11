@@ -199,7 +199,7 @@ let g:vimrc_loaded = 1
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_autoclose_preview_window_after_insertion = 1
-"let g:ycm_confirm_extra_conf = 1
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_complete_in_comments = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe-master/cpp/ycm/.ycm_extra_conf.py'
 
@@ -376,7 +376,7 @@ if has("unix")
     setl tags+=~/ggg/tags
   endfunction
 
-  au BufRead ~/mm/lin/kernel/*  call s:KernelMode()
+  au BufRead ~/kernel/*  call s:KernelMode()
   au BufRead ~/ggg/*           call s:ZTSMOde()
   "command ErlPokerMode call s:ErlPoker()
 
