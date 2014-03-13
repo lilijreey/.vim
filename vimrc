@@ -7,7 +7,6 @@
 " Version: 0.1
 " Last Change: 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"call pathogen#helptags()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
@@ -153,6 +152,7 @@ nnoremap mm :make <CR>
 "屏蔽一些文件
 set wildignore+=*.o,*.obj,*.d
 "
+"call pathogen#helptags()
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDTree sets
@@ -199,9 +199,17 @@ let g:vimrc_loaded = 1
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_autoclose_preview_window_after_insertion = 1
+<<<<<<< HEAD
 let g:ycm_confirm_extra_conf = 0
+=======
+let g:ycm_confirm_extra_conf = 1
+>>>>>>> ea236caf956caad96e9a887993d33092d9663b1d
 let g:ycm_complete_in_comments = 1
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe-master/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+
+"disable the syncheck
+let g:ycm_show_diagnostics_ui =0
+nnoremap <CR> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 """"""""""""""""""""
 " vim completion set
@@ -315,6 +323,20 @@ if has("unix")
   let $PAGER=''
   source $VIMRUNTIME/ftplugin/man.vim
 
+  " vim support sdcv
+  function! Sdcv()
+    let expl=system('sdcv -n '. expand("<cword>"))
+    windo if
+          \ expand("%")=="diCt-tmp" |
+          \ q!|endif
+    25vsp diCt-tmp
+    setlocal buftype=nofile bufhidden=delete noswapfile
+    1s/^/\=expl/
+    1
+  endfunction
+
+  nnoremap <leader>e :call Sdcv()<CR>
+
   "set 同义词补全
   "set thesaurus=/path/to/your/file
 
@@ -371,14 +393,30 @@ if has("unix")
   "au BufRead ~/mm/lin/ll/*      call s:KernelMode()
    
   " ZTS mode
-  function s:ZTSMOde()
-    setlocal path+=~/ggg/*/include
-    setl tags+=~/ggg/tags
+  "command ErlPokerMode call s:ErlPoker()
+  function s:Openlava()
+    setlocal path+=~/src/openlava/**
+    setl tags+=~/src/openlava/tags
   endfunction
 
+<<<<<<< HEAD
   au BufRead ~/kernel/*  call s:KernelMode()
   au BufRead ~/ggg/*           call s:ZTSMOde()
   "command ErlPokerMode call s:ErlPoker()
+=======
+
+  au BufRead ~/src/openlava/*.c  call s:Openlava()
+  au BufRead ~/src/openlava/*.h  call s:Openlava()
+
+  function s:JHlava()
+    setlocal path+=~/shared/jhscheduler/trunk
+    setl tags+=~/shared/jhscheduler/trunk/tags
+  endfunction
+
+
+  au BufRead ~/shared/jhscheduler/trunk/*.c  call s:JHlava()
+  au BufRead ~/shared/jhscheduler/trunk/*.h  call s:JHlava()
+>>>>>>> ea236caf956caad96e9a887993d33092d9663b1d
 
 endif
 

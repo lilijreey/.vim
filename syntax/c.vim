@@ -17,7 +17,7 @@ syn keyword	cLabel		case default
 syn keyword	cConditional	if else switch
 syn keyword	cRepeat		while for do
 
-syn keyword	cTodo		contained TODO FIXME XXX HACK TRAP Qus.
+syn keyword	cTodo		contained TODO FIXME XXX HACK TRAP BUG Qus.
 " 
 " It's easy to accidentally add a space after a backslash that was intended
 " for line continuation.  Some compilers allow it, which makes it
