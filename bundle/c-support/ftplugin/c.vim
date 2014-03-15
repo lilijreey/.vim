@@ -46,4 +46,7 @@ inoremap  <buffer>  /*<CR>  /*<CR><CR>/<Esc>kA<Space>
 "-------------------------------------------------------------------------------
 inoremap  <buffer>  {<CR>    {<CR>}<Esc>O
 vnoremap  <buffer>  {<CR>   S{<CR>}<Esc>Pk=iB
+
+" delete block
+nnoremap <buffer> \db [{d%
 "
