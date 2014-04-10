@@ -32,6 +32,7 @@ setl tags+=/usr/include/stdlibtags
 "-------------------------------------------------------------------------------
 inoremap  <buffer>  /*       /*<Space><Space>*/<Left><Left><Left>
 vnoremap  <buffer>  /*      s/*<Space><Space>*/<Left><Left><Left><Esc>p
+inoremap <buffer> \ren return NULL;
 "
 "-------------------------------------------------------------------------------
 " additional mapping : complete a classical C multi-line comment: 
