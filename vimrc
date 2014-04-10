@@ -199,7 +199,11 @@ let g:vimrc_loaded = 1
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_autoclose_preview_window_after_insertion = 1
+<<<<<<< HEAD
+let g:ycm_confirm_extra_conf = 0
+=======
 let g:ycm_confirm_extra_conf = 1
+>>>>>>> ea236caf956caad96e9a887993d33092d9663b1d
 let g:ycm_complete_in_comments = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
@@ -395,6 +399,11 @@ if has("unix")
     setl tags+=~/src/openlava/tags
   endfunction
 
+<<<<<<< HEAD
+  au BufRead ~/kernel/*  call s:KernelMode()
+  au BufRead ~/ggg/*           call s:ZTSMOde()
+  "command ErlPokerMode call s:ErlPoker()
+=======
 
   au BufRead ~/src/openlava/*.c  call s:Openlava()
   au BufRead ~/src/openlava/*.h  call s:Openlava()
@@ -407,6 +416,7 @@ if has("unix")
 
   au BufRead ~/shared/jhscheduler/trunk/*.c  call s:JHlava()
   au BufRead ~/shared/jhscheduler/trunk/*.h  call s:JHlava()
+>>>>>>> ea236caf956caad96e9a887993d33092d9663b1d
 
 endif
 
