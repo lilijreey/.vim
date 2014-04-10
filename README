@@ -392,3 +392,7 @@ dk dl dj dh
 
 show ascii value of cursor
 ga
+
+
+quickfix
+ errorformat

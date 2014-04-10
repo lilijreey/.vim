@@ -43,25 +43,6 @@ set nowrap
 "pathogen 
 call pathogen#infect()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" solarized-color
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" solarized 在终端下现实的不太好
-if has('gui_running') 
-  set go="not show enum tools list
-  set background=dark
-  let g:solarized_menu=0
-  colorscheme solarized 
-else
-  "let g:solarized_termcolors=&t_Co
-  "let g:solarized_termtrans=1
-  "colorscheme distinguished 
-  colorscheme torte 
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -147,7 +128,8 @@ noremap ; :
 "Fast copy
 "nnoremap ' "
 
-nnoremap mm :make <CR>
+nnoremap mk :make <CR>
+nnoremap mc :make clean <CR>
 
 "屏蔽一些文件
 set wildignore+=*.o,*.obj,*.d
@@ -175,7 +157,10 @@ let g:CommandTCancelMap=['<Esc>', '<C-c>']
 "在termianl下显示颜色
 " for Powerline
 set laststatus=2   " Always show the statusline
-let g:Powerline_symbols='fancy'
+let g:airline_powerline_fonts=1
+"let g:Powerline_symbols='fancy'
+"let g:airline#extensions#tabline#enabled =1
+"let g:airline#extensions#tabline#buffer_nr_show=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -198,18 +183,14 @@ let g:vimrc_loaded = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ycm_autoclose_preview_window_after_insertion = 1
-<<<<<<< HEAD
+let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_confirm_extra_conf = 0
-=======
-let g:ycm_confirm_extra_conf = 1
->>>>>>> ea236caf956caad96e9a887993d33092d9663b1d
 let g:ycm_complete_in_comments = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 "disable the syncheck
 let g:ycm_show_diagnostics_ui =0
-nnoremap <CR> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"nnoremap  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 """"""""""""""""""""
 " vim completion set
@@ -307,12 +288,12 @@ if has("unix")
   set encoding=utf-8 
 
   " set path(for gf,find command)
-  set path=./,../,/usr/include/,/usr/include/i386-linux-gnu/,/usr/local/include/,/
+  set path=./,../,/usr/include/,/usr/include/i386-linux-gnu/,/usr/local/include/,/usr/lib/gcc/x86_64-linux-gnu/4.6/include,
 
   " edit vimrc
 
   " set guifont
-  set guifont=Ubuntu\ Mono\ 14
+  "set guifont=Ubuntu\ Mono\ 14
   """"""""""""""""""""""""""""""
   " termianl set
   """"""""""""""""""""""""""""""
@@ -356,8 +337,8 @@ if has("unix")
     "let g:syntastic_c_include_dirs=["~/mm/lin/ll/include/"]
     "let &path = &path . "," . l:headers
     "let l:kernel_path="~/mm/lin/ll/"
-    "setl path=~/mm/lin/ll/include/
-    "setl tags=~/mm/lin/ll/tags
+    setl path=~/kernel/include/
+    setl tags=~/kernel/tags
     " set indent"
     setl cindent
     setl tabstop=8
@@ -390,7 +371,7 @@ if has("unix")
     "set path+=~/xpoker,/~xpoker/Erl/ECommon
 
   "endfunction
-  "au BufRead ~/mm/lin/ll/*      call s:KernelMode()
+  au BufRead ~/kernel/*      call s:KernelMode()
    
   " ZTS mode
   "command ErlPokerMode call s:ErlPoker()
@@ -399,11 +380,6 @@ if has("unix")
     setl tags+=~/src/openlava/tags
   endfunction
 
-<<<<<<< HEAD
-  au BufRead ~/kernel/*  call s:KernelMode()
-  au BufRead ~/ggg/*           call s:ZTSMOde()
-  "command ErlPokerMode call s:ErlPoker()
-=======
 
   au BufRead ~/src/openlava/*.c  call s:Openlava()
   au BufRead ~/src/openlava/*.h  call s:Openlava()
@@ -416,7 +392,6 @@ if has("unix")
 
   au BufRead ~/shared/jhscheduler/trunk/*.c  call s:JHlava()
   au BufRead ~/shared/jhscheduler/trunk/*.h  call s:JHlava()
->>>>>>> ea236caf956caad96e9a887993d33092d9663b1d
 
 endif
 
@@ -428,6 +403,31 @@ if has("win32")
   set fileencodings=utf-8,gb2312,gbk,gb18030
   "set termencoding=utf-8 "deponed on Conslse charaecter set
   set encoding=utf-8     "encoding defalut is cp932, but Powerline need utf-8
+endif
+
+
+function! Cppcheck_1()
+  let current_compiler = "cppcheck"
+  setlocal errorformat=\[%f:%l\]:\ (%t)\ %m
+endfunction
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" solarized-color
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" solarized 在终端下现实的不太好
+if has('gui_running') 
+  set go="not show enum tools list
+  set background=dark
+  let g:solarized_menu=0
+  colorscheme solarized 
+else
+  colorscheme torte 
+  highlight Pmenu ctermfg=117 ctermbg=31
 endif
 
 "vim: set foldmethod=marker
