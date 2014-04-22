@@ -48,7 +48,7 @@ function s:SetErlangOptions()
 	setlocal formatoptions+=ro
 	setlocal suffixesadd=.erl
   " add by evan include stdlib, kernel menisa src tags
-  setlocal tags+=~/.vim/bundle/vimerl-master/ftplugin/std_ker_men_tags
+  setlocal tags+=~/.vim/bundle/vimerl-master/ftplugin/erl_sys_tags
 
   "setlocal iskeyword+=?
 	let libs = substitute(system('which erl'), '/bin/erl', '/lib/erlang/lib/**/src/', '')
