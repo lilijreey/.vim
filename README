@@ -396,3 +396,14 @@ ga
 
 quickfix
  errorformat
+
+recorver
+vim -r
+
+dos unix
+set ff=
+
+## sign
+用来做语法错误提示或者debugger 断点指示
+要定义一个 sign 然后显示他
+sign list 列出所有的 sign

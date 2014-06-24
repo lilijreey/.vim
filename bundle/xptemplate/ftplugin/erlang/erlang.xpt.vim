@@ -143,3 +143,11 @@ XPT function " f \( .. \) -> ..
 `name^R('funName')^ ( `argsn^ ) `_^ ->
     `bodyn^`...^
 .
+
+XPT gbtl " gb_trees:lookup/2 ..
+case gb_tress:lookup(`Id^, `Tree^) of
+    ?none ->
+        todo;
+    {?value, `Value^} ->
+        todo
+end,

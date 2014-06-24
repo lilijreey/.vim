@@ -168,6 +168,7 @@ function s:ErlangFindLocalFunc(base)
 endfunction
 
 function s:ErlangLoadCache()
+  messages 'load cache'
 	if filereadable(s:file_cache)
 		for line in readfile(s:file_cache)
 			let cache_entry = eval(line)
@@ -183,6 +184,7 @@ function s:ErlangLoadCache()
 endfunction
 
 function s:ErlangWriteCache(module)
+  messages "ErlangWriteCache"
 	" Write all the module functions to the cache file
 	if has_key(s:modules_cache, a:module)
 		let func_list = get(s:modules_cache, a:module)

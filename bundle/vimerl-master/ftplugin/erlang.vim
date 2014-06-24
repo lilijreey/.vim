@@ -24,6 +24,9 @@ if !exists('g:erlang_keywordprg')
 	let g:erlang_keywordprg = 'erl -man'
 endif
 
+" 是否自动folding
+"let g:erlang_folding=1
+
 if !exists('g:erlang_folding')
 	let g:erlang_folding = 0
 endif
@@ -103,10 +106,10 @@ nnoremap <silent> <buffer> [[ :<C-U>call <SID>declaration('b', 'n', v:count1)<CR
 nnoremap <silent> <buffer> ][ :<C-U>call <SID>declaration_end('', 'n', v:count1)<CR>
 nnoremap <silent> <buffer> [] :<C-U>call <SID>declaration_end('b', 'n', v:count1)<CR>
 
-xnoremap <silent> <buffer> ]] :<C-U>call <SID>declaration('', 'v', v:count1)<CR>
-xnoremap <silent> <buffer> [[ :<C-U>call <SID>declaration('b', 'v', v:count1)<CR>
-xnoremap <silent> <buffer> ][ :<C-U>call <SID>declaration_end('', 'v', v:count1)<CR>
-xnoremap <silent> <buffer> [] :<C-U>call <SID>declaration_end('b', 'v', v:count1)<CR>
+vnoremap <silent> <buffer> ]] :<C-U>call <SID>declaration('', 'v', v:count1)<CR>
+vnoremap <silent> <buffer> [[ :<C-U>call <SID>declaration('b', 'v', v:count1)<CR>
+vnoremap <silent> <buffer> ][ :<C-U>call <SID>declaration_end('', 'v', v:count1)<CR>
+vnoremap <silent> <buffer> [] :<C-U>call <SID>declaration_end('b', 'v', v:count1)<CR>
 let b:undo_ftplugin .= " exe 'unmap <buffer> [[' |  exe 'unmap <buffer> ]]' |  exe 'unmap <buffer> []' |  exe 'unmap <buffer> ]['"
 
 nnoremap <silent> <buffer> ]m :<C-U>call <SID>clause('', 'n', v:count1)<CR>
@@ -114,27 +117,12 @@ nnoremap <silent> <buffer> [m :<C-U>call <SID>clause('b', 'n', v:count1)<CR>
 nnoremap <silent> <buffer> ]M :<C-U>call <SID>clause_end('', 'n', v:count1)<CR>
 nnoremap <silent> <buffer> [M :<C-U>call <SID>clause_end('b', 'n', v:count1)<CR>
 
-xnoremap <silent> <buffer> ]m :<C-U>call <SID>clause('', 'v', v:count1)<CR>
-xnoremap <silent> <buffer> [m :<C-U>call <SID>clause('b', 'v', v:count1)<CR>
-xnoremap <silent> <buffer> ]M :<C-U>call <SID>clause_end('', 'v', v:count1)<CR>
-xnoremap <silent> <buffer> [M :<C-U>call <SID>clause_end('b', 'v', v:count1)<CR>
+vnoremap <silent> <buffer> ]m :<C-U>call <SID>clause('', 'v', v:count1)<CR>
+vnoremap <silent> <buffer> [m :<C-U>call <SID>clause('b', 'v', v:count1)<CR>
+vnoremap <silent> <buffer> ]M :<C-U>call <SID>clause_end('', 'v', v:count1)<CR>
+vnoremap <silent> <buffer> [M :<C-U>call <SID>clause_end('b', 'v', v:count1)<CR>
 let b:undo_ftplugin .= " | exe 'unmap <buffer> [m' |  exe 'unmap <buffer> ]m' |  exe 'unmap <buffer> [M' |  exe 'unmap <buffer> ]M'"
 
-if maparg('im','n') == ''
-  xnoremap <silent> <buffer> im :<C-U>call <SID>inside('[m',']M')<CR>
-  xnoremap <silent> <buffer> am :<C-U>call <SID>around('[m',']M')<CR>
-  onoremap <silent> <buffer> im :<C-U>call <SID>inside('[m',']M')<CR>
-  onoremap <silent> <buffer> am :<C-U>call <SID>around('[m',']M')<CR>
-  let b:undo_ftplugin .= " | exe 'ounmap <buffer> im' |  exe 'ounmap <buffer> am' |  exe 'xunmap <buffer> im' |  exe 'xunmap <buffer> am'"
-endif
-
-if maparg('iM','n') == ''
-  onoremap <silent> <buffer> iM :<C-U>call <SID>inside('[[','][')<CR>
-  onoremap <silent> <buffer> aM :<C-U>call <SID>around('[[','][')<CR>
-  xnoremap <silent> <buffer> iM :<C-U>call <SID>inside('[[','][')<CR>
-  xnoremap <silent> <buffer> aM :<C-U>call <SID>around('[[','][')<CR>
-  let b:undo_ftplugin .= " | exe 'ounmap <buffer> iM' |  exe 'ounmap <buffer> aM' |  exe 'xunmap <buffer> iM' |  exe 'xunmap <buffer> aM'"
-endif
 
 fun! s:declaration(flags, mode, count)
   call s:go_to('\(\.\|\%^\)\_s*\(%.*\n\|\_s\)*\n*\_^\s*\zs[a-z][a-zA-Z_0-9]*(', a:flags, '', a:mode, a:count)
