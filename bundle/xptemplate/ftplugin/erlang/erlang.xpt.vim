@@ -145,7 +145,7 @@ XPT function " f \( .. \) -> ..
 .
 
 XPT gbtl " gb_trees:lookup/2 ..
-case gb_tress:lookup(`Id^, `Tree^) of
+case gb_trees:lookup(`Id^, `Tree^) of
     ?none ->
         todo;
     {?value, `Value^} ->
