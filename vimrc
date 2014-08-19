@@ -149,6 +149,7 @@ noremap ; :
 "nnoremap ' "
 
 nnoremap mm :make <CR>
+nnoremap mc :make clean <CR>
 
 "屏蔽一些文件
 set wildignore+=*.o,*.obj,*.d
@@ -169,6 +170,12 @@ let g:CommandTMaxCachedDirectories=3
 let g:CommandTCancelMap=['<Esc>', '<C-c>']
 
 
+
+" install powerline fonts
+"wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+"mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/
+"fc-cache -vf ~/.fonts
+"mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Powerline sets
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -177,6 +184,22 @@ let g:CommandTCancelMap=['<Esc>', '<C-c>']
 set laststatus=2   " Always show the statusline
 let g:Powerline_symbols='fancy'
 
+"airline
+"let g:airline_symbols = {}
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
+"let g:airline_enable_fugitive=1
+"let g:airline_section_b='%{fugitive#statusline()}'
+"let g:airline_section_c="%t"
+"let g:airline_section_x="%y"
+"let g:airline_section_y='BN: %{bufnr("%")}'
+
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '◀'
+"let g:airline_symbols.linenr = 'L'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.whitespace = 'Ξ'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ack.vim
@@ -199,9 +222,12 @@ let g:vimrc_loaded = 1
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_autoclose_preview_window_after_insertion = 1
+"
+let g:ycm_enable_diagnostic_signs = 0 " disable show error symbols
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_complete_in_comments = 1
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe-master/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+
 
 """"""""""""""""""""
 " vim completion set
@@ -268,6 +294,7 @@ nmap F  \\F
 
 nnoremap \s :Ack <C-R><C-F><CR>
 
+nnoremap mk :make <CR>
 
 " 删除当前行的末尾字符
 nnoremap \ed  :call setline('.', getline('.')[:-2])<CR>
@@ -379,6 +406,21 @@ if has("unix")
   au BufRead ~/mm/lin/kernel/*  call s:KernelMode()
   au BufRead ~/ggg/*           call s:ZTSMOde()
   "command ErlPokerMode call s:ErlPoker()
+  
+  "for sdcv
+  function! SearchWord()
+    let expl=system('sdcv -n ' .
+          \ expand("<cword>"))
+    windo if
+          \ expand("%")=="diCt-tmp" |
+          \ q!|endif
+    25vsp diCt-tmp
+    setlocal buftype=nofile bufhidden=hide noswapfile
+    1s/^/\=expl/
+    1
+  endfunction
+
+  nmap <C-k> :call SearchWord()<CR>
 
 endif
 
@@ -391,5 +433,8 @@ if has("win32")
   "set termencoding=utf-8 "deponed on Conslse charaecter set
   set encoding=utf-8     "encoding defalut is cp932, but Powerline need utf-8
 endif
+
+"set Pmenu
+hi Pmenu ctermfg=81 ctermbg=242
 
 "vim: set foldmethod=marker
