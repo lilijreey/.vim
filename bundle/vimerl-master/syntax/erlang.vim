@@ -27,7 +27,7 @@ syn match erlangModifier                     /\$\\\?./
 syn match erlangInteger                      /\<\%([0-9]\+#[0-9a-fA-F]\+\|[0-9]\+\)\>/
 syn match erlangFloat                        /\<[0-9]\+\.[0-9]\+\%(e-\?[0-9]\+\)\?\>/
 
-syn keyword erlangTodo                       TODO FIXME XXX HACK contained
+syn keyword erlangTodo                       TODO FIXME XXX HACK STYLE contained
 syn match   erlangComment                    /%.*$/ contains=@Spell,erlangTodo,erlangAnnotation
 syn match   erlangAnnotation                 /\%(%\s\)\@<=@\%(author\|clear\|copyright\|deprecated\|doc\|docfile\|end\|equiv\|headerfile\|hidden\|private\|reference\|see\|since\|spec\|throws\|title\|todo\|TODO\|type\|version\)/ contained
 syn match   erlangAnnotation                 /`[^']\+'/ contained
