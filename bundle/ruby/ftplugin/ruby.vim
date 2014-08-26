@@ -364,6 +364,11 @@ function! s:gf(count,map,edit) abort
   endif
 endfunction
 
+" add by lili
+inoremap  <buffer>  def<CR>    def<CR>end<Esc>O
+inoremap  <buffer>  do<CR>    do<CR>end<Esc>O
+
+
 "
 " Instructions for enabling "matchit" support:
 "

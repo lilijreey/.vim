@@ -49,7 +49,7 @@ let s:save_cpo=&cpo
 set cpo&vim
 
 " Global Variables {{{
-let g:AgSmartCase = 0
+let g:AgSmartCase = 1
 " }}}
 
 " Command Declarations {{{
@@ -72,7 +72,7 @@ endif
 
 function! LocateFile_ag(pattern) " {{{
   if len(a:pattern) >= 5
-    let command = '`ag --search-files -g "' . a:pattern . '"`'
+    let command = '`ag --ignore tags --search-files -g "' . a:pattern . '"`'
     let results = split(eclim#util#Glob(command, 1), "\n")
 
     if len(results) > 0

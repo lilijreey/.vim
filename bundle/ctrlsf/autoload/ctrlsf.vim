@@ -353,7 +353,7 @@ func! s:OpenPreviewWindow() abort
     setl nomodifiable
     setl winfixwidth
 
-    map q :call <SID>ClosePreviewWindow()<CR>
+    "map q :call <SID>ClosePreviewWindow()<CR>
 endf
 " }}}
 
