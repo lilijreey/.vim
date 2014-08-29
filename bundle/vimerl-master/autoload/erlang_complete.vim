@@ -36,6 +36,8 @@ function erlang_complete#Complete(findstart, base)
 	let column = col('.')
 	let line = strpart(getline('.'), 0, column - 1)
 
+      echom "find start line " . line
+
 	" 1) Check if the char to the left of us are part of a function call
 	"
 	" Nothing interesting is written at the char just before the cursor
@@ -61,6 +63,7 @@ function erlang_complete#Complete(findstart, base)
 			return delimiter
 		else
 			let module = matchstr(line[:-2], '\<\k*\>$')
+      echom "find exterfun mod " . module . ":" a:base
 			return s:ErlangFindExternalFunc(module, a:base)
 		endif
 	endif
@@ -76,6 +79,7 @@ function erlang_complete#Complete(findstart, base)
 	endif
 
 	" 4) Unhandled situation
+  echom "unhandle situation"
 	if a:findstart
 		return -1
 	else
@@ -111,6 +115,7 @@ function s:ErlangFindExternalFunc(module, base)
 
 	let functions = system(s:erlang_complete_file . ' ' . a:module)
 	for function_spec in split(functions, '\n')
+    echom "erl rutn " . function_spec
 		if match(function_spec, a:base) == 0
 			let function_name = matchstr(function_spec, a:base . '\w*')
 			let field = {'word': function_name . '(', 'abbr': function_spec,
@@ -168,7 +173,6 @@ function s:ErlangFindLocalFunc(base)
 endfunction
 
 function s:ErlangLoadCache()
-  messages 'load cache'
 	if filereadable(s:file_cache)
 		for line in readfile(s:file_cache)
 			let cache_entry = eval(line)

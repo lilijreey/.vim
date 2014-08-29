@@ -3,7 +3,7 @@
 -include_lib("xmerl/include/xmerl.hrl").
 
 main([ModName]) ->
-    case file:consult("rebar.config") of
+    case catch file:consult("rebar.config") of
         {ok, Terms} ->
             RebarLibDirs = proplists:get_value(lib_dirs, Terms, []),
             lists:foreach(
@@ -13,6 +13,8 @@ main([ModName]) ->
             RebarDepsDir = proplists:get_value(deps_dir, Terms, "deps"),
             code:add_pathsa(filelib:wildcard(RebarDepsDir ++ "/*/ebin"));
         {error, _} ->
+            true;
+        _ ->
             true
     end,
     code:add_patha("ebin"),
