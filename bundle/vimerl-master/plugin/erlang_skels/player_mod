@@ -1,0 +1,22 @@
+-include("inc.hrl").
+-include("player.hrl").
+-include("player_mod.hrl").
+
+
+mod_id() -> TODO.
+
+create_mod_data(_SelfId) -> todo.
+
+init_client(Pkg) -> Pkg.
+
+view_data(Pkg) -> Pkg.
+
+handle_client(_Mod, _Msg) ->
+  {error, <<"unknown msg">>}.
+
+handle_msg(_FromMod, _Msg) ->
+  {error, <<"unknown msg">>}.
+
+handle_frame(_) -> ok.
+
+offline(_PlayerId) -> todo.

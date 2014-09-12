@@ -28,7 +28,7 @@ if exists("*s:ShowErrors")
 endif
 
 if !exists("g:erlang_show_errors")
-	let g:erlang_show_errors = 1
+	let g:erlang_show_errors = 0
 endif
 
 let s:erlang_check_file = expand("<sfile>:p:h") . "/erlang_check.erl"

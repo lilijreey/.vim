@@ -1,0 +1,14 @@
+
+%%-include_lib("pangzi/include/pangzi.hrl").
+load_db_table_meta() ->
+    [
+     #db_table_meta{
+        name = Tab,
+        fields = ?record_fields(Tab),
+        record_name = Tab,
+        keypos = Key,
+        shrink_size=1,
+        flush_interval = 1
+       }
+    ].
+
