@@ -40,6 +40,9 @@ XPT def " -define ..
 XPT beha
 -behaviour(`cursor^).
 
+XPT print
+io:format(""),
+
 XPT ifdef " -ifdef ..\-endif..
 -ifdef(`what^ ).
     `thenmacro^

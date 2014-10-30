@@ -58,6 +58,7 @@ command ErlangGenEvent    silent call s:LoadSkeleton('gen_event')
 command ErlangCommonTest  silent call s:LoadSkeleton('common_test')
 command ErlangPlayerMod   silent call s:LoadSkeleton('player_mod')
 command ErlangPangzi      silent call s:LoadSkeleton('pangzi')
+command ErlangConfig      silent call s:LoadSkeleton('config')
 "
 "
 "

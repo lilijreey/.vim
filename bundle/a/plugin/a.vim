@@ -106,6 +106,8 @@ call <SID>AddAlternateExtensionMapping('aspx', 'aspx.cs,aspx.vb')
 "Erlang
 call <SID>AddAlternateExtensionMapping('erl',"hrl")
 call <SID>AddAlternateExtensionMapping('hrl',"erl")
+"call <SID>AddAlternateExtensionMapping('xrl',"yrl")
+"call <SID>AddAlternateExtensionMapping('hrl',"erl")
 
 " Setup default search path, unless the user has specified
 " a path in their [._]vimrc. 

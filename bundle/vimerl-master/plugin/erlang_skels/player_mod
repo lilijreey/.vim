@@ -5,7 +5,6 @@
 
 mod_id() -> TODO.
 
-create_mod_data(_SelfId) -> todo.
 
 init_client(Pkg) -> Pkg.
 
@@ -19,4 +18,9 @@ handle_msg(_FromMod, _Msg) ->
 
 handle_frame(_) -> ok.
 
+create_mod_data(_SelfId) -> todo.
+
+load_mod_data(PlayerId) -> todo.
+
+online(_PlayerId) -> unused.
 offline(_PlayerId) -> todo.
