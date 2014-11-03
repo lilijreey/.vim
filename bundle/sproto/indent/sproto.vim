@@ -1,5 +1,5 @@
 "c 风格的缩紧
-setl cindent
+setl smartindent
 
 " only use white
 " set local
@@ -16,5 +16,5 @@ setl tabstop=4
 setl softtabstop=4
 
 " :0 switch case 不index
-setlocal cinoptions=h1,l1,g1,t0,i4,+4,(0,w1,W4,:0
+"setlocal cinoptions=h1,l1,g1,t0,i4,+4,(0,w1,W4,:0
 

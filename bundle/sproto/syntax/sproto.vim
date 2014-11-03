@@ -22,6 +22,7 @@ syn keyword pbTypedef   enum
 "syn match   pbInt     /-\?\<\d\+\>/
 "syn match   pbInt     /\<0[xX]\x+\>/
 syn region  pbComment start="//" skip="\\$" end="$" keepend contains=@pbCommentGrp
+syn region  pbComment start="#" skip="\\$" end="$" keepend contains=@pbCommentGrp
 "syn region  pbString  start=/"/ skip=/\\./ end=/"/
 "syn region  pbString  start=/'/ skip=/\\./ end=/'/
 
