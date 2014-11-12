@@ -13,13 +13,13 @@ syn keyword pbTodo       contained TODO FIXME XXX
 syn cluster pbCommentGrp contains=pbTodo
 
 "syn keyword pbSyntax     syntax import option
-syn keyword pbDefault    typedef struct message
+syn keyword pbDefault    enum struct message empty disable
 syn keyword pbRPC        proto server client
 
-syn keyword pbType      u8 u16 u32 u64 bool sstr lstr list binary
-syn keyword pbTypedef   enum
+syn keyword pbType      s8 s16 s32 s64 u8 u16 u32 u64 bool sstr lstr list binary
+syn keyword pbTypedef   typedef
 
-"syn match   pbInt     /-\?\<\d\+\>/
+syn match   pbInt     /-\?\<\d\+\>/
 "syn match   pbInt     /\<0[xX]\x+\>/
 syn region  pbComment start="//" skip="\\$" end="$" keepend contains=@pbCommentGrp
 syn region  pbComment start="#" skip="\\$" end="$" keepend contains=@pbCommentGrp
@@ -38,7 +38,6 @@ if version >= 508 || !exists("did_proto_syn_inits")
 
   HiLink pbSyntax       Include
   HiLink pbStructure    Structure
-  HiLink pbRepeat       Repeat
   HiLink pbDefault      Keyword
   HiLink pbExtend       Keyword
   HiLink pbRPC          Keyword

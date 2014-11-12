@@ -13,7 +13,7 @@ syn keyword pbTodo       contained TODO FIXME XXX
 syn cluster pbCommentGrp contains=pbTodo
 
 "syn keyword pbSyntax     syntax import option
-syn keyword pbTypedef   enum atom
+syn keyword pbTypedef   enum atom eatom
 
 "syn match   pbInt     /-\?\<\d\+\>/
 "syn match   pbInt     /\<0[xX]\x+\>/
@@ -50,4 +50,4 @@ if version >= 508 || !exists("did_proto_syn_inits")
   delcommand HiLink
 endif
 
-let b:current_syntax = "atom"
+let b:current_syntax = "def"
