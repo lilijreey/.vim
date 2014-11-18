@@ -341,7 +341,8 @@ tag_to_binary({{Tag, File, Kind, Scope}, TagAddress}) ->
     iolist_to_binary( [Tag, "\t",
                        File, "\t",
                        TagAddress, ";\"\t",
-                       Kind,
+                       Kind, "\t",
+                       "language:Erlang\t",
                        ScopeStr, "\n"]).
 
 %%%=============================================================================

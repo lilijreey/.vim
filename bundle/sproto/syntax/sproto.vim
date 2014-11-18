@@ -14,7 +14,7 @@ syn cluster pbCommentGrp contains=pbTodo
 
 "syn keyword pbSyntax     syntax import option
 syn keyword pbDefault    enum struct message empty disable
-syn keyword pbRPC        proto server client
+syn keyword pbRPC        proto server client errnos
 
 syn keyword pbType      s8 s16 s32 s64 u8 u16 u32 u64 bool sstr lstr list binary
 syn keyword pbTypedef   typedef

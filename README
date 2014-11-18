@@ -18,6 +18,9 @@ golang vim 补全
 * 在指定位置插入字符
  k e.G. sdsadb sdsooo 变为 sds_adb sds_ooo
 
+* gi
+   effect edit jump to last edited point and enter insert-mode
+
 Qus.
 -----------------------------
 1. 如何比较转义字符
