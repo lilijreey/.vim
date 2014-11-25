@@ -11,7 +11,7 @@ else
 endif
 
 let s:symbol = get(g:, 'airline#extensions#whitespace#symbol', g:airline_symbols.whitespace)
-let s:default_checks = ['indent']
+let s:default_checks = []
 "let s:default_checks = ['indent', 'trailing']
 
 let s:trailing_format = get(g:, 'airline#extensions#whitespace#trailing_format', 'trailing[%s]')
@@ -61,9 +61,9 @@ function! airline#extensions#whitespace#check()
         if trailing != 0
           let b:airline_whitespace_check .= (g:airline_symbols.space).printf(s:trailing_format, trailing)
         endif
-        if mixed != 0
-          let b:airline_whitespace_check .= (g:airline_symbols.space).printf(s:mixed_indent_format, mixed)
-        endif
+        "if mixed != 0
+          "let b:airline_whitespace_check .= (g:airline_symbols.space).printf(s:mixed_indent_format, mixed)
+        "endif
       endif
     endif
   endif
