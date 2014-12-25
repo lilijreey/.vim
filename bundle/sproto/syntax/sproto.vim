@@ -12,9 +12,9 @@ syn case match
 syn keyword pbTodo       contained TODO FIXME XXX
 syn cluster pbCommentGrp contains=pbTodo
 
-"syn keyword pbSyntax     syntax import option
+syn match pbSyntax     /@include/
 syn keyword pbDefault    enum struct message empty disable
-syn keyword pbRPC        proto server client errnos
+syn keyword pbRPC        proto server client errnos options
 
 syn keyword pbType      s8 s16 s32 s64 u8 u16 u32 u64 bool sstr lstr list binary
 syn keyword pbTypedef   typedef
@@ -23,8 +23,8 @@ syn match   pbInt     /-\?\<\d\+\>/
 "syn match   pbInt     /\<0[xX]\x+\>/
 syn region  pbComment start="//" skip="\\$" end="$" keepend contains=@pbCommentGrp
 syn region  pbComment start="#" skip="\\$" end="$" keepend contains=@pbCommentGrp
-"syn region  pbString  start=/"/ skip=/\\./ end=/"/
-"syn region  pbString  start=/'/ skip=/\\./ end=/'/
+syn region  pbString  start=/"/ skip=/\\./ end=/"/
+syn region  pbString  start=/'/ skip=/\\./ end=/'/
 
 if version >= 508 || !exists("did_proto_syn_inits")
   if version < 508

@@ -44,6 +44,7 @@ set nowrap
 "pathogen 
 call pathogen#infect()
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -62,6 +63,9 @@ else
   "let g:solarized_termtrans=1
   "colorscheme distinguished 
   colorscheme torte 
+  
+  highlight Pmenu ctermbg=6
+  highlight PmenuSel ctermbg=81
 endif
 
 
@@ -152,14 +156,15 @@ nnoremap mm :make <CR>
 nnoremap mc :make clean <CR>
 
 "屏蔽一些文件
-set wildignore+=*.o,*.obj,*.d
+set wildignore+=*.o,*.obj
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDTree sets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "不显示的文件类型
-let NERDTreeIgnore=['\~$','\.out','\.o','\.d','\.beam']
+let NERDTreeIgnore=['\~$','\.out','\.o','.a','\.beam']
+let NERDTreeIgnore=['\.vim$', '\~$']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " T-command 
@@ -170,6 +175,9 @@ let g:CommandTMaxCachedDirectories=3
 let g:CommandTCancelMap=['<Esc>', '<C-c>']
 
 
+""lua
+let g:lua_compiler_name='/usr/bin/luac'
+let g:lua_complete_omni=1
 
 " install powerline fonts
 "wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
@@ -202,9 +210,9 @@ let g:Powerline_symbols='fancy'
 "let g:airline_symbols.whitespace = 'Ξ'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ack.vim
+" ag.vim ctrlsf use ag search
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+let g:ctrlsf_ackprg = 'ag'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mark as loaded
@@ -222,11 +230,17 @@ let g:vimrc_loaded = 1
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_autoclose_preview_window_after_insertion = 1
-"
-let g:ycm_enable_diagnostic_signs = 0 " disable show error symbols
+let g:ycm_show_diagnostics_ui = 0
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_complete_in_comments = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tags_files=1
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<C-x>"
+let g:UltiSnipsJumpForwardTrigger="<C-x>"
+"let g:UltiSnipsJumpBackwardTrigger="<C-p>"
 
 
 """"""""""""""""""""
@@ -236,7 +250,6 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extr
 "关掉智能补全时的预览窗口
 "set completeopt=longest, menu
 "
-
 "let g:acp_enableAtStartup 
 "imap <Tab> <C-n>
 
@@ -283,16 +296,13 @@ cnoremap RC :e $MYVIMRC<cr>
 "mvoe to windows
 cnoremap bb :b#<CR>
 "Ex history cmd
-cnoremap ff <Up>
-cnoremap jj <C-n>
-cnoremap kk <C-p>
 
 nnoremap <silent> tg :!ctags -R<CR>
 "for esaymont
 nmap f  \\f
 nmap F  \\F
 
-nnoremap \s :Ack <C-R><C-F><CR>
+nnoremap \s :Ag <C-R><C-F><CR>
 
 nnoremap mk :make <CR>
 
@@ -315,6 +325,23 @@ nnoremap mm :make<CR>
 function g:Bkvimrc()
   !cp $HOME/.vimrc $HOME/.vim/vimrc
 endfunction
+
+" auto mkdir when dir not exist {{{
+augroup auto_mkdir
+	au!
+	au BufWritePre,FileWritePre * call <SID>auto_mkdir()
+augroup END
+
+function <SID>auto_mkdir()
+	" Get directory the file is supposed to be saved in
+	let s:dir = expand("<afile>:p:h")
+
+	" Create that directory (and its parents) if it doesn't exist yet
+	if !isdirectory(s:dir)
+		call mkdir(s:dir, "p")
+	endif
+endfunction
+" }}}
 
 """"""""""""""""""""""""""""""""""""""""
 "System depend
@@ -398,13 +425,19 @@ if has("unix")
   "au BufRead ~/mm/lin/ll/*      call s:KernelMode()
    
   " ZTS mode
-  function s:ZTSMOde()
-    setlocal path+=~/ggg/*/include
-    setl tags+=~/ggg/tags
+  function s:WebGame()
+    setlocal path+=~/web_game/apps,~/web_game/src/include
+  endfunction
+
+  function s:HandGame()
+    setlocal path+=~/mobile_game/apps,~/mobile_game/src/include,
+    setlocal path+=~/mobile_game/src/auto/defs,~/mobile_game/src/scene/include
   endfunction
 
   au BufRead ~/mm/lin/kernel/*  call s:KernelMode()
-  au BufRead ~/ggg/*           call s:ZTSMOde()
+  au BufRead ~/web_game/*       call s:WebGame()
+  au BufRead ~/mobile_game/*.erl      call s:HandGame()
+  au BufRead ~/mobile_game/*.hrl      call s:HandGame()
   "command ErlPokerMode call s:ErlPoker()
   
   "for sdcv
@@ -433,8 +466,5 @@ if has("win32")
   "set termencoding=utf-8 "deponed on Conslse charaecter set
   set encoding=utf-8     "encoding defalut is cp932, but Powerline need utf-8
 endif
-
-"set Pmenu
-hi Pmenu ctermfg=81 ctermbg=242
 
 "vim: set foldmethod=marker
