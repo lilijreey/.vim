@@ -2,7 +2,6 @@
 # Licensed under the terms of the BSD 2-clause license.
 
 require 'ostruct'
-require 'command-t/settings'
 
 module CommandT
   class MatchWindow
@@ -197,7 +196,7 @@ module CommandT
     def find(char)
       # is this a new search or the continuation of a previous one?
       now = Time.now
-      if @last_key_time.nil? or @last_key_time < (now - 0.5)
+      if @last_key_time.nil? || @last_key_time < (now - 0.5)
         @find_string = char
       else
         @find_string += char

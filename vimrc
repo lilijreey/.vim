@@ -19,12 +19,12 @@ set nocompatible
 filetype plugin indent  on
 
 " highlight
+syntax enable
 syntax on "sync fromstart
 
 
 "Sets how many lines of history VIM har to remember
 set history=40
-
 
 
 "Set to auto read when a file is changed from the outside
@@ -145,6 +145,8 @@ set complete+=k
 "Fast Ex command
 noremap ; :
 
+"set <Leader>
+let mapleader="-"
 
 "For mark move
 "nnoremap <leader>' '
@@ -152,8 +154,14 @@ noremap ; :
 "Fast copy
 "nnoremap ' "
 
+"" 设置快捷键将选中文本块复制至系统剪贴板
+vnoremap <Leader>y "+y
+" 设置快捷键将系统剪贴板内容粘贴至 vim
+nmap <Leader>p "+p
+
 nnoremap mm :make <CR>
 nnoremap mc :make clean <CR>
+
 
 "屏蔽一些文件
 set wildignore+=*.o,*.obj
@@ -225,22 +233,38 @@ let g:vimrc_loaded = 1
 "let g:syntastic_mode_map = { 'mode': 'passive',
                            "\ 'active_filetypes': ['ruby', 'php', 'sh', 'bash'],
                            "\ 'passive_filetypes': ['puppet'] }
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_autoclose_preview_window_after_insertion = 1
+nnoremap <leader>jp :YcmCompleter GoToDeclaratoin<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
+
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_complete_in_comments = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tags_files=1
 
+" 禁止缓存匹配项，每次都重新生成匹配项
+let g:ycm_cache_omnifunc=0
+" 语法关键字补全         
+let g:ycm_seed_identifiers_with_syntax=1
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<C-x>"
-let g:UltiSnipsJumpForwardTrigger="<C-x>"
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 "let g:UltiSnipsJumpBackwardTrigger="<C-p>"
+
+
+"" protodef
+let g:protodefprotogetter='~/.vim/bundle/protodef/pullproto.pl'
+" 成员函数的实现顺序与声明顺序一致
+let g:disable_protodef_sorting=1
 
 
 """"""""""""""""""""

@@ -112,6 +112,11 @@ Or, for very old versions of Ruby which don't define `RUBY_PATCHLEVEL`:
 
   :ruby puts RUBY_VERSION
 
+Some Linux distributions package Ruby development tools separately from Ruby
+itself; if you're using such a system you may need to install the "ruby-dev",
+"ruby-devel" or similar package using your system's package manager in order
+to build Command-T.
+
 A suitable Ruby environment for Windows can be installed using the Ruby
 1.8.7-p299 RubyInstaller available at:
 
@@ -503,6 +508,13 @@ COMMANDS                                        *command-t-commands*
                 setting). In addition, all configuration settings are
                 re-evaluated, causing any changes made to settings via the
                 |:let| command to be picked up.
+
+                                                *:CommandTLoad*
+|:CommandTLoad|   Immediately loads the plug-in files, if they haven't been
+                loaded already (normally, the files are loaded lazily the
+                first time you run a Command-T command or use a Command-T
+                mapping). This command may be useful for people wishing to
+                extend Command-T by "monkey patching" its functionality.
 
 
 MAPPINGS                                        *command-t-mappings*
@@ -1107,21 +1119,22 @@ Command-T is written and maintained by Greg Hurrell <greg@hurrell.net>.
 Other contributors that have submitted patches include (in alphabetical
 order):
 
-  Abhinav Gupta           Lucas de Vries          Roland Puntaier
-  Aleksandrs Ļedovskis    Marcus Brito            Ross Lagerwall
-  Andy Waite              Marian Schubert         Scott Bronson
-  Anthony Panozzo         Matthew Todd            Seth Fowler
-  Artem Nezvigin          Mike Lundy              Shlomi Fish
-  Ben Osheroff            Nadav Samet             Steven Moazami
-  Daniel Hahler           Nate Kane               Sung Pae
-  David Szotten           Nicholas Alpi           Thomas Pelletier
-  Emily Strickland        Noon Silk               Ton van den Heuvel
-  Felix Tjandrawibawa     Ole Petter Bang         Victor Hugo Borja
-  Gary Bernhardt          Patrick Hayes           Vít Ondruch
-  Ivan Ukhov              Paul Jolly              Woody Peterson
-  Jacek Wysocki           Pavel Sergeev           Yan Pritzker
-  Jeff Kreeftmeijer       Rainux Luo              Yiding Jia
-  Kevin Webster           Richard Feldman         Zak Johnson
+  Abhinav Gupta           Marcus Brito            Scott Bronson
+  Aleksandrs Ļedovskis    Marian Schubert         Seth Fowler
+  Andy Waite              Matthew Todd            Sherzod Gapirov
+  Anthony Panozzo         Mike Lundy              Shlomi Fish
+  Artem Nezvigin          Nadav Samet             Steven Moazami
+  Ben Osheroff            Nate Kane               Sung Pae
+  Daniel Hahler           Nicholas Alpi           Thomas Pelletier
+  David Szotten           Noon Silk               Ton van den Heuvel
+  Emily Strickland        Ole Petter Bang         Victor Hugo Borja
+  Felix Tjandrawibawa     Patrick Hayes           Vít Ondruch
+  Gary Bernhardt          Paul Jolly              Woody Peterson
+  Ivan Ukhov              Pavel Sergeev           Yan Pritzker
+  Jacek Wysocki           Rainux Luo              Yiding Jia
+  Jeff Kreeftmeijer       Richard Feldman         Zak Johnson
+  Kevin Webster           Roland Puntaier
+  Lucas de Vries          Ross Lagerwall
 
 As this was the first Vim plug-in I had ever written I was heavily influenced
 by the design of the LustyExplorer plug-in by Stephen Bach, which I understand
@@ -1215,7 +1228,29 @@ POSSIBILITY OF SUCH DAMAGE.
 
 HISTORY                                         *command-t-history*
 
-1.11.1 (unreleased)
+1.12 (not yet released)
+
+- add |:CommandTLoad| command
+
+1.11.4 (4 November 2014)
+
+- fix infinite loop on Windows when |g:CommandTTraverseSCM| is set to a value
+  other than "pwd" (bug present since 1.11)
+- handle unwanted split edgecase when |'hidden'| is set, the current buffer is
+  modified, and it is visible in more than one window
+
+1.11.3 (10 October 2014)
+
+- ignore impromperly encoded filenames (patch from Sherzod Gapirov)
+- fix failure to update path when using |:cd| in conjunction with
+  |g:CommandTTraverseSCM| set to "pwd" (bug present since 1.11.2)
+
+1.11.2 (2 September 2014)
+
+- fix error while using Command-T outside of an SCM repo (bug present since
+  1.11.1)
+
+1.11.1 (29 August 2014)
 
 - compatibility fixes with Ruby 1.8.6 (patch from Emily Strickland)
 - compatibility fixes with Ruby 1.8.5

@@ -68,6 +68,12 @@ function! <SID>AddAlternateExtensionMapping(extension, alternates)
    endif
 endfunction
 
+" add for erlang .def .sproto 
+"function! <SID>AddAlternateExtensionErlMapping(extension, alternates)
+  "xxx.def.erl
+
+"endfunction
+
 
 " Add all the default extensions
 " Mappings for C and C++
