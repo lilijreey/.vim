@@ -442,7 +442,7 @@ endif
           SynColor doxygenPrev ctermfg=DarkGreen guifg=DarkGreen
         else
           SynColor doxygenComment ctermfg=LightRed guifg=LightRed
-          SynColor doxygenBrief cterm=bold ctermfg=Cyan ctermbg=darkgrey guifg=LightBlue gui=Bold,Italic
+          SynColor doxygenBrief cterm=bold ctermfg=12 guifg=LightBlue gui=Bold,Italic
           SynColor doxygenBody ctermfg=Cyan guifg=LightBlue
           SynColor doxygenSpecialTypeOnelineDesc cterm=bold ctermfg=Red guifg=firebrick3 gui=bold
           SynColor doxygenBOther cterm=bold ctermfg=Magenta guifg=#aa50aa gui=bold
