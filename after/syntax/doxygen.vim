@@ -446,8 +446,9 @@ endif
           SynColor doxygenBody ctermfg=Cyan guifg=LightBlue
           SynColor doxygenSpecialTypeOnelineDesc cterm=bold ctermfg=Red guifg=firebrick3 gui=bold
           SynColor doxygenBOther cterm=bold ctermfg=Magenta guifg=#aa50aa gui=bold
-          SynColor doxygenParam ctermfg=LightGray guifg=LightGray
-          SynColor doxygenParamName cterm=italic ctermfg=LightBlue guifg=LightBlue gui=italic,bold
+          SynLink doxygenParamName Underlined
+          SynLink doxygenParam SpecialComment
+          "SynColor doxygenParamName cterm=italic ctermfg=LightBlue guifg=LightBlue gui=italic,bold
           SynColor doxygenSpecialOnelineDesc cterm=bold ctermfg=LightCyan guifg=LightCyan gui=bold
           SynColor doxygenSpecialHeading cterm=bold ctermfg=LightBlue guifg=LightBlue gui=bold
           SynColor doxygenPrev ctermfg=LightGreen guifg=LightGreen
