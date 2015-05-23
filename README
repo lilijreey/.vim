@@ -1,5 +1,9 @@
 set vim: ft=help 
 
+
+see the vim info
+vim --version
+
 golang vim 补全
 需要设置 gocode 
   gocode set 

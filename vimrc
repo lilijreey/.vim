@@ -36,6 +36,8 @@ set mouse=nv
 "Wrap lines "不要折行
 set nowrap
 
+
+
 " delete ^M
 " :%s/\r//g
 """"""""""""""""""""""""""""""
@@ -94,7 +96,6 @@ set backspace=eol,start,indent
 "set whichwrap+=<,>,h,l
 set whichwrap+=<,>
 
-set wildignore+=*.beam
 
 "Ignore case when searching
 set ignorecase smartcase
@@ -164,7 +165,7 @@ nnoremap mc :make clean <CR>
 
 
 "屏蔽一些文件
-set wildignore+=*.o,*.obj
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.beam,*.o,*.obj,tags
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -174,13 +175,12 @@ set wildignore+=*.o,*.obj
 let NERDTreeIgnore=['\~$','\.out','\.o','.a','\.beam']
 let NERDTreeIgnore=['\.vim$', '\~$']
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" T-command 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:CommandTMaxFiles=30000
-let g:CommandTMaxDepth=6
-let g:CommandTMaxCachedDirectories=3
-let g:CommandTCancelMap=['<Esc>', '<C-c>']
+"""""""""""""""""""""""""""""""""
+" ctrlp
+"""""""""""""""""""""""""""""""""
+"let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 
 ""lua
