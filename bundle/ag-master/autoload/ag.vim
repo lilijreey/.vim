@@ -38,6 +38,13 @@
 let s:save_cpo=&cpo
 set cpo&vim
 
+if !exists("s:matchaddId") 
+  let s:matchaddId = 1
+endif
+;
+"Highlight you can custom it
+highlight AgMatch ctermbg=6 ctermfg=Green
+
 " Script Variables {{{
   let s:supported_options = [
       \ '-a', '--all-types',
@@ -74,6 +81,7 @@ function! ag#Ag(args, relative, bang) " {{{
   endif
 
   let args = s:ParseArgs(a:args)
+
   " if pattern and dir supplied, see if dir is a glob pattern
   let [options, non_option_args] = s:SplitOptionsFromArgs(args)
   if len(non_option_args) == 2
@@ -110,6 +118,9 @@ function! ag#Ag(args, relative, bang) " {{{
     \ (g:AgSmartCase ? '--smart-case ' : '') .
     \ join(map(copy(args), 'shellescape(v:val)'), ' ')
 
+  echom "cmd " . cmd
+
+  
   let saveerrorformat = &errorformat
   try
     silent! doautocmd QuickFixCmdPre grep
@@ -152,6 +163,11 @@ function! ag#Ag(args, relative, bang) " {{{
     endif
   endtry
 
+  "echom search_string
+  "highlight search string
+  "let search_string = args[-1]
+  call s:HighlightSearchWord(args[-1])
+
   if v:shell_error
     let error = system(cmd)
     call s:Echo(error, 'Error')
@@ -193,8 +209,28 @@ function! s:ParseArgs(args) " {{{
       endif
     endif
   endfor
+
+  "for gg in args
+  "  echom "gg:" . gg
+  "endfor
+  "search word is last element
+
   return args
 endfunction " }}}
+
+function s:HighlightSearchWord(string) "{{{
+    if 'n' != mode()
+       return "just enable in normal mode
+   endif 
+
+   if a:string != ""
+        call matchdelete(s:matchaddId)
+        let s:matchaddId = 1
+
+        let s:matchaddId = matchadd("AgMatch", '\<' . a:string . '\>')
+   endif
+
+endfunction "}}}
 
 function! s:Echo(message, highlight) " {{{
   exec "echohl " . a:highlight

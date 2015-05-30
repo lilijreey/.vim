@@ -404,6 +404,10 @@ ga
 quickfix
  errorformat
 
+# cexpr system(cmd)
+#  用system(cmd) 执行的接过来打开一个quick-fix 
+
+
 recorver
 vim -r
 
