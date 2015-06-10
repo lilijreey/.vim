@@ -225,7 +225,7 @@ function s:HighlightSearchWord(string) "{{{
 
    if s:matchaddId != 0
      call matchdelete(s:matchaddId)
-     s:matchaddId = 0
+     let s:matchaddId = 0
    endif
 
 

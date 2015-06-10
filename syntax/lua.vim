@@ -40,6 +40,12 @@ elseif lua_version > 5 || (lua_version == 5 && lua_subversion >= 1)
   syn region luaComment        matchgroup=luaComment start="--\[\z(=*\)\[" end="\]\z1\]" contains=luaTodo,@Spell
 endif
 
+"add by evan
+syn match cQues display /\[\|\]/
+syn match cQues display /(\|)/
+syn match cQues display /:/
+syn match cQues display /\./
+
 " First line may start with #!
 syn match luaComment "\%^#!.*"
 
