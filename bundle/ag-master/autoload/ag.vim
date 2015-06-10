@@ -39,7 +39,7 @@ let s:save_cpo=&cpo
 set cpo&vim
 
 if !exists("s:matchaddId") 
-  let s:matchaddId = 1
+  let s:matchaddId = 0
 endif
 ;
 "Highlight you can custom it
@@ -114,7 +114,7 @@ function! ag#Ag(args, relative, bang) " {{{
   " If there is no tty (which is the case when calling ag via system), ag will
   " default to searching stdin, so force it to search files via the
   " --search-files arg: https://github.com/ggreer/the_silver_searcher/issues/57
-  let cmd = 'ag --search-files --column ' .
+  let cmd = 'ag --ignore tags --ignore .*./ --search-files --column ' .
     \ (g:AgSmartCase ? '--smart-case ' : '') .
     \ join(map(copy(args), 'shellescape(v:val)'), ' ')
 
@@ -223,12 +223,16 @@ function s:HighlightSearchWord(string) "{{{
        return "just enable in normal mode
    endif 
 
-   if a:string != ""
-        call matchdelete(s:matchaddId)
-        let s:matchaddId = 1
+   if s:matchaddId != 0
+     call matchdelete(s:matchaddId)
+     s:matchaddId = 0
+   endif
 
+
+   if a:string != ""
         let s:matchaddId = matchadd("AgMatch", '\<' . a:string . '\>')
    endif
+
 
 endfunction "}}}
 
