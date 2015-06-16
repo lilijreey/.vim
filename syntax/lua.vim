@@ -40,11 +40,6 @@ elseif lua_version > 5 || (lua_version == 5 && lua_subversion >= 1)
   syn region luaComment        matchgroup=luaComment start="--\[\z(=*\)\[" end="\]\z1\]" contains=luaTodo,@Spell
 endif
 
-"add by evan
-syn match cQues display /\[\|\]/
-syn match cQues display /(\|)/
-syn match cQues display /:/
-syn match cQues display /\./
 
 " First line may start with #!
 syn match luaComment "\%^#!.*"
@@ -96,6 +91,13 @@ syn keyword luaConstant nil
 if lua_version > 4
   syn keyword luaConstant true false
 endif
+
+"add by evan
+syn match Type display /\[\|\]/
+syn match Type display /(\|)/
+syn match Type display /\:/
+syn match Type display /\./
+syn match Type display /self/
 
 " Strings
 if lua_version < 5
@@ -362,6 +364,8 @@ if version >= 508 || !exists("did_lua_syntax_inits")
   delcommand HiLink
 endif
 
+setlocal iskeyword+=:
 let b:current_syntax = "lua"
+
 
 " vim: et ts=8 sw=2

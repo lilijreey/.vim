@@ -218,7 +218,7 @@ let utl__file_rc =    expand("<sfile>")	    " Do not remove this line
           let g:utl_cfg_hdl_mt_generic = 'silent !konqueror "%p" &'
         else 
         " Candidate for Debian/Ubuntu:
-          let g:utl_cfg_hdl_mt_generic = 'silent !eog "%p" &'
+          let g:utl_cfg_hdl_mt_generic = 'silent !eog "%p" >& /dev/null &'
         endif
       endif
     endif
