@@ -163,6 +163,7 @@ if lua_version == 4
   syn keyword luaFunc format strfind gsub
   syn keyword luaFunc getinfo getlocal setlocal setcallhook setlinehook
 elseif lua_version == 5
+  syn keyword luaMetatable __index __newindex __gc __metatable __tostring __call __le __lt __eq __en __concat __unm __mod __div __mul __add __sub
   syn keyword luaFunc getmetatable setmetatable
   syn keyword luaFunc ipairs pairs
   syn keyword luaFunc pcall xpcall
@@ -358,13 +359,13 @@ if version >= 508 || !exists("did_lua_syntax_inits")
   HiLink luaError		Error
   HiLink luaParenError		Error
   HiLink luaSpecial		SpecialChar
+  HiLink luaMetatable           SpecialChar
   HiLink luaFunc		Identifier
   HiLink luaLabel		Label
 
   delcommand HiLink
 endif
 
-setlocal iskeyword+=:
 let b:current_syntax = "lua"
 
 
