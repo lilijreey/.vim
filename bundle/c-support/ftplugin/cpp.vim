@@ -25,7 +25,7 @@ let b:did_CPP_ftplugin = 1
 set complete+=k
 
 "add STL tags
-setl tags+=/usr/include/c++/4.6/
+setl path+=/usr/include/c++/4.9/
 
 "-------------------------------------------------------------------------------
 " additional mapping : C++ I/O

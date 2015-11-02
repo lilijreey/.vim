@@ -19,6 +19,8 @@ else
   setlocal keywordprg=ri
 endif
 
+setl iskeyword+=?
+
 " Matchit support
 if exists("loaded_matchit") && !exists("b:match_words")
   let b:match_ignorecase = 0
@@ -364,9 +366,6 @@ function! s:gf(count,map,edit) abort
   endif
 endfunction
 
-" add by lili
-inoremap  <buffer>  def<CR>    def<CR>end<Esc>O
-inoremap  <buffer>  do<CR>    do<CR>end<Esc>O
 
 
 "

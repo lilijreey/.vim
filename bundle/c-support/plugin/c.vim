@@ -147,7 +147,8 @@ endif
 let s:C_VimCompilerName				= 'gcc'      " the compiler name used by :compiler
 "
 let s:C_CExtension     				= 'c'                    " C file extension; everything else is C++
-let s:C_CFlags         				= '-Wall -g -O0 -c'      " compiler flags: compile, don't optimize
+let s:C_CFlags         				= '-Wall -g -O0 -c '      " compiler flags: compile, don't optimize
+let s:CXX_CFlags         			= '-Wall -g -O0 -c -std=c++11 '      " compiler flags: compile, don't optimize
 let s:C_CodeCheckExeName      = 'check'
 let s:C_CodeCheckOptions      = '-K13'
 let s:C_LFlags         				= '-Wall -g -O0'         " compiler flags: link   , don't optimize
@@ -186,6 +187,7 @@ endfunction    " ----------  end of function C_CheckGlobal ----------
 call C_CheckGlobal('C_CCompiler            ')
 call C_CheckGlobal('C_CExtension           ')
 call C_CheckGlobal('C_CFlags               ')
+call C_CheckGlobal('CXX_CFlags             ')
 call C_CheckGlobal('C_CodeCheckExeName     ')
 call C_CheckGlobal('C_CodeCheckOptions     ')
 call C_CheckGlobal('C_CodeSnippets         ')
@@ -1926,7 +1928,11 @@ function! C_Compile ()
 		exe ":compiler ".s:C_VimCompilerName
 		let v:statusmsg = ''
 		let	s:LastShellReturnCode	= 0
-		exe		"make ".s:C_CFlags." ".SouEsc." -o ".ObjEsc
+		if expand("%:e") == s:C_CExtension
+      exe		"make ".s:C_CFlags." ".SouEsc." -o ".ObjEsc
+		else
+      exe		"make ".s:CXX_CFlags." ".SouEsc." -o ".ObjEsc
+		endif
 		if empty(v:statusmsg)
 			let s:C_HlMessage = "'".Obj."' : compilation successful"
 		endif

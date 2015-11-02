@@ -308,6 +308,8 @@ elseif borders[max(keys(borders))] == 'colon'
     let values = ['normal']
   elseif prop == 'background-clip'
     let values = ['border-box', 'content-box', 'padding-box']
+  elseif prop == 'background-radius'
+    let values = ['px']
   elseif prop == '-webkit-font-smoothing'
     let values = ['none', 'auto', 'antialiased', 'subpixel-antialiased']
   elseif prop == 'border'

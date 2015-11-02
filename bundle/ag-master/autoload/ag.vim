@@ -118,7 +118,7 @@ function! ag#Ag(args, relative, bang) " {{{
     \ (g:AgSmartCase ? '--smart-case ' : '') .
     \ join(map(copy(args), 'shellescape(v:val)'), ' ')
 
-  echom "cmd " . cmd
+  "echom "cmd " . cmd
 
   
   let saveerrorformat = &errorformat

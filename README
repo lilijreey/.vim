@@ -424,3 +424,11 @@ ruby crash
 保证编译vim是用的ruby版本和 编译 command-t ruby 版本相同
 
 :ruby puts RUBY_VERSION
+
+
++ path
+  用来gf 跳转的文件，的搜索路径
++ 'suffixesadd' 
+ 自动补齐后缀
+ 比如lua require(xxx) 是不写.lua后缀的，导致df 无法查找，但是设置suffixesadd
+  后接可以

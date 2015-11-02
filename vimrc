@@ -1,4 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " This vimrc is based on the vimrc by Amix - http://amix.dk/
 " You can find the latest version on:
 "       http://iamjesus.blogcn.com
@@ -36,8 +37,6 @@ set mouse=nv
 "Wrap lines "不要折行
 set nowrap
 
-
-
 " delete ^M
 " :%s/\r//g
 """"""""""""""""""""""""""""""
@@ -50,25 +49,6 @@ call pathogen#infect()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" solarized-color
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" solarized 在终端下现实的不太好
-if has('gui_running') 
-  set go="not show enum tools list
-  set background=dark
-  let g:solarized_menu=0
-  colorscheme solarized 
-else
-  "let g:solarized_termcolors=&t_Co
-  "let g:solarized_termtrans=1
-  "colorscheme distinguished 
-  colorscheme torte 
-  
-  highlight Pmenu ctermbg=6
-  highlight PmenuSel ctermbg=81
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -146,8 +126,9 @@ set complete+=k
 "Fast Ex command
 noremap ; :
 
-"set <Leader>
-let mapleader="-"
+"set <Leader> default is \
+"let mapleader="\\"
+let mapleader="'"
 
 "For mark move
 "nnoremap <leader>' '
@@ -163,44 +144,74 @@ nmap <Leader>p "+p
 nnoremap mm :make <CR>
 nnoremap mc :make clean <CR>
 
+nnoremap co :copen<CR>
 
 "屏蔽一些文件
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.beam,*.o,*.obj,tags
+set wildignore+=*.o,*.obj,*.beam
+
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "NERDTree sets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "不显示的文件类型
-let NERDTreeIgnore=['\~$','\.out','\.o','.a','\.beam']
-let NERDTreeIgnore=['\.vim$', '\~$']
+"let NERDTreeIgnore=['\.out','\.o','.a','\.beam']
 
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""
 " ctrlp
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""
+" SQL file use postgreSQL styall
+au BufNewFile, BufRead *.sql setf pgsql
+
 "let g:ctrlp_map = '<c-p>'
-let g:ctrlp_map = '<leader>t'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+"
+nmap <Leader>b :CtrlPBuffer<CR>
+let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_working_path_mode = 'ra'
+
+
+let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_max_depth = 7
+
+" Set delay to prevent extra search
+let g:ctrlp_lazy_update = 350
+
+" Set no file limit, we are building a big project
+let g:ctrlp_max_files = 0
+
+"set wildignore+=*/.git/*,.git/*,*/.hg/*,.hg/*,*/.svn/*,.svn/*
+"let g:ctrlp_custom_ignore = {
+      "\ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      "\ 'file': '\v\.(exe|so|dll)$',
+      "\ }
+
+
+
+" If ag is available use it as filename list generator instead of 'find'
+if executable("ag")
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.svn'' --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --ignore ''tags'' --hidden -g ""'
+endif
+""  open extension support tag search
+let g:ctrlp_extensions = ['tag']
 
 
 ""lua
 let g:lua_compiler_name='/usr/bin/luac'
-let g:lua_complete_omni=1
+let g:lua_check_globals = 0
+let g:lua_check_syntax = 0
+let g:lua_inspect_events = 'BufWritePost'
 
-" install powerline fonts
-"wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
-"mkdir -p ~/.fonts/ && mv PowerlineSymbols.otf ~/.fonts/
-"fc-cache -vf ~/.fonts
-"mkdir -p ~/.config/fontconfig/conf.d/ && mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Powerline sets
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "在termianl下显示颜色
 " for Powerline
 set laststatus=2   " Always show the statusline
 let g:Powerline_symbols='fancy'
 
+"enable 
+let g:doxygen_enhanced_color=1
+
 "airline
+let g:airline_powerline_fonts=1
 "let g:airline_symbols = {}
 "let g:airline_left_sep=''
 "let g:airline_right_sep=''
@@ -231,8 +242,8 @@ let g:vimrc_loaded = 1
 " Syntastic 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:syntastic_mode_map = { 'mode': 'passive',
-                           "\ 'active_filetypes': ['ruby', 'php', 'sh', 'bash'],
-                           "\ 'passive_filetypes': ['puppet'] }
+"\ 'active_filetypes': ['ruby', 'php', 'sh', 'bash'],
+"\ 'passive_filetypes': ['puppet'] }
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
@@ -240,19 +251,26 @@ let g:syntastic_warning_symbol = '⚠'
 " YouCompleteMe
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_autoclose_preview_window_after_insertion = 1
-nnoremap <leader>jp :YcmCompleter GoToDeclaratoin<CR>
-nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
+"this cmd will try all subcmmand
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_complete_in_comments = 1
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_filepath_completion_use_working_dir = 1
 
 " 禁止缓存匹配项，每次都重新生成匹配项
 let g:ycm_cache_omnifunc=0
 " 语法关键字补全         
 let g:ycm_seed_identifiers_with_syntax=1
+
+" 关闭lua 的ycm 和 lua 插件冲突
+let g:ycm_filetype_specific_completion_to_disable = {
+      \ 'gitcommit': 1,
+      \ 'lua': 1
+      \}
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -267,6 +285,9 @@ let g:protodefprotogetter='~/.vim/bundle/protodef/pullproto.pl'
 let g:disable_protodef_sorting=1
 
 
+"Note
+let g:notes_suffix = '.txt'
+
 """"""""""""""""""""
 " vim completion set
 """"""""""""""""""""
@@ -280,9 +301,11 @@ let g:disable_protodef_sorting=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MXL plugin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:xml_use_xhtml = 1
-
+""easymotion
+nmap f ''f
+nmap F ''F
 " vim plugens set end }}}
+"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some keyboard bind
@@ -323,12 +346,12 @@ cnoremap bb :b#<CR>
 
 nnoremap <silent> tg :!ctags -R<CR>
 "for esaymont
-nmap f  \\f
-nmap F  \\F
+"nmap f <leader>f
+"nmap F <leader>F 
 
-nnoremap \s :Ag <C-R><C-F><CR>
+nnoremap <leader>s :Ag --ignore tags <C-R><C-F><CR>
 
-nnoremap mk :make <CR>
+nnoremap mk :make -j4 <CR>
 
 " 删除当前行的末尾字符
 nnoremap \ed  :call setline('.', getline('.')[:-2])<CR>
@@ -341,7 +364,6 @@ inoremap \ea  <Esc>:call setline('.', getline('.') . ';')<CR>a
 "imap <C-a> <Esc>I
 "imap <C-e> <Esc>A
 
-nnoremap mm :make<CR>
 
 "%s/\(sds\)\([a-z]\)/\1_\2\gc
 """"""""""""""""""""
@@ -352,18 +374,18 @@ endfunction
 
 " auto mkdir when dir not exist {{{
 augroup auto_mkdir
-	au!
-	au BufWritePre,FileWritePre * call <SID>auto_mkdir()
+  au!
+  au BufWritePre,FileWritePre * call <SID>auto_mkdir()
 augroup END
 
 function <SID>auto_mkdir()
-	" Get directory the file is supposed to be saved in
-	let s:dir = expand("<afile>:p:h")
+  " Get directory the file is supposed to be saved in
+  let s:dir = expand("<afile>:p:h")
 
-	" Create that directory (and its parents) if it doesn't exist yet
-	if !isdirectory(s:dir)
-		call mkdir(s:dir, "p")
-	endif
+  " Create that directory (and its parents) if it doesn't exist yet
+  if !isdirectory(s:dir)
+    call mkdir(s:dir, "p")
+  endif
 endfunction
 " }}}
 
@@ -375,6 +397,7 @@ if has("unix")
   set fileencodings=utf-8,gb2312,gbk,gb18030
   set termencoding=utf-8
   set encoding=utf-8 
+  set guifont=Ubuntu\ for\ Powerline\ 14
 
   " set path(for gf,find command)
   set path=./,../,/usr/include/,/usr/include/i386-linux-gnu/,/usr/local/include/,/
@@ -382,7 +405,8 @@ if has("unix")
   " edit vimrc
 
   " set guifont
-  set guifont=Ubuntu\ Mono\ 14
+  "set guifont=Source\ Code\ Pro\ for\ Powerline\ 13
+  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 13
   """"""""""""""""""""""""""""""
   " termianl set
   """"""""""""""""""""""""""""""
@@ -390,13 +414,75 @@ if has("unix")
   set t_Co=256 
 
   " read man page use vim
-  let $PAGER=''
+  "let $PAGER=''
   source $VIMRUNTIME/ftplugin/man.vim
+  nmap K :Man <C-R>=expand('<cword>')<CR><CR>
+
+  nmap <space> @:<CR>
+  "close down window "
+  nmap wc :+quit<CR>
+
+
+  " :Rename[!] {newname}
+  command! -nargs=* -complete=file -bang Rename call Rename(<q-args>, '<bang>')
+
+  function! Rename(name, bang)
+    let l:name    = a:name
+    let l:oldfile = expand('%:p')
+
+    if bufexists(fnamemodify(l:name, ':p'))
+      if (a:bang ==# '!')
+        silent exe bufnr(fnamemodify(l:name, ':p')) . 'bwipe!'
+      else
+        echohl ErrorMsg
+        echomsg 'A buffer with that name already exists (use ! to override).'
+        echohl None
+        return 0
+      endif
+    endif
+
+    let l:status = 1
+
+    let v:errmsg = ''
+    silent! exe 'saveas' . a:bang . ' ' . l:name
+
+    if v:errmsg =~# '^$\|^E329'
+      let l:lastbufnr = bufnr('$')
+
+      if expand('%:p') !=# l:oldfile && filewritable(expand('%:p'))
+        if fnamemodify(bufname(l:lastbufnr), ':p') ==# l:oldfile
+          silent exe l:lastbufnr . 'bwipe!'
+        else
+          echohl ErrorMsg
+          echomsg 'Could not wipe out the old buffer for some reason.'
+          echohl None
+          let l:status = 0
+        endif
+
+        if delete(l:oldfile) != 0
+          echohl ErrorMsg
+          echomsg 'Could not delete the old file: ' . l:oldfile
+          echohl None
+          let l:status = 0
+        endif
+      else
+        echohl ErrorMsg
+        echomsg 'Rename failed for some reason.'
+        echohl None
+        let l:status = 0
+      endif
+    else
+      echoerr v:errmsg
+      let l:status = 0
+    endif
+
+    return l:status
+  endfunction
 
   "set 同义词补全
   "set thesaurus=/path/to/your/file
 
-  
+
   "Remove the Windows ^M
   "noremap <Leader>dm mmHmn:%s/<C-V><cr>//ge<cr>'nzt'm
 
@@ -435,35 +521,38 @@ if has("unix")
 
   command LinuxKernelMode call s:KernelMode() " }}}
 
-  " Xpoker 模式 
-  "function s:XpokerMode()
-    "if !exists("s:xpokermode")
-      "let s:xpokermode= 1
-    "else
-      "return
-    "endif
 
-    "set path+=~/xpoker,/~xpoker/Erl/ECommon
+  function s:CocoLuaMode()
+    if exists("b:cocoluamode")
+      return
+    endif
 
-  "endfunction
-  "au BufRead ~/mm/lin/ll/*      call s:KernelMode()
-   
-  " ZTS mode
-  function s:WebGame()
-    setlocal path+=~/web_game/apps,~/web_game/src/include
+    let b:cocoluamode= 1
+    set path+='~/work/shyx/'
   endfunction
 
-  function s:HandGame()
-    setlocal path+=~/mobile_game/apps,~/mobile_game/src/include,
-    setlocal path+=~/mobile_game/src/auto/defs,~/mobile_game/src/scene/include
+  au BufRead ~/work/shyx/src/*      call s:CocoLuaMode()
+
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
+  " for rails
+  function s:SubRails()
+    if exists("b:sub_rails")
+      return
+    endif
+
+    let b:sub_rails= 1
+    set tags+=/opt/src/rails/rails_src_421.tags
   endfunction
 
-  au BufRead ~/mm/lin/kernel/*  call s:KernelMode()
-  au BufRead ~/web_game/*       call s:WebGame()
-  au BufRead ~/mobile_game/*.erl      call s:HandGame()
-  au BufRead ~/mobile_game/*.hrl      call s:HandGame()
+  au BufRead ~/src/rails-note/ra/* call s:SubRails()
+
+
+  "au BufRead ~/mm/lin/kernel/*  call s:KernelMode()
   "command ErlPokerMode call s:ErlPoker()
-  
+
   "for sdcv
   function! SearchWord()
     let expl=system('sdcv -n ' .
@@ -490,5 +579,26 @@ if has("win32")
   "set termencoding=utf-8 "deponed on Conslse charaecter set
   set encoding=utf-8     "encoding defalut is cp932, but Powerline need utf-8
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" solarized-color
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" solarized 在终端下现实的不太好
+if has('gui_running') 
+  set go="not show enum tools list
+  set background=dark
+  let g:solarized_menu=0
+  colorscheme solarized 
+else
+  "let g:solarized_termcolors=&t_Co
+  "let g:solarized_termtrans=1
+  "colorscheme distinguished 
+  colorscheme torte 
+
+  highlight LineNr ctermfg=239
+  highlight Pmenu ctermbg=6
+  highlight PmenuSel ctermbg=81
+endif
+
 
 "vim: set foldmethod=marker

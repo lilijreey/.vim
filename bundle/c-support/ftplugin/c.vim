@@ -26,6 +26,7 @@ endif
 
 set complete+=k
 setl tags+=/usr/include/stdlibtags
+setl path+=/usr/include/x86_64-linux-gnu/
 "
 "-------------------------------------------------------------------------------
 " ADDITIONAL MAPPING : complete a classical C comment: '/*' => '/* | */'
