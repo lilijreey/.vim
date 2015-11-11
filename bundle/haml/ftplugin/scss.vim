@@ -9,5 +9,6 @@ endif
 
 runtime! ftplugin/sass.vim
 setlocal comments=s1:/*,mb:*,ex:*/,://
+setlocal iskeyword+=-
 
 " vim:set sw=2:

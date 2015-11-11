@@ -16,6 +16,7 @@ let b:undo_ftplugin = "setl com< cms< inc< fo< ofu<"
 setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
 setlocal formatoptions-=t formatoptions+=croql
 setlocal omnifunc=csscomplete#CompleteCSS
+setlocal iskeyword+=-
 
 let &l:include = '^\s*@import\s\+\%(url(\)\='
 
