@@ -165,7 +165,7 @@ au BufNewFile, BufRead *.sql setf pgsql
 
 "let g:ctrlp_map = '<c-p>'
 "
-nmap <Leader>b :CtrlPBuffer<CR>
+nmap <Leader>b :CtrlPMRUFiles<CR>
 let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_working_path_mode = 'ra'
@@ -180,7 +180,7 @@ let g:ctrlp_lazy_update = 350
 " Set no file limit, we are building a big project
 let g:ctrlp_max_files = 0
 
-"set wildignore+=*/.git/*,.git/*,*/.hg/*,.hg/*,*/.svn/*,.svn/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 "let g:ctrlp_custom_ignore = {
       "\ 'dir':  '\v[\/]\.(git|hg|svn)$',
       "\ 'file': '\v\.(exe|so|dll)$',
@@ -595,7 +595,8 @@ else
   "colorscheme distinguished 
   colorscheme torte 
 
-  highlight LineNr ctermfg=239
+  "highlight LineNr ctermfg=239
+  "highlight LineNr ctermfg=239
   highlight Pmenu ctermbg=6
   highlight PmenuSel ctermbg=81
 endif

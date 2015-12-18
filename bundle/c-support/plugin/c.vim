@@ -147,7 +147,7 @@ endif
 let s:C_VimCompilerName				= 'gcc'      " the compiler name used by :compiler
 "
 let s:C_CExtension     				= 'c'                    " C file extension; everything else is C++
-let s:C_CFlags         				= '-Wall -g -O0 -c '      " compiler flags: compile, don't optimize
+let s:C_CFlags         				= '-Wall -g -O0 -c -std=c99'      " compiler flags: compile, don't optimize
 let s:CXX_CFlags         			= '-Wall -g -O0 -c -std=c++11 '      " compiler flags: compile, don't optimize
 let s:C_CodeCheckExeName      = 'check'
 let s:C_CodeCheckOptions      = '-K13'
