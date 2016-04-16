@@ -1,15 +1,13 @@
 ## Main
 # main
+# main(void)
 snippet main
-	int main(int argc, const char *argv[])
-	{
+	int main() {
 		${0}
 		return 0;
 	}
-# main(void)
-snippet mainn
-	int main(void)
-	{
+snippet mainargc
+	int main(int argc, const char *argv[]) {
 		${0}
 		return 0;
 	}
@@ -96,12 +94,12 @@ snippet case
 ## Loops
 # for
 snippet for
-	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+	for (${2:int i} = 0; $2 < ${1:count}; $2${3:++}) {
 		${4}
 	}
 # for (custom)
 snippet forr
-	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {
+	for (${1:int i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {
 		${5}
 	}
 # while

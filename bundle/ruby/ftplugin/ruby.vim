@@ -19,7 +19,7 @@ else
   setlocal keywordprg=ri
 endif
 
-setl iskeyword+=?
+setl iskeyword+=?,!
 
 " Matchit support
 if exists("loaded_matchit") && !exists("b:match_words")
@@ -136,12 +136,14 @@ if stridx(&l:path, s:ruby_path) == -1
 endif
 if exists('s:ruby_paths') && stridx(&l:tags, join(map(copy(s:ruby_paths),'v:val."/tags"'),',')) == -1
   let &l:tags = &tags . ',' . join(map(copy(s:ruby_paths),'v:val."/tags"'),',')
+  let &l:tags = &l:tags . ",/opt/src/rubinius-3.19/core/stdtags"
 endif
 
 if has("gui_win32") && !exists("b:browsefilter")
   let b:browsefilter = "Ruby Source Files (*.rb)\t*.rb\n" .
                      \ "All Files (*.*)\t*.*\n"
 endif
+
 
 let b:undo_ftplugin = "setl fo< inc< inex< sua< def< com< cms< path< tags< kp<"
       \."| unlet! b:browsefilter b:match_ignorecase b:match_words b:match_skip"
@@ -365,6 +367,7 @@ function! s:gf(count,map,edit) abort
     return a:edit.' '.fnameescape(found)
   endif
 endfunction
+
 
 
 

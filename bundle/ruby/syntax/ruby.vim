@@ -29,11 +29,9 @@ if exists("ruby_space_errors")
 endif
 
 " Operators
-if exists("ruby_operators")
   syn match  rubyOperator "[~!^&|*/%+-]\|\%(class\s*\)\@<!<<\|<=>\|<=\|\%(<\|\<class\s\+\u\w*\s*\)\@<!<[^<]\@=\|===\|==\|=\~\|>>\|>=\|=\@<!>\|\*\*\|\.\.\.\|\.\.\|::"
   syn match  rubyOperator "->\|-=\|/=\|\*\*=\|\*=\|&&=\|&=\|&&\|||=\||=\|||\|%=\|+=\|!\~\|!="
   syn region rubyBracketOperator matchgroup=rubyOperator start="\%(\w[?!]\=\|[]})]\)\@<=\[\s*" end="\s*]" contains=ALLBUT,@rubyNotTop
-endif
 
 " Expression Substitution and Backslash Notation
 syn match rubyStringEscape "\\\\\|\\[abefnrstv]\|\\\o\{1,3}\|\\x\x\{1,2}"						    contained display
@@ -196,6 +194,7 @@ syn match   rubyKeyword	       "\<\%(super\|yield\)\>[?!]\@!"
 syn match   rubyBoolean	       "\<\%(true\|false\)\>[?!]\@!"
 syn match   rubyPseudoVariable "\<\%(nil\|self\|__ENCODING__\|__dir__\|__FILE__\|__LINE__\|__callee__\|__method__\)\>[?!]\@!" " TODO: reorganise
 syn match   rubyBeginEnd       "\<\%(BEGIN\|END\)\>[?!]\@!"
+syn match   Type "\."
 
 " Expensive Mode - match 'end' with the appropriate opening keyword for syntax
 " based folding and special highlighting of module/class/method definitions
@@ -297,6 +296,7 @@ syn match  rubySymbol		"[[:space:],{(]\%(\h\|[^\x00-\x7F]\)\%(\w\|[^\x00-\x7F]\)
 " __END__ Directive
 syn region rubyData matchgroup=rubyDataDirective start="^__END__$" end="\%$" fold
 
+hi def link rubyKeywordAsMethod         Keyword
 hi def link rubyClass			rubyDefine
 hi def link rubyModule			rubyDefine
 hi def link rubyMethodExceptional	rubyDefine

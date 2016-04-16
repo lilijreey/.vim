@@ -118,7 +118,8 @@ syn match scalaCaseFollowing /`[^`]\+`/ contained
 hi link scalaCaseFollowing Special
 
 syn keyword scalaKeywordModifier abstract override final lazy implicit implicitly private protected sealed null require super
-hi link scalaKeywordModifier Function
+"hi link scalaKeywordModifier Function
+hi link scalaKeywordModifier Keyword
 
 syn keyword scalaSpecial this true false ne eq
 syn keyword scalaSpecial new nextgroup=scalaInstanceDeclaration skipwhite
