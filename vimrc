@@ -61,7 +61,7 @@ set wildmenu
 set ruler
 
 "The commandbar is 2 high
-set cmdheight=2
+"set cmdheight=2
 
 "Show line number
 set nu
@@ -149,6 +149,11 @@ nnoremap co :copen<CR>
 "屏蔽一些文件
 set wildignore+=*.o,*.obj,*.beam
 
+"" multi_cursor
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -180,6 +185,8 @@ let g:ctrlp_lazy_update = 350
 " Set no file limit, we are building a big project
 let g:ctrlp_max_files = 0
 
+let g:ctrlp_mruf_relative = 0
+
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 "let g:ctrlp_custom_ignore = {
       "\ 'dir':  '\v[\/]\.(git|hg|svn)$',
@@ -192,7 +199,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 if executable("ag")
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.svn'' --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --ignore ''tags'' --hidden -g ""'
 endif
-""  open extension support tag search
+"  open extension support tag search
 let g:ctrlp_extensions = ['tag']
 
 
@@ -227,6 +234,9 @@ let g:airline_powerline_fonts=1
 "let g:airline_symbols.branch = '⎇'
 "let g:airline_symbols.paste = 'Þ'
 "let g:airline_symbols.whitespace = 'Ξ'
+
+""""""""Eclim support by YCM
+let g:EclimCompletionMethod = 'omnifunc'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ag.vim ctrlsf use ag search
@@ -329,15 +339,15 @@ nnoremap wj <C-w>j
 nnoremap wk <C-w>k
 nnoremap wl <C-w>l
 " uppercase WORD TODO use func
-inoremap <c-u> <esc>vawUea
+"inoremap <c-u> <esc>vawUea
 
 "like Emacs Ctrl-A Ctrl-E in insert mode
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-inoremap <C-l> <S-Right>
-inoremap <C-h> <S-Left>
-inoremap <C-j> <C-g>j
-inoremap <C-k> <C-g>k
+"inoremap <C-a> <Home>
+"inoremap <C-e> <End>
+"inoremap <C-l> <S-Right>
+"inoremap <C-h> <S-Left>
+"inoremap <C-j> <C-g>j
+"inoremap <C-k> <C-g>k
 
 cnoremap RC :e $MYVIMRC<cr>
 "mvoe to windows
@@ -400,7 +410,7 @@ if has("unix")
   set guifont=Ubuntu\ for\ Powerline\ 14
 
   " set path(for gf,find command)
-  set path=./,../,/usr/include/,/usr/include/i386-linux-gnu/,/usr/local/include/,/
+  set path=./,./include/,../,/usr/include/,/usr/include/i386-linux-gnu/,/usr/local/include/,/
 
   " edit vimrc
 
@@ -536,6 +546,7 @@ if has("unix")
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby setl tags+=~/.rvm/gems/ruby-2.2.3/gems/rubygems.tags
 
   " for rails
   function s:SubRails()
@@ -544,7 +555,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
     endif
 
     let b:sub_rails= 1
-    set tags+=/opt/src/rails/rails_src_421.tags
+    "set tags+=/opt/src/rails/rails_src_421.tags
   endfunction
 
   au BufRead ~/src/rails-note/ra/* call s:SubRails()
@@ -596,7 +607,7 @@ else
   colorscheme torte 
 
   "highlight LineNr ctermfg=239
-  "highlight LineNr ctermfg=239
+  highlight LineNr ctermfg=239
   highlight Pmenu ctermbg=6
   highlight PmenuSel ctermbg=81
 endif
